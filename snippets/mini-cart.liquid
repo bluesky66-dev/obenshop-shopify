@@ -1,0 +1,169 @@
+<!-- Mini Cart Start -->
+<div class="baskettop">
+  <div class="wrapper-top-cart">
+    <a href="javascript:void(0)" id="ToggleDown" class="icon-cart-arrow">
+      {% if settings.header_style_1 == 'style_8' or settings.header_style_1 == 'style_7' or settings.header_style_1 == 'style_10' or settings.header_style_1 == 'style_11' or settings.header_style_1 == 'style_13'  %}
+      <i class="fas fa-shopping-basket"></i>
+      <div class="detail">
+        <div id="cartCount"> 
+          {{ cart.item_count }}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if settings.header_style_1 == 'style_1' %}
+      <i class="fas fa-shopping-bag"></i>
+      <div class="detail">
+        <div id="cartCount"> 
+          {{ cart.item_count }}
+        </div>
+        {% if cart.item_count == 0 or cart.item_count == 1 %}
+        <span class="cartCountspan">{{ 'cart.general.item' | t }}</span>
+        {% else %}  
+        <span class="cartCountspan">{{ 'cart.general.items' | t }} </span>
+        {% endif %}
+        <div id="minicart_total">
+          <span> {{ cart.total_price | money }}</span>
+        </div>
+      </div>
+      {% endif %}
+      {% if settings.header_style_1 == 'style_2' or   settings.header_style_1 == 'style_3' %}
+      <i class="fas fa-shopping-bag"></i>
+      <div class="detail">
+        <div id="cartCount"> 
+          {{ cart.item_count }}
+        </div>
+        {% if cart.item_count == 0 or cart.item_count == 1 %}
+        <span class="cartCountspan">{{ 'cart.general.item' | t }}</span>
+        {% else %}  
+        <span class="cartCountspan">{{ 'cart.general.items' | t }} </span>
+        {% endif %}
+        <div id="minicart_total">
+          <span> {{ cart.total_price | money }}</span>
+        </div>
+      </div>
+      {% endif %}
+     
+     
+       {% if settings.header_style_1 == 'style_5' %}
+      
+     
+      
+      <i class="fas fa-shopping-cart"></i>
+      <div class="detail">
+        <div id="cartCount"> 
+          {{ cart.item_count }}
+        </div>
+        {% if cart.item_count == 0 or cart.item_count == 1 %}
+        <span class="cartCountspan">{{ 'cart.general.item' | t }}</span>
+        {% else %}  
+        <span class="cartCountspan">{{ 'cart.general.items' | t }} </span>
+       
+        {% endif %}
+        <div id="minicart_total">
+         <span> {{ cart.total_price | money }}</span>
+        </div>
+      </div>
+    
+      
+     
+      
+   
+     
+  
+      {% endif %}
+      
+      {% if settings.header_style_1 == 'style_12' %}
+     
+      <i class="fas fa-shopping-cart"></i>
+      <div class="detail">
+     <span>{{ 'layout.cart.title' | t }}  </span> 
+        <div id="cartCount"> : {{ cart.item_count }}
+        </div>
+        
+      </div>
+     {% endif %}
+    
+    
+      
+      {% if settings.header_style_1 == 'style_9' %}
+       <div class="detail">
+           <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+
+           
+           
+           
+           <div class="mini-inner-detail-cart">
+       {{ 'cart.general.mini_cart_title' | t }}
+           <br>
+           
+           <div class="mini-inner-detail">
+         <div id="cartCount"> 
+          {{ cart.item_count }}
+        </div>
+        {% if cart.item_count == 0 or cart.item_count == 1 %}
+        <span class="cartCountspan">{{ 'cart.general.item' | t }}</span>
+        {% else %}  
+        <span class="cartCountspan">{{ 'cart.general.items' | t }} </span>
+        {% endif %}
+          
+             <div id="minicart_total">
+        -  <span> {{ cart.total_price | money_without_currency }}</span>
+        </div>
+           </div>
+           </div>
+           
+      </div>
+      {% endif %}
+     
+     
+      {% if settings.header_style_1 == 'style_6'  or settings.header_style_1 == 'style_4'  or settings.header_style_1 == 'style_10'  %}
+      
+      <div class="detail">
+        <div id="cartCount"> 
+          {{ cart.item_count }} 
+        </div>
+       
+        
+      </div>
+      {% endif %}
+    </a> 
+    <div id="slidedown-cart" style="display:none"> 
+      <!--  <h3>{{ 'cart.general.mini_cart_title' | t }}</h3>-->
+      <div class="no-items">
+        <p>{{ 'cart.general.empty' | t }}</p>
+        <p class="text-continue"><a class="btn" href="javascript:void(0)">{{ 'cart.general.continue_shopping' | t }}</a></p>
+      </div>
+      <div class="has-items">
+        <ul class="mini-products-list">  
+          {% for item in cart.items %}
+          <li class="item" id="cart-item-{{item.id}}">
+            <a href="{{item.url}}" title="{{item.title}}" class="product-image">
+              <img src="{{ item.image | product_img_url: 'small' }}" alt="{{item.title}}"></a>
+            <div class="product-details">
+              <p class="product-name"><a href="{{item.url}}">{{ item.product.title }}
+                {% if item.product.variants.size != 0 %}
+                {% unless item.variant.title contains 'Default' %}
+                {{ item.variant.title }}
+                {% endunless %}
+                {% endif %}</a></p>
+              <div class="cart-collateral"><span class="price">{{item.price | money}}</span> x {{item.quantity}}</div>
+            </div>
+            <a href="javascript:void(0)" title="Remove This Item" class="btn-remove"><span class="fas fa-times"></span></a>
+          </li>
+          {% endfor %}
+        </ul>
+        <div class="summary">                
+          <p class="total">
+            <span class="label">{{ 'cart.general.cart_total' | t }}</span>
+            <span class="price">{{cart.total_price | money}}</span> 
+          </p>
+        </div>
+        <div class="actions">
+          <button class="btn" onclick="window.location='/checkout'"><i class="fas fa-check"></i>{{ 'cart.general.checkout' | t }}</button>
+          <button class="btn text-cart" onclick="window.location='/cart'"><i class="fas fa-shopping-basket"></i>{{ 'cart.general.view_cart' | t }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Top Header --> 

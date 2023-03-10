@@ -1,0 +1,37 @@
+<div class="instagram-feed">
+  <div class="instagram-feed__wrap">
+    {% for block in section.blocks %}
+      <div class="instagram-feed__item">
+        <a href="{{ settings.social_instagram_link }}" target="_blank">
+          {% render 'image', image: block.settings.image, sizes: '660px' %}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Instagram feed",
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "name": "Item",
+      "type": "Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram feed"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,84 @@
+
+{% assign grid_results = false %}
+{% assign respond_js_secret_key = shop.domain | md5 %}
+{% unless search.terms == respond_js_secret_key %}
+    {% case settings.search_grid %}
+{% when '1' %}
+            {%- assign search_item_width = 'wide--grid__item post-large--grid__item large--grid__item medium--grid__item small-grid__item' -%}
+            {% when '2' %}
+            {%- assign search_item_width = 'wide--one-half post-large--one-half large--one-half medium--one-half small-grid__item' -%}            
+            {% when '3' %}
+            {%- assign search_item_width = 'wide--one-third post-large--one-third large--one-half medium--one-half small-grid__item' -%}            
+            {% when '4' %}
+            {%- assign search_item_width = 'wide--one-quarter post-large--one-third large--one-half medium--one-half small-grid__item' -%}            
+            {% when '5' %}
+            {%- assign search_item_width = 'wide--one-fifth post-large--one-quarter large--one-half medium--one-half small-grid__item' -%}  
+{% else %}
+            {%- assign search_item_width = 'wide--one-quarter post-large--one-third large--one-half medium--one-half small-grid__item' -%}            
+
+            {% endcase %}
+{% if settings.search_results_per_page != blank %}
+{% assign search_per_page = settings.search_results_per_page %}
+{% else %}
+  {% assign search_per_page = 12 %}
+{% endif %}
+
+{% paginate search.results by search_per_page %}
+<div class="search-products col-main">
+  {% if search.performed %}
+  {% if search.results_count == 0 %}
+  <h1 class="text--left h2" style="width:100%;">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
+  {% include 'search-bar' %}
+  {% else %}
+  <h1 class="h2 text--left" style="width:100%;">{{ 'general.search.results_for_html' | t: terms: search.terms }}</h1>
+   {% include 'search-bar' %}
+  {% endif %}
+  {% else %}
+  <h1 class="h2 left" style="width:100%;">{{ 'general.search.title' | t }}</h1>
+  {% include 'search-bar' %}
+  {% endif %}
+    <ul class="grid-uniform">
+    {% for item in search.results %}
+   
+    {% if item.object_type == 'product' %} 
+    {% include 'search-result','search_item_width' %}   
+    {% else %}
+      
+      
+  
+      
+    <li class="grid item-row grid__item {{ search_item_width }}">
+      <div class="products">
+        {% assign has_image = true %}
+        {% assign image_alt = item.title | escape %}
+        <div class="product-container">
+          {% assign featured_image = item.image | default: item.featured_image %}
+          {% if featured_image != blank %}
+          <a href="{{ item.url }}" title="{{ item.title | escape }}">
+            {{ featured_image | img_url: 'large' | img_tag: featured_image.alt }}
+          </a>
+          {% endif %}
+        </div>
+        <div class="product-detail">      
+          <a href="{{ item.url}}" class="grid-link__title">{{ item.title }}</a>
+        </div>
+      </div>
+    </li>
+    {% endif %}  
+    {% endfor %}  
+  </ul>
+  {% if paginate.pages > 1 %}
+  <div class="text-center">
+    {% include 'pagination-default' %}
+  </div>
+  {% endif %}  
+
+
+</div>
+{% endpaginate %}
+
+{% else %}
+{% include 'respond' %}
+{% layout none %}
+{% endunless %}
+

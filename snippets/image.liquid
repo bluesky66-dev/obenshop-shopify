@@ -1,0 +1,20 @@
+<img
+  src="{{ image | img_url: 'master' }}"
+  width="{{ image.width }}"
+  height="{{ image.height }}"
+  loading="lazy"
+  srcset="{% if image.width >= 493 %}{{ image | img_url: '493x' }} 493w,{% endif %}
+    {% if image.width >= 600 %}{{ image | img_url: '600x' }} 600w,{% endif %}
+    {% if image.width >= 713 %}{{ image | img_url: '713x' }} 713w,{% endif %}
+    {% if image.width >= 823 %}{{ image | img_url: '823x' }} 823w,{% endif %}
+    {% if image.width >= 990 %}{{ image | img_url: '990x' }} 990w,{% endif %}
+    {% if image.width >= 1100 %}{{ image | img_url: '1100x' }} 1100w,{% endif %}
+    {% if image.width >= 1206 %}{{ image | img_url: '1206x' }} 1206w,{% endif %}
+    {% if image.width >= 1346 %}{{ image | img_url: '1346x' }} 1346w,{% endif %}
+    {% if image.width >= 1426 %}{{ image | img_url: '1426x' }} 1426w,{% endif %}
+    {% if image.width >= 1646 %}{{ image | img_url: '1646x' }} 1646w,{% endif %}
+    {% if image.width >= 1946 %}{{ image | img_url: '1946x' }} 1946w,{% endif %}
+    {{ image | img_url: 'master' }} {{ image.width }}w"
+  sizes="{{ sizes }}"
+  alt="{{ image.alt | escape }}"
+>

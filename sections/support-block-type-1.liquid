@@ -1,0 +1,127 @@
+<div data-section-id="{{ section.id }}"  data-section-type="support-block-type-1" class="support-block-type-1" style="background:{{ section.settings.bg_color }};float:left;width:100%;">     
+  <div class="grid-uniform">
+    <div class="container">
+      <ul class="support_block" >         
+        {% if section.blocks.size > 0 %}      
+        {% for block in section.blocks %}
+        {% case section.blocks.size %}
+        {% when 1 %}
+        {%- assign block_width = 'one-whole text-center' -%}
+        {% when 2 %}
+        {%- assign block_width = 'wide--one-half post-large--one-half large--one-half medium--one-half small-grid__item' -%}
+        {% when 3 %}
+        {%- assign block_width = 'wide--one-third post-large--one-third large--one-third medium--one-whole small-grid__item' -%}
+        {% when 4 %}
+        {%- assign block_width = 'wide--one-quarter post-large--one-quarter large--one-quarter medium--one-half small-grid__item' -%}
+        {% endcase %}
+        <li class="grid__item {{ block_width }} wow fadeInUp"  data-wow-delay="{{ settings.time_lazy_load }}ms">
+
+          <div class="support_section">                      
+              
+            <div class="support_icon">                      
+              <a  class="" style="color:">
+                {% if block.settings.class_img != blank  %}
+                <img src="{{ block.settings.class_img | img_url: '1920X' }}" alt="{{ block.settings.title_4 }}" />
+                 {% else %}
+
+      <img src="//via.placeholder.com/57x50">
+                 {% endif %}
+              </a>
+                
+            </div>
+              
+            <div class="support_text"> 
+              {% if block.settings.title != blank  %}  
+              <h5 style="color:{{ block.settings.title_color }};">{{ block.settings.title }}</h5>
+              {% endif %} 
+              {% if block.settings.desc != blank  %}  
+              <p style="color:{{ block.settings.desc_color }};" class="desc">{{ block.settings.desc }}</p>
+              {% endif %} 
+            </div>      
+          </div>    
+        </li>  
+        {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+
+</div>
+{% schema %}
+{
+"name": "Support",
+"class": "index-section",
+"max_blocks":4,
+"settings": [
+{
+"type": "color",
+"id": "bg_color",
+"label": "Bg",
+"default":"#fff"
+}
+
+],
+"blocks": [
+{
+"type": "text",
+"name": "support block",
+"settings": [ 
+{
+"type": "image_picker",
+"id": "class_img",
+"label": "Icon Image"
+  
+},
+{
+"type": "text",
+"id": "title_4",
+"label": "Image Alt Text"
+},
+
+{
+"type": "text",
+"id": "title",
+"label": "Heading",
+"default":"Heading"
+},
+{
+"type": "color",
+"id": "title_color",
+"label": "Color",
+"default":"#000"
+},
+{
+"type": "text",
+"id": "desc",
+"label": "Description",
+"default":"Description"
+},
+{
+"type": "color",
+"id": "desc_color",
+"label": "Color",
+"default":"#000"
+}
+]
+}
+],
+"presets": [
+{
+"name": "Support",
+"category": "Text",
+"blocks": [
+{
+"type": "text"
+},
+{
+"type": "text"
+},
+{
+"type": "text"
+}
+
+]
+}
+]
+}
+{% endschema %}

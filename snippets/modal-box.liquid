@@ -1,0 +1,33 @@
+<div class="loading-modal modal">{{ 'general.search.loading' | t }}</div> 
+<div class="ajax-error-modal modal">
+  <div class="modal-inner">
+    <div class="ajax-error-title">{{ 'general.search.error' | t }}</div>
+    <div class="ajax-error-message"></div>
+  </div>
+</div>
+<div class="ajax-success-modal modal">
+  	<div class="overlay"></div>
+	<div class="content"> 
+      
+      
+      <div class="ajax-left">    
+        <p class="added-to-cart info">{{ 'cart.general.added_to_cart' | t }}</p>
+      <p class="added-to-wishlist info">{{ 'products.wishlist.added_to_wishlist' | t }}</p>
+      <img class="ajax-product-image" alt="modal window" src="/" />
+       <div class="ajax-cart-desc">
+        <h3 class="ajax-product-title"></h3>
+        <span class="ajax_price"></span>
+        <p>{{ 'cart.general.qty' | t }}:&nbsp;<span class="ajax_qty"></span></p>
+        </div>
+      </div>
+      <div class="ajax-right"> 
+        
+        <p>{{ 'cart.general.cart_tip' | t }} <span class="ajax_cartCount"></span>&nbsp;{{ 'cart.general.items_in_cart' | t }}</p>
+        <span class="ajax_cartTotal"></span>
+          <button class="btn continue-shopping" onclick="javascript:void(0)">{{ 'cart.general.continue_shopping' | t }}</button>
+        <div class="success-message added-to-cart"><a href="/cart" class="btn"><i class="fas fa-shopping-cart"></i>{{ 'cart.general.view_cart' | t }}</a> </div>  
+      <!--  <div class="success-message added-to-wishlist"> <a href="/pages/wishlist" class="btn"><i class="fa fa-heart"></i>{{ 'products.wishlist.view_wishlist' | t }}</a></div>                -->
+      </div>
+    <a href="javascript:void(0)" class="close-modal"><i class="far fa-times-circle"></i></a>
+ 	</div>    
+</div>

@@ -1,0 +1,430 @@
+
+              <ul class="menu_bar_right grid__item wide--one-sixth post-large--one-sixth large--one-sixth">
+             <li class="header-mobile">
+          <div class="menu-block visible-phone"><!-- start Navigation Mobile  -->
+            <div id="showLeftPush">
+              <i class="fa fa-bars" aria-hidden="true">  </i>
+            </div>
+          </div><!-- end Navigation Mobile  --> 
+        </li>  
+                
+                
+                {% if section.settings.display_search %}                
+                <li class="header-search">
+                  <div id="sb-search" class="sb-search post-large--hide large--hide medium-down--hide" >
+                    <form action="/search" method="get" class="search-bar__table-cell search-bar__form" role="search">
+                      {% if settings.show_search_prt %} 
+                      <input type="hidden" name="type" value="product">  
+                      {% endif %}
+                      <input type="text" id="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}" class="search-bar__input sb-search-input">
+                      <input class="sb-search-submit" type="submit" value="">
+                      <span class="sb-icon-search fa fa-search"></span>
+                    </form>
+                  </div>
+
+                  <div class="wide--hide post-large--show large--show medium-down--show">
+                    <form action="/search" method="get" class="search-bar__table-cell search-bar__form" role="search">							
+                      <input type="text" id="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}" class="search-bar__input sb-search-input">
+                      <button class="sb-search-submit res_btn" type="submit" value=""><i class="fa fa-search"></i></button>
+                    </form>
+                  </div>
+                </li>
+                {% endif %}
+                {% if settings.display_currency %} 
+                <li class="header_currency">
+                  <ul class="tbl-list">
+                    <li class="currency dropdown-parent uppercase currency-block">
+                      {% include 'currencies-switcher' %}
+                    </li>
+                  </ul>
+                </li>
+                {% endif %}
+                {% if section.settings.display_minicart %}
+                <li class="header-bar__module cart header_cart">
+                  {% include 'mini-cart' %} 
+                </li> 
+                {% endif %}
+              </ul>
+            
+
+
+  <style> 
+   
+    /* Logo block */
+    .header-type-1 .site-header__logo { background: {{ section.settings.logo_bar_bg }};}    
+    .header-type-1 .site-header__logo a,.header-type-1 .header-mobile #showLeftPush { color:{{section.settings.logo_text }};}
+    .header-type-1 .site-header__logo a:hover,.header-type-1 .header-mobile #showLeftPush:hover { color:{{section.settings.logo_hover_text }};}    
+
+    /* Menu  block */
+    .header-type-1 .menubar-section,.mobile-nav-section,.header-type-1 .site-header__menubar {background: {{ section.settings.menubar_bg }};}
+    .header-type-1 .menu-tool ul li,.header-mobile #showLeftPush {color: {{ section.settings.menubar_text }};}
+    .header-type-1 .menu-tool ul li a,.mobile-nav-section .mobile-nav-trigger,.header-mobile #showLeftPush:hover {color:{{section.settings.menubar_links}};}  
+    .header-type-1 .menu-tool ul li a:hover,.header-type-1 .menu-tool .site-nav > li > a.current:hover {color:{{section.settings.menubar_links_hover}};} 
+    .header-type-1 .menu-tool .site-nav >  li > a.current {color:{{section.settings.menu_active}};} 
+    .header-type-1 .site-nav-dropdown,#MobileNav,.mobile-nav__sublist { background: {{ section.settings.menubar_dropdown_bg }};}
+    .header-type-1 .site-nav-dropdown .inner > a {color: {{ section.settings.menubar_dropdown_caption }};}    
+    .header-type-1 .site-nav-dropdown .inner > a:hover {color: {{ section.settings.menubar_dropdown_caption_hover }};}    
+    .header-type-1 .site-nav-dropdown .inner .dropdown a,.header-type-1 .menu-tool .site-nav .site-nav-dropdown li a,.header-type-1 .site-nav .widget-featured-product .product-title,.header-type-1 .site-nav .widget-featured-product .widget-title h3,#MobileNav a,.mobile-nav__sublist a,.site-nav .widget-featured-nav .owl-prev a,.site-nav .widget-featured-nav .owl-next a  {color: {{ section.settings.menubar_dropdown_links }};}
+    .header-type-1 .site-nav-dropdown .inner .dropdown a:hover,.header-type-1 .menu-tool .site-nav .site-nav-dropdown li a:hover,.header-type-1 .site-nav-dropdown .inner .dropdown a.current,.header-type-1 .menu-tool .site-nav .site-nav-dropdown li a.current,.header-type-1 .site-nav .widget-featured-product .product-title:hover,#MobileNav a.current,.mobile-nav__sublist a.current,.site-nav .widget-featured-nav .owl-prev a:hover,.site-nav .widget-featured-nav .owl-next a:hover {color: {{ section.settings.menubar_dropdown_links_hover }};}    
+  
+    /* Dropdown block 
+    .header-type-1 .menubar-section #Togglemodal i {color: {{ section.settings.dropdown_icon }};}
+    .header-type-1 .menubar-section #Togglemodal i:hover {color: {{ section.settings.dropdown_icon_hover }};}
+    .header-type-1 #slidedown-modal {background: {{ section.settings.dropdown_bg }};}
+    .header-type-1 #slidedown-modal ul li a {color:{{section.settings.dropdown_link}};} 
+    .header-type-1 #slidedown-modal ul li a:hover {color:{{section.settings.dropdown_hover_link}};} 
+    */
+
+    /* Search block */     
+    .header-type-1 .header-search input#search {color:{{section.settings.search_text }};} 
+    .header-type-1 .header-search span,.header-type-1 .search-bar__form button.res_btn  {color:{{section.settings.search_icon}};} 
+    .header-type-1 .header-search span:hover,.header-type-1 .search-bar__form button.res_btn:hover {color:{{section.settings.search_icon_hover }};} 
+    .header-type-1 .sb-search.sb-search-open input[type="text"] { border:1px solid {{ section.settings.border_between_bars}}; background:{{section.settings.search_bg }};}
+    .header-type-1 .sb-search.sb-search-open .sb-icon-search { color:{{section.settings.Btn_text }};background:{{ section.settings.search_btn_bg }};}
+    .header-type-1 .sb-search.sb-search-open .sb-icon-search:hover, .header-type-5 .sb-icon-search:hover { color:{{section.settings.search_btn_hover }};background:{{ section.settings.search_btn_bghover }};}
+    .header-type-1 .search-bar__form button.res_btn { background:none;border:none;height:auto; }
+
+    .header-type-1 .header-search input#search::-webkit-input-placeholder  { /* Chrome/Opera/Safari */
+      color:{{section.settings.search_text }};
+    }
+    .header-type-1 .header-search input#search::-moz-placeholder { /* Firefox 19+ */
+      color:{{section.settings.search_text }};
+    }
+    .header-type-1 .header-search input#search:-ms-input-placeholder { /* IE 10+ */
+      color:{{section.settings.search_text }};
+    }
+    .header-type-1 .header-search input#search:-moz-placeholder { /* Firefox 18- */
+      color:{{section.settings.search_text }};
+    }
+
+    /* Cart Summary block */
+    .header-type-1 a.icon-cart-arrow i,.header-type-1 #minicart_total,.header-type-1 #cartCount,.header-type-1 .cartCountspan  {color: {{ section.settings.minicart_icon }};}
+    .header-type-1 a.icon-cart-arrow:hover i {color: {{ section.settings.minicart_icon_hover }};}
+    .header-type-1 #slidedown-cart .actions, .header-type-1  #slidedown-cart  {background: {{ section.settings.minicart_bg }};}
+    .header-type-1 .header-bar__module p {color: {{ section.settings.minicart_text }};}
+    .header-type-1 .header-bar__module a {color:{{section.settings.minicart_link }};}  
+    .header-type-1 .header-bar__module a:hover {color:{{section.settings.minicart_link_hover}};} 
+    .header-type-1 .header-bar__module .btn {color:{{section.settings.minicart_btn_text}};background: {{ section.settings.minicart_btn_bg }};} 
+    .header-type-1 .header-bar__module .btn:hover {color:{{section.settings.minicart_btn_hover_text}};background: {{ section.settings.minicart_btn_hover_bg }};} 
+    .header-type-1  #slidedown-cart .total .price,.header-type-1 #slidedown-cart ul li .cart-collateral {color:{{section.settings.minicart_total }};} 
+    .header-type-1 #slidedown-cart li { border-bottom:1px solid {{ section.settings.border_between_bars}}; }
+
+    /* Currency block */
+
+    .header-type-1 .header_currency ul select,.header-type-1 .header_currency ul li.currency .selector-arrow::after {color:{{section.settings.currency_icon}};}   
+    .header-type-1 .header_currency ul select:hover {color:{{section.settings.currency_icon_hover}};}  
+    .header-type-1 .header_currency ul li.currency:hover:after {border-top-color:{{section.settings.currency_icon_hover}};}
+    .header-type-1 .header_currency ul li.currency:after {border-top-color:{{section.settings.currency_icon}};}
+    .header-type-1 .header_currency option {background:{{section.settings.currency_bg}};color:{{section.settings.currency_link}};}
+    
+    
+    /* Header borders */
+    .header-type-1 .site-header__logo  { border-bottom:1px solid {{ section.settings.border_between_bars}}; }
+
+    
+    
+     
+  </style> 
+
+
+
+{% schema %}
+{
+"name": "Header",
+"settings": [  
+
+{
+"type":"checkbox",
+"id": "display_search",
+"label": "Display search"	
+},
+
+{
+"type": "checkbox",
+"id": "display_minicart",
+"label": "Display minicart"
+},
+
+
+
+{
+"type": "header",
+"content": "Currency Block"
+},
+
+{
+"type": "color",
+"id": "currency_icon",
+"label": "Current Text Color",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "currency_icon_hover",
+"label": "Text hover",
+"default": "#35b8f4"
+},
+{
+"type": "color",
+"id": "currency_bg",
+"label": "Current Background",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "currency_link",
+"label": "Currency Links",
+"default": "#000"
+},
+
+{
+"type": "header",
+"content": "Logo Block"
+},
+{
+"type": "color",
+"id": "logo_bar_bg",
+"label": "Background",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "logo_text",
+"label": "Text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "logo_hover_text",
+"label": "Hover text",
+"default": "#000"
+},
+{
+"type": "header",
+"content": "Border Block"
+},
+{
+"type": "color",
+"id": "border_between_bars",
+"label": "Border lines",
+"default": "#e4e4e4"
+},
+{
+"type": "header",
+"content": "Search Block"
+},
+{
+"type": "color",
+"id": "search_icon",
+"label": "Icon",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "search_icon_hover",
+"label": "Icon hover",
+"default": "#35b8f4"
+},
+{
+"type": "color",
+"id": "search_bg",
+"label": "Background",
+"default": "#fff"
+},
+
+{
+"type": "color",
+"id": "search_text",
+"label": "Text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "Btn_text",
+"label": "Btn Text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "search_btn_hover",
+"label": "Btn Text Hover",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "search_btn_bg",
+"label": "Btn Bg",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "search_btn_bghover",
+"label": "Btn Bg Hover",
+"default": "#000"
+},
+
+{
+"type": "header",
+"content": "Cart Block"
+},
+{
+"type": "color",
+"id": "minicart_icon",
+"label": "Icon",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_icon_hover",
+"label": "Icon hover",
+"default": "#35b8f4"
+},
+{
+"type": "color",
+"id": "minicart_bg",
+"label": "Background",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "minicart_text",
+"label": "Text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_link",
+"label": "Link",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_link_hover",
+"label": "Link hover",
+"default": "#35b8f4"
+},
+{
+"type": "color",
+"id": "minicart_btn_bg",
+"label": "Button background",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_btn_hover_bg",
+"label": "Hover background",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_btn_text",
+"label": "Button text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_btn_hover_text",
+"label": "Hover text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_total",
+"label": "Cart Total",
+"default": "#000"
+},  
+{
+"type": "header",
+"content": "Menu Block"
+},
+{
+"type": "color",
+"id": "menubar_bg",
+"label": "Background",
+"default": "#fff"
+},  
+{
+"type": "color",
+"id": "menubar_links",
+"label": "Links",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "menubar_links_hover",
+"label": "Hover links",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "menu_active",
+"label": "Active menu",
+"default": "#35b8f4"
+},
+{
+"type": "color",
+"id": "menubar_dropdown_bg",
+"label": "Dropdown menu background",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "menubar_dropdown_caption",
+"label": "Dropdown menu title",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "menubar_dropdown_caption_hover",
+"label": "Dropdown menu title hover",
+"default": "#35b8f4"
+},
+{
+"type": "color",
+"id": "menubar_dropdown_links",
+"label": "Dropdown menu links",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "menubar_dropdown_links_hover",
+"label": "Dropdown menu links hover",
+"default": "#35b8f4"
+}
+
+]
+}
+{% endschema %}
+
+
+{% javascript %}
+jQuery(function($){ 
+function dropDown() {
+elementClick = '.header_toggle';
+elementSlide = '.header_slide_element';
+activeClass  = 'active';
+$(elementClick).on('click', function(e) {
+e.stopPropagation();
+var subUl = $(this).next(elementSlide);
+$(this).toggleClass(activeClass);
+
+$(elementClick).not(this).removeClass(activeClass);
+e.preventDefault();
+});
+$(document).on('click', elementSlide, function(e) {
+e.stopPropagation();
+});
+$(document).on('click', function(e) {
+e.stopPropagation();
+if (e.which != 3) {
+var elementHide = $(elementClick).next(elementSlide);
+// $(elementHide).hide();
+$(elementClick).removeClass('active');
+}
+});
+}
+dropDown()
+});
+
+new UISearch( document.getElementById( 'sb-search' ) );
+{% endjavascript %}

@@ -1,0 +1,18 @@
+{% if template == 'index' %}
+<h1 class="site-header__logo order-header" itemscope itemtype="http://schema.org/Organization">
+  {% else %}
+  <div class="h1 site-header__logo order-header" itemscope itemtype="http://schema.org/Organization">
+    {% endif %}
+    {% if settings.logo %}
+    <a href="/">
+      <img class="normal-logo" src="{{ settings.logo | img_url: 'x220', crop: 'center' }}" alt="{{ shop.name }}" itemprop="logo">
+    </a>
+    {% else %}
+    <a href="/" class="logo_name">{{ shop.name }}</a>
+    {% endif %}
+    {% if template == 'index' %}
+    </h1>
+  {% else %}
+  </div>
+
+{% endif %}   

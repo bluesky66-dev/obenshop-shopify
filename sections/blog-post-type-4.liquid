@@ -1,0 +1,281 @@
+<div data-section-id="{{ section.id }}"  data-section-type="blog-post-type-4" class="blog-post-type-4" >
+<div class="blog-post" style="background:{{section.settings.blog_bg_clr}};float:left;width:100%;">
+    <div class="dt-sc-hr-invisible-large"></div>
+
+  <div class="container">
+    
+      <div class="grid">        
+        <div class="section-header section-header--smal wow fadeInDown animatedl">
+          {% if section.settings.title != blank %}
+          <div class="border-title">  
+            <h2 style="color:{{ section.settings.title_clr }};background:{{section.settings.title_bg_clr}}">{{ section.settings.title }}</h2>              
+            {% if section.settings.small_title != blank %}<div class="small-desc"> <p style="color:{{section.settings.small_title_clr }};">{{ section.settings.small_title }}</p></div>{% endif %}  
+          </div>
+          {% endif %}
+        </div>
+        <div class="home-blog blog-section" id="BlogType4">        
+          {% for article in blogs[section.settings.pick_featured_blog].articles limit: section.settings.limit  %}   
+          <div class="article-item grid__item wide--one-third post-large--one-third large--one-third medium--one-whole small-grid__item wow fadeInUp animated ">
+            <div class="article ">      
+              <div class="home-blog-image grid__item">
+                {% if article.image %}
+                <a href="{{ article.url }}">
+                  <img src="{{ article.image.src | img_url: 'grande' }}" alt="{{ article.title }}" />
+                </a>
+                {% endif %}                
+              </div>
+              <div class="blog-description grid__item">
+                <div class="blogs-sub-title">
+
+
+                  {% if section.settings.show_featured_date %}   
+                  <p class="blog-date" style="color:{{ section.settings.blog_date_clr }};">
+                    <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}"><i class="far fa-calendar"></i><span class="date"><i style="color:{{ section.settings.date_color }}">{{ article.published_at | date: '%b' }} {{ article.published_at | date: '%d' }} </i>  , {{ article.published_at | date: '%Y' }} </span></time>    		 
+                  </p>
+                  {% endif %} 
+
+                  <h4><a href="{{ article.url }}" style="color:{{ section.settings.blog_title_clr }};">{{ article.title }}</a></h4>
+                  {% if article.comments_enabled? %}
+                  {% assign number_of_comments = article.comments_count %}
+                  {% if section.settings.blog_comment %}
+                  <p class="comments-count"><i class="far fa-comment"></i> {{  number_of_comments }} {{ 'blogs.comments.comments' | t }}</p>
+                  {% endif %}
+                  {% endif %}
+
+                  {% if section.settings.blog_author_enable %}  
+                  <p class="author" style="{{ section.settings.blog_author_text }}">
+                    <i class="far fa-user"></i>
+                    <span> {{ article.author }}</span>
+                  </p>
+                  {% endif %}
+
+                </div>
+                <div class="home-blog-content blog-detail">
+                  {% if section.settings.blog_description %}
+                  {% if article.excerpt == blank %}
+                  <p style="color:{{ section.settings.blog_desc_clr }};"> {{ article.content | strip_html | truncate: 170 }}</p>
+                  {% else %}
+                  <p style="color:{{ section.settings.blog_desc_clr }};">{{ article.excerpt }}</p>
+                  {% endif %}
+                  {% endif %}                     
+                </div>
+                {% if section.settings.btn_1 != blank %}
+                <div class="blog-btsmall">
+                  <a class=""  href="{{ article.url }}">{{ section.settings.btn_1 }}<i class="fas fa-long-arrow-alt-right"></i></a>
+                </div>
+                {% endif %}
+              </div>
+
+            </div>  
+
+
+          </div>
+          {% else %}
+          {% for i in (1..2) %}
+          <div class="article-item grid__item wide--one-half post-large--one-half large--one-half medium--one-half small-grid__item">
+            <div class="article">     
+              <div class="home-blog-image grid__item">
+                <a href="#">
+                  <img src="//via.placeholder.com/1920x800">
+                </a>                
+              </div>
+              <div class="blog-description grid__item">
+                <div class="blogs-sub-title">                   
+                  <p class="blog-date">
+                    <time datetime="2018-03-14"><span class="date"><i>1{{i}} </i> / Mar/ 2018 </span></time>    		 
+                  </p>
+
+                  <h4><a style="color:{{ section.settings.blog_title_clr }};" href="#">Sample post {{ i }}</a></h4>
+                  <p class="comments-count">{{i}} Comments</p>
+                  <p class="author">
+                    <i class="fas fa-user"></i>
+                    <span> Author Name</span>
+                  </p>
+                </div>
+                <div class="home-blog-content blog-detail">
+                  <p> Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an, tincidunt risus ac, consequat velit. Quisquemos sodales suscipit tortor ditaemcos c...</p>
+                </div>
+              </div>             
+            </div>  
+
+
+          </div>
+
+          {% endfor %}
+          {% endfor %}
+
+
+
+        </div>
+        {% if section.settings.link != blank %}
+        <div class="blog-btn">
+          <a class="btn"  href="{{ section.settings.link }}">{{ section.settings.btn }}</a>
+        </div>
+        {% endif %}
+        <!--  <div class="nav_article"> </div> -->
+      </div>
+
+      <style>
+        {% if section.settings.heading_image_need %} .blog-post-type-4 .border-title:after {  content:"";background-image:url({{ section.settings.heading_image | img_url: 'master' }});display:inline-block;background-repeat:no-repeat;width:105px;height:17px;} {% endif %}
+        .blog-post-type-4 .blogs-sub-title h4 a:hover { color:{{ section.settings.title_hover_clr }} !important; }
+        .blog-post-type-4 .blogs-sub-title .comments-count { color:{{ section.settings.blog_comment_text }}; }
+        .blog-post-type-4 .comments-count:before { background:{{ section.settings.blog_comment_text }}; }
+        .blog-post-type-4 .blog-description {background:{{section.settings.blog_descbg_clr}};}
+      </style>
+    </div>
+    <div class="dt-sc-hr-invisible-large"></div>
+
+  </div>
+
+  <div class="dt-sc-hr-invisible-large"></div>
+
+</div>
+
+{% schema %}
+{
+"name": "Featured Blog Post",
+"settings": [
+{
+"type": "color",
+"id": "blog_bg_clr",
+"label": "Blog Bg Color",
+"default": "#000"      
+},	
+{
+"type": "text",
+"id": "title",
+"label": "Heading"
+},
+{
+"type": "color",
+"id": "title_clr",
+"label": "Heading",
+"default": "#000"
+},
+
+{
+"type": "color",
+"id": "title_bg_clr",
+"label": "Title bg Color",
+"default":"#000"	
+}, 
+{
+"type": "text",
+"id": "small_title",
+"label": "Small Heading"      
+},	
+{
+"type": "color",
+"id": "small_title_clr",
+"label": "Small Heading Color",
+"default": "#000"      
+},	
+{
+"type": "blog",
+"id": "pick_featured_blog",
+"label": "Select blog"
+},
+{
+"type": "text",
+"id": "limit",
+"label": "Limit",
+"default": "2"
+},
+{
+"type": "color",
+"id": "blog_title_clr",
+"label": "Title color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "title_hover_clr",
+"label": "Hover color",
+"default": "#000"
+},
+{
+"type": "checkbox",
+"id": "show_featured_date",
+"label": "Show date"
+},
+{
+"type": "color",
+"id": "date_color",
+"label": "Date Color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "blog_date_clr",
+"label": "Month Color",
+"default": "#000"
+},
+
+{
+"type": "checkbox",
+"id": "blog_author_enable",
+"label": "Show author"
+},
+{
+"type": "color",
+"id": "blog_author_text",
+"label": "Author Color",
+"default": "#000"
+},
+{
+"type": "checkbox",
+"id": "blog_comment",
+"label": "Show Comment"
+},
+{
+"type": "color",
+"id": "blog_comment_text",
+"label": "Comment Color",
+"default": "#000"
+},
+{
+"type": "checkbox",
+"id": "blog_description",
+"label": "Show description"
+},
+{
+"type": "color",
+"id": "blog_descbg_clr",
+"label": "Description Bg Color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "blog_desc_clr",
+"label": "Description Color",
+"default": "#000"
+},
+{
+"type": "text",
+"id": "btn",
+"label": "Link Text",
+"default": "View All Post"
+},
+{
+"type": "text",
+"id": "link",
+"label": "Link",
+"default": "/blogs/news"
+},
+{
+"type": "text",
+"id": "btn_1",
+"label": "Link",
+"default": "Read more"
+}
+],
+"presets": [
+{
+"name": "Featured Blog Post",
+"category": "blog"
+}
+]
+}
+{% endschema %}
+
+

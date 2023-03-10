@@ -1,0 +1,120 @@
+<div class="image-grid-section">
+  <div class="image-grid-section__wrap {% if section.settings.grid_position == 'right' %}image-grid-section__wrap_right{% endif %}">
+    <div class="image-grid-section__grid">
+      {% if section.settings.image_1 %}
+        {% render 'image', image: section.settings.image_1, sizes: '660px' %}
+      {% endif %}
+
+      {% if section.settings.image_2 %}
+        {% render 'image', image: section.settings.image_2, sizes: '660px' %}
+      {% endif %}
+
+      {% if section.settings.image_3 %}
+        {% render 'image', image: section.settings.image_3, sizes: '660px' %}
+      {% endif %}
+    </div>
+
+    <div class="image-grid-section__slider">
+      <div class="image-grid-section__slide">
+        <div class="image-grid-section__title-wrap">
+          <div class="image-grid-section__sublitle">
+            {{ section.settings.subtitle }}
+          </div>
+          <div class="image-grid-section__title">
+            {{ section.settings.title }} 
+          </div>
+        </div>
+        <div class="image-grid-section__text">
+          {{ section.settings.text | newline_to_br }} 
+
+          {% if section.settings.text_image %}
+            {% render 'image', image: section.settings.text_image, sizes: '660' %}
+          {% endif %}
+        </div>
+
+        {% if section.settings.button %}
+          <div class="image-grid-section__btn">
+            <a class="btn" href="{{ section.settings.link }}">{{ section.settings.button }}</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Image Grid Section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "grid_position",
+      "label": "Image grid position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image grid #1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image grid #2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image grid #3"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "text_image",
+      "label": "Text Image"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [],  
+  "presets": [
+    {
+      "name": "Image Grid Section"
+    }
+  ]
+}
+{% endschema %}

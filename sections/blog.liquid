@@ -1,0 +1,234 @@
+{% if settings.blog_page_sidebar == "left_sidebar" or  settings.blog_page_sidebar == "right_sidebar" %}
+{% assign mid_width = "grid__item wide--four-fifths post-large--three-quarters" %}
+{% else %}
+{% assign mid_width = "grid__item" %}
+{% endif %}
+
+ <div class="grid-uniform">    
+{% case section.settings.blog_grid %}
+{% when '1' %}
+            {%- assign blog_item_width = 'wide--grid__item post-large--grid__item large--grid__item medium--grid__item small-grid__item' -%}
+            {% when '2' %}
+            {%- assign blog_item_width = 'wide--one-half post-large--one-half large--one-half medium--one-half small-grid__item' -%}            
+            {% when '3' %}
+            {%- assign blog_item_width = 'wide--one-third post-large--one-third large--one-half medium--one-half small-grid__item' -%}            
+            {% when '4' %}
+            {%- assign blog_item_width = 'wide--one-quarter post-large--one-third large--one-half medium--one-half small-grid__item' -%}            
+            {% when '5' %}
+            {%- assign blog_item_width = 'wide--one-fifth post-large--one-quarter large--one-half medium--one-half small-grid__item' -%}            
+            {% endcase %}
+     {% paginate blog.articles by 6 %}
+    <div class="grid__item second {{ mid_width }}">    
+      <div class="blog_grid_section">
+      {% for article in blog.articles %}
+      <div class="grid__item {{ blog_item_width  }}">
+        <div class="article">
+          {% if section.settings.show_blog_4_img %}
+          {% if article.image %}
+          {% assign image_alt = article.title | escape %}
+          <div class="article-img">
+            {{ article | img_url: 'master' | img_tag: image_alt, 'article__image' | link_to: article.url }}
+          </div>
+          {% endif %}
+          {% endif %}
+          <div class="blog-description">
+            <div class="blogs-sub-title">
+              {% if section.settings.show_blog_4_date %}
+              <p class="blog-date">
+                 <i class="far fa-calendar"></i> <span data-datetime="{{ article.published_at | date: '%Y-%m-%d' }}"><span class="date">{{ article.published_at | date: '%b' }} {{ article.published_at | date: '%d' }} , {{ article.published_at | date: '%Y' }}</span></span>             
+              </p>
+              {% endif %}
+
+              
+                
+            </div>
+            <div class="home-blog-content blog-detail">				
+              <h4><a href="{{ article.url }}">{{ article.title }}</a></h4>
+              <div class="grid__item">
+              
+              {% if section.settings.show_blog_4_author %}            
+              <p class="author">
+                <i class="far fa-user"></i>
+                <span> {{ article.author }}</span>
+              </p> 
+                {% endif %}
+              
+              {% if article.comments_enabled? %}
+              {% assign number_of_comments = article.comments_count %}
+              <p class="comments-count"><i class="far fa-comment"></i>{{  number_of_comments }} {{ 'blogs.comments.comments' | t }}</p>
+              {% endif %}
+              </div>
+              
+              {% if section.settings.show_blog_4_content %}
+
+{% if article.excerpt.size > 0 %}
+              <p> {{ article.excerpt }}</p>
+             {% else %}
+              <p>  {{ article.content | strip_html | truncate: 150 }}</p>
+             {% endif %}
+              {% endif %}
+
+              {% if article.tags.size > 0 and section.settings.show_blog_4_tag %}
+              <div class="blog-tag">
+                <i class="fas fa-tag"></i>
+                {% for tag in article.tags %}
+                <a class="blog-tags" href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %} <span class="meta-sep">&#44;</span> {% endunless %}
+                {% endfor %}
+              </div>
+              {% endif %}
+             
+            </div>
+ {% if section.settings.show_blog_4_btn %}
+              <div class="blog-btn">
+                <a class="btn" href="{{ article.url }}">{{ 'blogs.article.read_more' | t }}<i class="fas fa-angle-double-right"></i></a>
+              </div>
+              {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %} 
+     
+      {% if paginate.pages > 1 %}
+      <div class="text-center">
+        {% include 'pagination-default' %}
+      </div>
+      {% endif %}
+         </div>
+    </div>    
+{% endpaginate %}
+</div>
+
+
+<style>
+  
+          .blog_grid_section .blogs-sub-title .comments-count { color:{{ section.settings.blog_design_commentcolor }}; }
+        .blog_grid_section .comments-count:before { background:{{ section.settings.blog_design_commentcolor }}; }
+        .blog_grid_section .author,.blog-design-4 .author{background:{{section.settings.blog_desc_clr_bg}};color:{{section.settings.blog_design_4_authorcolor}}; }
+.blog-design-4 .home-blog-content.blog-detail h4 a { color:{{ section.settings.blog_design_4_title }}; }
+.blog-design-4 .home-blog-content.blog-detail h4 a:hover { color:{{ section.settings.blog_design_4_titlehover }}; }
+  .blog-design-4 .home-blog-content.blog-detail .blog-tag a { color:{{ section.settings.blog_design_4_tag }}; }
+.blog-design-4 .home-blog-content.blog-detail .blog-tag a:hover {color:{{ section.settings.blog_design_4_taghover }}; }
+  
+</style>
+
+
+
+ {% schema %}
+{
+"name": "Blog Page",
+"settings": [
+      {
+        "type": "select",
+        "id": "blog_grid",
+        "label": "Blog per row (grid only)",
+        "default": "4",
+        "options": [
+ {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ]
+      },
+
+      {
+        "type": "checkbox",
+        "id": "show_blog_4_content",
+        "label": "Display Blog content"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_blog_4_img",
+        "label": "Display Blog img"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_blog_4_author",
+        "label": "Display Blog author name"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_blog_4_btn",
+        "label": "Display Blog button"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_blog_4_date",
+        "label": "Display Blog date"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_blog_4_tag",
+        "label": "Display Blog tag"
+      },
+      {
+        "type": "color",
+        "id": "blog_design_4_title",
+        "label": "Blog  title color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "blog_design_4_titlehover",
+        "label": "Blog  title hover color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "blog_design_4_datecolor",
+        "label": "Blog date color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "blog_design_4_authorcolor",
+        "label": "Blog author  color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "blog_design_commentcolor",
+        "label": "Blog comment color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "blog_design_4_tag",
+        "label": "Blog tag color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "blog_design_4_taghover",
+        "label": "Blog tag hover",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "blog_btn_sec_bg",
+        "label": "Blog Button Section Bg",
+        "default": "#000"
+      }
+     
+      
+      
+      
+     
+    ]
+  }
+{% endschema %}

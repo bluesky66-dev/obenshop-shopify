@@ -1,0 +1,36 @@
+{% if section.settings.collection_results_per_page != blank %}
+{% assign product_per_page = section.settings.collection_results_per_page %}
+{% else %}
+{% assign product_per_page = 12 %}
+{% endif %}
+
+<div class="grid__item sidebar-hidden">        
+  <div class="collection-list">
+    <div class="grid-uniform grid-link__container col-main">            
+      {% paginate collection.products by product_per_page %}   
+      {% include 'tool-list' %}            
+      <div class="product-list-view">
+        {% if collection.products.size > 0 %}            
+        <ul>
+          {% for product in collection.products %}
+          {% include 'product-list-item' %}
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if shop.products_count == 0 %}
+        <div class="grid__item">
+          <p><em>{{ 'home_page.onboarding.no_products_html' | t }}</em></p>
+        </div>
+        {% endif %}
+      </div>
+      {% if paginate.pages > 1 %}
+      <div class="text-center padding">
+        {% include 'pagination-custom' %}
+      </div>
+      {% endif %}
+      {% endpaginate %}  
+    </div>
+  </div>
+</div>
+    

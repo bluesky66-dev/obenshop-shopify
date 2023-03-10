@@ -1,0 +1,47 @@
+{% if section.blocks.size > 0 %}
+  <div class="map-section">
+    <div class="wrapper">
+      <div class="map-section__grid">
+        {% for block in section.blocks %}
+          <div class="map-section__item">
+            <div class="map-section__title image-grid-section__title">{{ block.settings.title }}</div>
+            <div class="map-section__map">
+              {{ block.settings.map_embed }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Map Section",
+  "blocks": [
+    {
+      "type": "Map",
+      "name":"map",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Map title"
+        },
+        {
+          "type": "html",
+          "id": "map_embed",
+          "label": "Map embed",
+          "default": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.921583841681!2d-79.3599502!3d43.6497998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb3dc83ce2ed%3A0x258449cea45ea40b!2sProperty.ca%20Inc.%20Brokerage!5e0!3m2!1sen!2sua!4v1667726811951!5m2!1sen!2sua\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Map Section"
+    }
+  ]
+}
+{% endschema %}

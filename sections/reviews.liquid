@@ -1,0 +1,50 @@
+<div class="reviews-section">
+  <div class="reviews-section__wrap">
+      <div class="reviews-section__slider">
+        {% for block in section.blocks %}
+          <div class="reviews-section__item">
+            <div class="reviews-section__item-wrap">
+              <div class="reviews-section__item-name">
+                {{ block.settings.name }}
+              </div>
+
+              <div class="reviews-section__item-text">
+                {{ block.settings.text | newline_to_br }}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Reviews Section",
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "name": "Review",
+      "type": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews Section"
+    }
+  ]
+}
+{% endschema %}

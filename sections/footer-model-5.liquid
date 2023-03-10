@@ -1,0 +1,153 @@
+<div data-section-id="{{ section.id }}" data-section-type="Footer-model-5" class="footer-model-5">
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="container_small">
+        <div class="footer__wrap">
+          <div class="footer__left">
+            <div class="footer__top-title">
+              <b>SIGN UP FOR OUR</b> <i>newsletter</i>
+            </div>
+
+            {% form 'customer' %}
+            	{% if form.posted_successfully? %}
+                <div class="footer__success">Thank you for subscribing!</div>
+              {% endif %}
+
+              <div class="footer__form">
+                <input name="contact[first_name]" type="text" placeholder="FIRST NAME" required>
+                <input name="contact[last_name]" type="text" placeholder="LAST NAME" required>
+                <input name="contact[email]" type="email" placeholder="EMAIL" required>
+              </div>
+
+              <div class="footer__form">
+                <button class="btn" type="submit">Sign up</button>
+              </div>
+            {% endform %}
+          </div>
+
+          <div class="footer__right">
+            <div class="footer__logo">
+              <a href="/">
+                {% if section.settings.footer_logo != blank %}
+                  <img class="normal-footer-logo" src="{{ section.settings.footer_logo | img_url: "x220" }}" alt="{{ shop.name }}"/>
+                {% else %}
+                  <img src="//via.placeholder.com/200x200">
+                {% endif %}
+              </a>
+            </div>
+
+            <div class="footer__menu">
+              {%- assign footer_linklist1 = section.settings.footer_menu_1 %}
+              {% if linklists[footer_linklist1].links.size > 0 %}
+                <div class="grid__item {{ footer_num_column_width }}">
+                  <ul class="site-footer__links">
+                    {% for link in linklists[section.settings.footer_menu_1].links %}
+                      <li>
+                        <a style="color:{{ section.settings.footer_link }};" href="{{ link.url }}">{{ link.title }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+              {%- assign footer_linklist2 = section.settings.footer_menu_2 %}
+              {% if linklists[footer_linklist2].links.size > 0 %}
+                <div class="grid__item {{ footer_num_column_width }}">
+                  <ul class="site-footer__links">
+                    {% for link in linklists[section.settings.footer_menu_2].links %}
+                      <li>
+                        <a style="color:{{ section.settings.footer_link }};" href="{{ link.url }}">{{ link.title }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="footer__socials">
+              <ul class="socials">
+                {% if settings.social_instagram_link %}
+                  <li class="socials__item">
+                    <a href="{{ settings.social_instagram_link }}" target="_blank">
+                      <img src="{{ 'instagram.png' | asset_url }}">
+                    </a>
+                  </li>
+                {% endif %}
+
+                {% if settings.social_facebook_link %}
+                  <li class="socials__item">
+                    <a href="{{ settings.social_facebook_link }}" target="_blank">
+                      <img src="{{ 'facebook.png' | asset_url }}">
+                    </a>
+                  </li>
+                {% endif %}
+
+                {% if settings.social_pinterest_link %}
+                  <li class="socials__item">
+                    <a href="{{ settings.social_pinterest_link }}" target="_blank">
+                      <img src="{{ 'pinterest.png' | asset_url }}">
+                    </a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container_small">
+        <div class="footer__bottom-wrap">
+          <ul class="footer__bottom-menu">
+            {% for link in linklists[section.settings.footer_menu_3].links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+
+          <div class="footer__copy">
+            {{ section.settings.copyright }} | Site designed by <a href="https://www.augustmedia.ca" target="_blank">August Media</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "footer_logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_menu_1",
+        "label": "Footer link"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_menu_2",
+        "label": "Footer link"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_menu_3",
+        "label": "Footer link"
+      },
+      {
+        "type": "textarea",
+        "id": "copyright",
+        "label": "Copy Right Text",
+        "default": "Copyright"
+      }
+    ]
+  }
+{% endschema %}

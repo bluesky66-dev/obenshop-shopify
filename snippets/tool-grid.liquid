@@ -1,0 +1,38 @@
+
+<header class="section-header section-header--large">
+  <div class="toolbar">
+    {% if section.settings.collections_view_enable %}
+    <div class="view-mode grid__item wide--one-third post-large--two-tenths large--two-tenths">     
+      <a class="grid btn active" href="grid" title="{{ 'collections.general.grid_view' | t }}"><span class="fas fa-th-large" aria-hidden="true"></span></a>  
+      <a class="list btn" href="list" title="{{ 'collections.general.list_view' | t }}" ><span class="fas fa-th-list" aria-hidden="true"></span></a>  
+    </div>    
+    {% endif %}
+    <div class="grid__item wide--five-tenths post-large--eight-tenths large--eight-tenths right">
+      {% if section.settings.collections_sort_enable %}
+      <div class="filter-sortby grid__item {% unless section.settings.collection_infinite_scrolling %} wide--six-tenths post-large--six-tenths large--six-tenths  {% endunless %}">
+        <label for="sort-by">{{ 'collections.sorting.title' | t }}</label> 
+        <input type="text" id="sort-by">
+        <div class="sorting-section">
+          <button class="btn dropdown-toggle" data-toggle="dropdown">
+            <i class="fas fa-exchange-alt"></i>
+            <span>{{ 'collections.sorting.featured' | t }}</span>
+          </button>
+
+          <ul class="dropdown-menu" role="menu">
+            <li class="active"><a href="manual">{{ 'collections.sorting.featured' | t }}</a></li>
+            <li><a href="price-ascending">{{ 'collections.sorting.price_ascending' | t }}</a></li>
+            <li><a href="price-descending">{{ 'collections.sorting.price_descending' | t }}</a></li>
+            <li><a href="title-ascending">{{ 'collections.sorting.az' | t }}</a></li>
+            <li><a href="title-descending">{{ 'collections.sorting.za' | t }}</a></li>
+            <li><a href="created-ascending">{{ 'collections.sorting.date_ascending' | t }}</a></li>
+            <li><a href="created-descending">{{ 'collections.sorting.date_descending' | t }}</a></li>
+            <li><a href="best-selling">{{ 'collections.sorting.best_selling' | t }}</a></li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+      
+    </div>
+
+  </div>
+</header>

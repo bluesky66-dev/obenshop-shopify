@@ -1,0 +1,295 @@
+<div data-section-id="{{ section.id }}"  data-section-type="Footer-model-15" class="footer-model-15">
+  <div class="footer-logo" style="{% if section.settings.image_1 %}background-image:url('{{ section.settings.image_1 | img_url: '1920X' }}');background-attachment:fixed;background-repeat:no-repeat;background-position:center center; {% else %}background:{{ section.settings.bg_color }} {% endif %};">
+    {% if section.settings.footer_logo_enable %}          
+    <a href="/">
+      <img class="normal-footer-logo" src="{{ section.settings.footer_logo | img_url: "200x" }}" alt="{{ shop.name }}" />
+    </a>
+    {% endif %}  
+
+
+
+
+      <div class="footer-bottom">
+
+        {%- assign footer_linklist4 = section.settings.footer_menu_4 %}
+        {% if section.settings.use_footer_bottom and linklists[footer_linklist4].links.size > 0 %}
+        <div class="grid__item footer-bottom__menu" style="">          
+          <ul>
+            {% for link in linklists[section.settings.footer_menu_4].links %}
+            <li>
+              <a style="color:{{ section.settings.footer_bottom_text }};" href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>        
+        </div>
+        {% endif %}
+      </div>
+  
+
+
+  </div>
+
+  <div style="background:{{ section.settings.copyright_bg }};" class="grid__item  copyright-section {% unless section.settings.footer_show_methods_of_payment %}text-center{% endunless %}">
+    
+    
+    
+    
+    <div class="grid__item wide--one-third post-large--one-third large--one-third medium-down--one-whole small--grid__item">
+    
+    {% if section.settings.copyright != blank %}
+    <p style="color:{{ section.settings.copyright_text }};"  class="copyright">{{ section.settings.copyright }}{% if section.settings.show_powered_by %}  {{ powered_by_link }} {% endif %}</p>
+    {% endif %}   
+    </div>
+    
+     <div class="grid__item wide--one-third post-large--one-third large--one-third medium-down--one-whole small--grid__item">
+    {% if section.settings.footer_social_enable %}  
+          <div class="footer_social_links">           
+            {% include 'social-links-type-6' %}
+          </div>
+          {% endif %}
+    </div>
+    
+     <div class="grid__item wide--one-third post-large--one-third large--one-third medium-down--one-whole small--grid__item">
+    {% if section.settings.footer_show_methods_of_payment %}
+    <div class="footer-icons {% if section.settings.show_powered_by and section.settings.copyright %}null{% else %}text-center{% endif %}">        
+      <ul class="inline-list payment-icons">
+        {% if section.settings.payment_icon_1 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_1 | img_url }}" alt="payment_icon_1" /></a></li>{% endif %}
+        {% if section.settings.payment_icon_2 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_2 | img_url }}" alt="payment_icon_2" /></a></li>{% endif %}
+        {% if section.settings.payment_icon_3 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_3 | img_url }}" alt="payment_icon_3" /></a></li>{% endif %}
+        {% if section.settings.payment_icon_4 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_4 | img_url }}" alt="payment_icon_4" /></a></li>{% endif %}
+        {% if section.settings.payment_icon_5 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_5 | img_url }}" alt="payment_icon_5" /></a></li>{% endif %}
+        {% if section.settings.payment_icon_6 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_6 | img_url}}" alt="payment_icon_6" /></a></li>{% endif %}            
+        {% if section.settings.payment_icon_7 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_7 | img_url}}" alt="payment_icon_7" /></a></li>{% endif %}            
+        {% if section.settings.payment_icon_8 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_8 |  img_url}}" alt="payment_icon_8" /></a></li>{% endif %}            
+        {% if section.settings.payment_icon_9 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_9 | img_url}}" alt="payment_icon_9" /></a></li>{% endif %}            
+        {% if section.settings.payment_icon_10 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_10 | img_url}}" alt="payment_icon_10" /></a></li>{% endif %}            
+      </ul>                 
+    </div> 
+    {% endif %}
+    </div>
+    
+    
+  </div>
+
+  <style>
+  
+    .footer-model-15 .copyright-section p a { color:{{ section.settings.copyright_link }}; }
+    .footer-model-15 .copyright-section p a:hover { color:{{ section.settings.copyright_link_hover }}; }
+    .footer-model-15 .footer-bottom .footer-bottom__menu ul li a:hover { color:{{ section.settings.footer_bottom_text_hover }} !important; }
+    .footer-model-15  .social-icons li a:hover { color:{{ section.settings.social_icon_hover_clr }} !important;}
+    .footer-model-15  .social-icons li a {color:{{section.settings.social_icon_clr}};}
+  
+  </style>
+</div>
+
+{% schema %}
+{
+"name": "Footer",
+
+"settings": [
+
+{
+"type": "image_picker",
+"id": "image_1",
+"label": "Image",
+"info": "Size: 1920x1280"
+},
+{
+"type": "color",
+"id": "bg_color",
+"label": "BG Color",
+"default":"#000"
+},
+
+{
+"type": "checkbox",
+"id": "footer_logo_enable",
+"label": "Show footer logo"
+},
+{
+"type": "image_picker",
+"id": "footer_logo",
+"label": "Logo image",
+"info": "Size:63x67"
+}, 
+
+{
+"type": "color",
+"id": "footer_text",
+"label": "Footer text",
+"default":"#000"
+},
+
+
+{
+"type": "checkbox",
+"id": "use_footer_bottom",
+"label": "Use footer bottom Menu?",
+"default": true
+},
+
+{
+"type": "color",
+"id": "footer_bottom_text",
+"label": "Footer Menu Link",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "footer_bottom_text_hover",
+"label": "Footer Menu Hover",
+"default": "#000"
+},
+
+
+{
+"type": "link_list",
+"id": "footer_menu_4",
+"label": "Footer link"
+},
+{
+"type": "header",
+"content": "Payment Methods"
+},
+{
+"type": "checkbox",
+"id": "footer_show_methods_of_payment",
+"label": "Show payment method",
+"default": false
+}, 	
+{
+"type": "image_picker",
+"id": "payment_icon_1",
+"label": "Image",
+"info": "Size: 57x35"
+},      
+{
+"type": "image_picker",
+"id": "payment_icon_2",
+"label": "Image",
+"info": "Size: 57x35"
+},      
+{
+"type": "image_picker",
+"id": "payment_icon_3",
+"label": "Image",
+"info": "Size: 57x35"
+},      
+{
+"type": "image_picker",
+"id": "payment_icon_4",
+"label": "Image",
+"info": "Size: 57x35"
+},      
+{
+"type": "image_picker",
+"id": "payment_icon_5",
+"label": "Image",
+"info": "Size: 57x35"
+},      
+{
+"type": "image_picker",
+"id": "payment_icon_6",
+"label": "Image",
+"info": "Size: 57x35"
+}, 
+{
+"type": "image_picker",
+"id": "payment_icon_7",
+"label": "Image",
+"info": "Size: 57x35"
+}, 
+{
+"type": "image_picker",
+"id": "payment_icon_8",
+"label": "Image",
+"info": "Size: 57x35"
+}, 
+{
+"type": "image_picker",
+"id": "payment_icon_9",
+"label": "Image",
+"info": "Size: 57x35"
+}, 
+{
+"type": "image_picker",
+"id": "payment_icon_10",
+"label": "Image",
+"info": "Size: 57x35"
+}, 
+{
+"type": "checkbox",
+"id": "show_powered_by",
+"label": "Show 'Powered by Shopify'",
+"default": true
+},
+{
+"type": "text",
+"id": "copyright",
+"label": "Copyright",
+"default":"Copyright"
+},
+{
+"type": "color",
+"id": "copyright_bg",
+"label": "Copyright Bg",
+"default":"#000"
+},
+{
+"type": "color",
+"id": "copyright_text",
+"label": "Copyright Text",
+"default":"#000"
+},
+{
+"type": "color",
+"id": "copyright_link",
+"label": "Copyright Link",
+"default":"#000"
+},
+{
+"type": "color",
+"id": "copyright_link_hover",
+"label": "Copyright Link Hover",
+"default":"#000"
+},
+{
+"type": "checkbox",
+"id": "footer_social_enable",
+"label": "Show social media icons"       
+},
+{
+"type": "text",
+"id": "social_title",
+"label": "Social heaidng"
+},
+{
+"type": "color",
+"id": "social_icon_clr",
+"label": "Social Icon Color",
+"default":"#fff"
+},
+{
+"type": "color",
+"id": "social_iconbg_clr",
+"label": "Social Icon Bg Color",
+"default":"#fff"
+},
+{
+"type": "color",
+"id": "social_icon_hover_clr",
+"label": "Social Icon Hover Color",
+"default":"#fff"
+},
+{
+"type": "color",
+"id": "social_icon_bghover_clr",
+"label": "Social Icon Bg Hover Color",
+"default":"#fff"
+}
+]
+}
+{% endschema %}
+
+
+          

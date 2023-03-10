@@ -1,0 +1,87 @@
+{% if settings.display_popup_newsletter %}
+<script type="text/javascript">// <![CDATA[
+jQuery(document).ready(function() {    //
+    var $modalParent        = jQuery('div.newsletterwrapper'),
+        modalWindow         = jQuery('#email-modal'),
+        emailModal          = jQuery('#email-modal'),
+        modalPageURL        = window.location.pathname; 
+          
+    modalWindow = modalWindow.html();
+    modalWindow = '<div id="email-modal">' + modalWindow + '</div>';
+    $modalParent.css({'position':'relative'});
+    jQuery('.wrapper #email-modal').remove();
+    $modalParent.append(modalWindow);
+  
+    if (jQuery.cookie('emailSubcribeModal') != 'closed') {
+        openEmailModalWindow();
+    };
+      
+    jQuery('#email-modal .btn.close').click(function(e) {
+        e.preventDefault();
+        closeEmailModalWindow();
+    });
+    jQuery('body').keydown(function(e) {
+        if( e.which == 27) {
+            closeEmailModalWindow();
+            jQuery('body').unbind('keydown');
+        }
+    });
+    jQuery('#mc_embed_signup form').submit(function() {
+        if (jQuery('#mc_embed_signup .email').val() != '') {
+            closeEmailModalWindow();
+        }
+    });
+      
+    function closeEmailModalWindow () {
+        jQuery('#email-modal .modal-window').fadeOut(600, function() {
+            jQuery('#email-modal .modal-overlay').fadeOut(600, function() {
+                jQuery('#email-modal').hide();
+                jQuery.cookie('emailSubcribeModal', 'closed', {expires:1, path:'/'});
+            });
+        })
+    }
+    function openEmailModalWindow () {
+        jQuery('#email-modal').fadeIn(600, function() {
+           jQuery('#email-modal .modal-window').fadeIn(600);
+        });
+    }
+      
+});
+// ]]
+// ]]></script>
+<div class="newsletterwrapper">
+  <div id="email-modal" style="display: none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-window" style="display: none;">
+      <div class="window-window">
+          <a class="btn close" title="Close Window"></a>
+          
+           
+         
+          
+            <div class="window-content">
+                <div class="grid__item  wide--one-half post-large--one-half large--one-half">
+           {% if settings.pop_up_newsletter_img_show %} <img src="{{ 'popup_newsletter_img.jpg' | asset_url }}" alt="{{ settings.popup_newsletter_title }}">{% endif %}
+          </div>
+               
+               <div class="grid__item wide--one-half post-large--one-half large--one-half">
+              <div id="mailchimp-email-subscibe">
+          <div class="newsletter-title">
+         <h2 class="title">{{ settings.popup_newsletter_title }}</h2>
+          </div>
+           <p class="message">{{ settings.popup_newsletter_message }}</p>
+          
+            <div id="mc_embed_signup">
+              {% include 'newsletter-form' %}
+            </div>   
+            <span>{{ settings.form_note }}</span>
+          </div>
+              </div>
+            
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

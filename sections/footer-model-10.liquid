@@ -1,0 +1,434 @@
+
+
+<div data-section-id="{{ section.id }}"  data-section-type="footer-model-10" class="footer-model-10" style="border-top: 1px solid {{ section.settings.footer_border }};background-color:{{ section.settings.footer_bg_clr }};{% if section.settings.footer_bg_img %} background-image:url('{{ section.settings.image_1 | img_url: 'master' }}');background-repeat:no-repeat;background-size:cover;background-position:center;{% endif %}">
+  
+    <footer class="site-footer">  
+      <div class="container">
+      <div class="grid-item ">
+        {% assign num_footer_columns = 0 %}      
+
+        {%- assign footer_linklist = section.settings.footer_menu_1 %}
+        {% if linklists[footer_linklist].links.size > 0 %}
+        {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+        {% endif %}
+
+        {%- assign footer_linklist = section.settings.footer_menu_2 %}
+        {% if linklists[footer_linklist].links.size > 0 %}
+        {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+        {% endif %}
+
+        {%- assign footer_linklist = section.settings.footer_menu_3 %}
+        {% if linklists[footer_linklist].links.size > 0 %}
+        {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+        {% endif %}
+{%- assign footer_linklist = section.settings.footer_menu_4 %}
+        {% if linklists[footer_linklist].links.size > 0 %}
+        {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+        {% endif %}
+        {%- assign footer_linklist = section.settings.footer_menu_5 %}
+        {% if linklists[footer_linklist].links.size > 0 %}
+        {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+        {% endif %}
+        {% case num_footer_columns %}
+        {% when 0 %}
+        {% when 1 %}
+        {% assign footer_column_width = 'text-left' %}
+        {% when 2 %}
+        {% assign footer_column_width = 'wide--one-half post-large--one-half large--one-half medium--one-half' %}
+        {% when 3 %}
+        {% assign footer_column_width = 'wide--one-third post-large--one-third large--one-third medium--one-half' %}    
+         {% when 4 %}
+        {% assign footer_column_width = 'wide--one-quarter post-large--one-quarter large--one-quarter medium--one-half' %} 
+        {% when 5 %}
+        {% assign footer_column_width = 'wide--one-fifth post-large--one-fifth large--one-third medium--one-half' %} 
+        {% endcase %}
+
+      
+             
+
+         
+        
+        
+        <div class="footer-links-column" style=" ">
+          {%- assign footer_linklist = section.settings.footer_menu_1 -%}
+          {% if linklists[footer_linklist].links.size > 0 %}
+          <div class="grid__item {{ footer_column_width }}">
+            {% unless num_footer_columns == 1 %}
+            <h4 style="color:{{ section.settings.footer_heading_clr }};">{{ section.settings.footer_menu_1_title}}</h4>
+            {% endunless %}
+            <ul class="site-footer__links{% if num_footer_columns == 1 %} inline-list{% endif %}">
+              {% for link in linklists[section.settings.footer_menu_1].links %}
+              <li><a href="{{ link.url }}" style="color:{{ section.settings.footer_link_clr }};">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
+          {%- assign footer_linklist = section.settings.footer_menu_2 -%}
+          {% if linklists[footer_linklist].links.size > 0 %}
+          <div class="grid__item {{ footer_column_width }}">            
+            <h4 style="color:{{ section.settings.footer_heading_clr }};">{{ section.settings.footer_menu_2_title}}</h4>         
+            <ul class="site-footer__links{% if num_footer_columns == 1 %} inline-list{% endif %}">
+              {% for link in linklists[section.settings.footer_menu_2].links %}
+              <li><a href="{{ link.url }}" style="color:{{ section.settings.footer_link_clr }};">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
+
+          {%- assign footer_linklist = section.settings.footer_menu_3 -%}
+          {% if linklists[footer_linklist].links.size > 0 %}
+          <div class="grid__item {{ footer_column_width }}">            
+            <h4 style="color:{{ section.settings.footer_heading_clr }};">{{ section.settings.footer_menu_3_title}}</h4>             
+            <ul class="site-footer__links{% if num_footer_columns == 1 %} inline-list{% endif %}">
+              {% for link in linklists[section.settings.footer_menu_3].links %}
+              <li><a href="{{ link.url }}" style="color:{{ section.settings.footer_link_clr }};">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          {%- assign footer_linklist = section.settings.footer_menu_4 -%}
+          {% if linklists[footer_linklist].links.size > 0 %}
+          <div class="grid__item {{ footer_column_width }}">            
+            <h4 style="color:{{ section.settings.footer_heading_clr }};">{{ section.settings.footer_menu_4_title}}</h4>             
+            <ul class="site-footer__links{% if num_footer_columns == 1 %} inline-list{% endif %}">
+              {% for link in linklists[section.settings.footer_menu_4].links %}
+              <li><a href="{{ link.url }}" style="color:{{ section.settings.footer_link_clr }};">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          {%- assign footer_linklist = section.settings.footer_menu_5 -%}
+          {% if linklists[footer_linklist].links.size > 0 %}
+          <div class="grid__item {{ footer_column_width }}">            
+            <h4 style="color:{{ section.settings.footer_heading_clr }};">{{ section.settings.footer_menu_5_title}}</h4>             
+            <ul class="site-footer__links{% if num_footer_columns == 1 %} inline-list{% endif %}">
+              {% for link in linklists[section.settings.footer_menu_5].links %}
+              <li><a href="{{ link.url }}" style="color:{{ section.settings.footer_link_clr }};">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+         
+            
+          
+        
+
+        
+
+         
+        </div>
+     </div>
+      </div>
+      {% if section.settings.footer_logo != blank %}
+          <div class="footer-logo">
+        <img src="{{ section.settings.footer_logo | img_url: '210x84' }}" alt="{{ settings.footer_logo_alt }}">
+      </div>
+        {% endif %}
+      
+       {% if section.settings.footer_menu %}
+      <ul class="menu right">
+        {% for link in linklists[section.settings.footer].links %}             
+        <li class="{% if link.active %}current_page_item{% endif %}">
+          <a style="color:{{ section.settings.footer_menu_clr }}" href="{{ link.url }}" class="menu_{{forloop.index }}">{{ link.title}}</a>    
+        </li>  
+        {% endfor %}
+      </ul>
+      {% endif %}  
+      
+    </footer>
+
+    <div class="grid__item copyright-section" style="border-top: 1px solid {{ section.settings.footer_border }};">
+
+      {% if  section.settings.copyright != blank %}
+      <p style="color:{{ section.settings.copyright_clr }}" class="copyright left">{{ section.settings.copyright }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name }} {% if section.settings.show_powered_by %}  {{ powered_by_link }} {% endif %}</p>
+      {% endif %}
+      
+       {% if section.settings.footer_show_methods_of_payment %}
+          <div class="footer-icons">        
+           <ul class="inline-list payment-icons">
+              {% if section.settings.payment_icon_1 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_1 | img_url: "55x" }}" alt="payment_icon_1" /></a></li>{% endif %}
+              {% if section.settings.payment_icon_2 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_2 | img_url: "55x" }}" alt="payment_icon_2" /></a></li>{% endif %}
+              {% if section.settings.payment_icon_3 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_3 | img_url: "55x" }}" alt="payment_icon_3" /></a></li>{% endif %}
+              {% if section.settings.payment_icon_4 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_4 | img_url: "55x" }}" alt="payment_icon_4" /></a></li>{% endif %}
+              {% if section.settings.payment_icon_5 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_5 | img_url: "55x" }}" alt="payment_icon_5" /></a></li>{% endif %}
+              {% if section.settings.payment_icon_6 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_6 | img_url: "55x" }}" alt="payment_icon_6" /></a></li>{% endif %}            
+              {% if section.settings.payment_icon_7 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_7 | img_url: "55x" }}" alt="payment_icon_7" /></a></li>{% endif %}            
+              {% if section.settings.payment_icon_8 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_8 | img_url: "55x" }}" alt="payment_icon_8" /></a></li>{% endif %}            
+              {% if section.settings.payment_icon_9 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_9 | img_url: "55x" }}" alt="payment_icon_9" /></a></li>{% endif %}            
+              {% if section.settings.payment_icon_10 != blank %}<li><a href="/cart"><img src="{{ section.settings.payment_icon_10 |img_url: "55x"}}" alt="payment_icon_10" /></a></li>{% endif %}            
+            </ul>                   
+          </div> 
+          {% endif %}
+      
+      
+       
+    </div>
+  </div>
+
+  <style>
+    .footer-model-10 .site-footer__links a:hover,.footer-model-10 .office-mail a:hover {   color:{{ section.settings.footer_link_hover_clr }} !important;}
+    .footer-model-10 .menu li a:hover { color:{{ section.settings.footer_menu_hover_clr }} !important;}
+    .footer-model-10 .copyright a { color:{{ section.settings.copyright_link }};}
+    .footer-model-10 .copyright a:hover { color:{{ section.settings.copyright_link_hover }};}
+    .footer-model-10 .site-footer .grid-uniform .grid__item.footer__about a:hover { color:{{ section.settings.abt_link_hover_clr }} !important;}    
+    .footer-model-10 .payment-icons a { color:{{ section.settings.payment_color }}; }
+    .footer-model-10 .payment-icons a:hover { color:{{ section.settings.payment_hover_color }}; }
+  </style>
+
+
+{% schema %}
+{
+   "name": "Footer",
+  "settings": [
+	{
+        "type": "header",        
+        "content": "Colors"
+      }, 
+	{
+        "type": "color",        
+        "id": "footer_bg_clr",
+		"label":"Background",
+         "default": "#fff"
+      }, 
+	{
+        "type": "color",        
+        "id": "footer_border",
+		"label":"Border",
+         "default": "#fff"
+      }, 
+
+
+	{
+      "type": "checkbox",
+      "id": "footer_bg_img",
+      "label": "Footer Image?"
+      },
+      {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+      },
+		{
+        "type": "color",        
+        "id": "footer_heading_clr",
+		"label":"Heading",
+		"default": "#000"
+      }, 
+		{
+        "type": "color",        
+        "id": "footer_txt_clr",
+		"label":"Text",
+		"default": "#000"
+      }, 
+		{
+        "type": "color",        
+        "id": "footer_link_clr",
+		"label":"Link",
+		"default": "#000"
+      }, 
+	{
+        "type": "color",        
+        "id": "footer_link_hover_clr",
+		"label":"Link Hover Color",
+		"default": "#000"
+      }, 
+	{
+        "type": "color",        
+        "id": "copyright_clr",
+		"label":"Copyright Text",
+		"default": "#000"
+      }, 
+	{
+        "type": "color",        
+        "id": "copyright_link",
+		"label":"Copyright Link",
+		"default": "#000"
+      }, 
+	{
+        "type": "color",        
+        "id": "copyright_link_hover",
+		"label":"Copyright Link Hover",
+		"default": "#000"
+      }, 
+	{
+        "type": "color",        
+        "id": "footer_menu_clr",
+		"label":"Footer Menu Color",
+		"default": "#000"
+      }, 
+	{
+        "type": "color",        
+        "id": "footer_menu_hover_clr",
+		"label":"Footer Menu Hover Color",
+		"default": "#000"
+      }, 
+	
+    {
+      "type": "link_list",
+      "id": "footer_menu_1",
+      "label": "Footer menu 1",
+      "default": "footer"
+    },
+	{
+      "type": "text",
+      "id": "footer_menu_1_title",
+      "label": "Heading",
+      "default": "footer"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu_2",
+      "label": "Footer menu 2",
+      "default": "footer"
+    },
+	{
+      "type": "text",
+      "id": "footer_menu_2_title",
+      "label": "Heading",
+      "default": "footer"
+    },
+	{
+      "type": "link_list",
+      "id": "footer_menu_3",
+      "label": "Footer menu 3",
+      "default": "footer"
+    },   
+	{
+      "type": "text",
+      "id": "footer_menu_3_title",
+      "label": "Heading",
+      "default": "footer"
+      },
+{
+      "type": "link_list",
+      "id": "footer_menu_4",
+      "label": "Footer menu 4",
+      "default": "footer"
+    },   
+	{
+      "type": "text",
+      "id": "footer_menu_4_title",
+      "label": "Heading",
+      "default": "footer"
+      },
+{
+      "type": "link_list",
+      "id": "footer_menu_5",
+      "label": "Footer menu 5",
+      "default": "footer"
+    },   
+	{
+      "type": "text",
+      "id": "footer_menu_5_title",
+      "label": "Heading",
+      "default": "footer"
+      },
+  {
+  "type": "image_picker",
+  "id": "footer_logo",
+  "label": "Image",
+"info": "Size: 210x45"
+  }, 
+  {
+  "type": "text",
+  "id": "footer_logo_alt",
+  "label": "Footer Logo Alt"
+  }, 
+ 
+		
+	{
+      "type": "checkbox",
+      "id": "footer_menu",
+      "label": "Footer Menu",
+      "default": true
+    },
+	 {
+      "type": "link_list",
+      "id": "footer",
+      "label": "Footer menu",
+      "default": "footer"
+    },
+	{
+      "type": "checkbox",
+      "id": "footer_show_methods_of_payment",
+      "label": "Show payment method",
+      "default": true
+    },
+    {
+"type": "image_picker",
+"id": "payment_icon_1",
+"label": "Image",
+"info": "Size: 55x35"
+},      
+{
+"type": "image_picker",
+"id": "payment_icon_2",
+"label": "Image",
+"info": "Size: 55x35"
+},      
+{
+"type": "image_picker",
+"id": "payment_icon_3",
+"label": "Image",
+"info": "Size: 55x35"
+},      
+{
+"type": "image_picker",
+"id": "payment_icon_4",
+"label": "Image",
+"info": "Size: 55x35"
+},      
+{
+"type": "image_picker",
+"id": "payment_icon_5",
+"label": "Image",
+"info": "Size: 55x35"
+},      
+{
+"type": "image_picker",
+"id": "payment_icon_6",
+"label": "Image",
+"info": "Size: 55x35"
+}, 
+{
+"type": "image_picker",
+"id": "payment_icon_7",
+"label": "Image",
+"info": "Size: 55x35"
+}, 
+{
+"type": "image_picker",
+"id": "payment_icon_8",
+"label": "Image",
+"info": "Size: 55x35"
+}, 
+{
+"type": "image_picker",
+"id": "payment_icon_9",
+"label": "Image",
+"info": "Size: 55x35"
+}, 
+{
+"type": "image_picker",
+"id": "payment_icon_10",
+"label": "Image",
+"info": "Size: 55x35"
+},
+
+    {
+      "type": "checkbox",
+      "id": "show_powered_by",
+      "label": "Show 'Powered by Shopify'",
+      "default": true
+    },
+ 	{
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright",
+      "default":"Copyright"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+{% if settings.display_color_variant %}
+<ul class="item-swatch color_swatch_Value">  
+{% for option in product.options %}
+  {% if option == 'Color' %}
+    {% assign index = forloop.index0 %}
+    {% assign colorlist = '' %}
+    {% assign color = '' %}
+    {% for variant in product.variants %}
+      {% capture color %}
+        {{ variant.options[index] }}
+      {% endcapture %}
+      {% unless colorlist contains color %}  
+      {% assign text = color | handleize %}
+      <li>
+       <label style="{% if text == 'white' %}border: 1px solid #cbcbcb; {% endif %}background-color: {{ color | split: ' ' | last | handle }}; background-image: url({{ text | append: '.png' | file_url }});"></label>
+        {% if variant.image != null %}
+        <div class="hidden">
+          <img src="{{ variant.image.src | product_img_url: 'master' }}" alt="{{ text }}"/>
+        </div>
+        {% endif %}
+      </li>
+        {% capture tempList %}
+          {{ colorlist | append: color | append: ' ' }}
+        {% endcapture %}
+        {% assign colorlist = tempList %}
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if settings.display_flavour %}
+{% if  settings.flavour_txt.size > 0 %}<label> {{ settings.flavour_txt }}</label>{% endif %}
+<ul class="item-swatch color_swatch_Value flavour_list">  
+{% for option in product.options %}
+  {% if option == 'Flavour' or option ==  'flavour' or option ==  'flavor' or option ==  'Flavor' %}
+    {% assign index = forloop.index0 %}
+    {% assign colorlist = '' %}
+    {% assign color = '' %}
+    {% for variant in product.variants %}
+      {% capture color %}
+        {{ variant.options[index] }}
+      {% endcapture %}
+      {% unless colorlist contains color %}  
+      {% assign text = color | handleize %}
+      <li>
+       <span>{{ text }}</span>       
+      </li>
+        {% capture tempList %}
+          {{ colorlist | append: color | append: ' ' }}
+        {% endcapture %}
+        {% assign colorlist = tempList %}
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+</ul>
+{% endif %}

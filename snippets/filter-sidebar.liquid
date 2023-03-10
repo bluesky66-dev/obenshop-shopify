@@ -1,0 +1,35 @@
+<div class="products-page__filter">
+  <ul id="filter-category" class="filter-navigation">
+    {% for link in settings.filter_by_category.links %}
+      <li class="filter-navigation__item filter-navigation__item_sub-list {% if collection.handle == link.title %}active{% endif %}">
+        <a class="filter-navigation__link" href="{{ link.url }}">
+          {{ link.title }}
+        </a>
+
+        {% if link.links != blank %}
+          <div class="filter-navigation__sub-list">
+            <ul class="filter-navigation filter-navigation_sub">
+              {% for sublink in link.links %}
+                <li class="filter-navigation__item">
+                  <a class="filter-navigation__link" href="{{ sublink.url }}">
+                    {{ sublink.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <ul id="filter-item" class="filter-navigation">
+    {% for link in settings.filter_by_item.links %}
+      <li class="filter-navigation__item">
+        <a class="filter-navigation__link" href="{{ link.url }}">
+          {{ link.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

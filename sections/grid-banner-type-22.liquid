@@ -1,0 +1,216 @@
+<div data-section-id="{{ section.id }}" data-section-type="grid-banner-type-22" class="grid-banner-type-22" style="background:{{section.settings.gallery_bg_clr}};">  
+  <div class="dt-sc-hr-invisible-large"></div>  
+  <div class="wrapper">
+
+
+    {% if section.settings.title != blank %}
+    <div class="grid__item">
+      <div class="instagram-detail">
+        <div class="border-title wow fadeInDown animated">
+          <div class="container">
+            <i class="{{section.settings.gallery_icon}}" aria-hidden="true"></i>
+            <h2 style="color:{{ section.settings.title_1_clr }};background:{{section.settings.title_bg_clr}};" class="text-center">{{ section.settings.title | escape }}</h2>   
+            {% if section.settings.text != blank %}
+            <div> <p  style="color:{{ section.settings.text_1_clr }};" class="small-desc">{{ section.settings.text}}</p></div> 
+            {% endif %}  
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}  
+
+
+
+
+    <div class="grid-uniform featuredItems wow fadeInUp animated "> 
+      {% if section.blocks.size > 0 %}      
+      {% for block in section.blocks %}
+      {% case section.blocks.size %}
+      {% when 1 %}
+      {%- assign block_width = 'one-whole text-center' -%}
+      {% when 2 %}
+      {%- assign block_width = 'wide--one-half post-large--one-half large--one-half medium--one-half small-grid__item' -%}
+      {% when 3 %}
+      {%- assign block_width = 'wide--one-third post-large--one-third large--one-half medium--one-half small-grid__item' -%}
+      {% when 4 %}
+      {%- assign block_width = 'wide--one-quarter post-large--one-quarter large--one-half medium--one-half small-grid__item' -%}
+      {% when 5 %}
+      {%- assign block_width = 'wide--one-fifth post-large--one-fifth large--one-half medium--one-half small-grid__item' -%}
+
+      {% else  %}
+      {%- assign block_width = 'wide--one-third post-large--one-third large--one-half medium--one-half small-grid__item' -%}
+      {% endcase %}
+
+      <li class="grid__item {{ block_width }}">
+        <div class="ovrly31 overlay_1 wow fadeInUp animated">
+          {% if block.settings.link_1 != blank %}<a class="banner_half_img" href="{{ block.settings.link_1 }}">{% endif%}
+          {% if block.settings.image_1 != blank %}
+          <img src="{{ block.settings.image_1 | img_url: 'master' }}" alt="{{ block.settings.title_1 }}" />
+          <div class="ovrly" style="background:{{ block.settings.overlay_1 | color_modify: 'alpha', 0.85 }}; "></div>
+          {% else %}
+          <img src="//via.placeholder.com/768x768">
+          <div class="ovrly" style="background:{{ block.settings.overlay_1 | color_modify: 'alpha', 0.85 }}; "></div>
+          {% endif%}           
+          {% if block.settings.link_1 != blank %}  </a>
+
+          {% endif%}
+          <div class="featured-content">   
+            {% if block.settings.title_1 != blank %}
+            <h3 style="color:{{ block.settings.title_clr }};">{{ block.settings.title_1 }}</h3>
+            {% endif %}
+            {% if block.settings.title_top_1 != blank %}
+            <h6 style="color:{{ block.settings.title_top_1_clr }};">{{ block.settings.title_top_1 }}</h6>
+            {% endif %}
+            {% if block.settings.text_1 != blank %}
+            <p style="color:{{ block.settings.text_1_clr }};">{{ block.settings.text_1}}</p>    
+            {% endif %}  
+            {% if block.settings.button_1 != blank %}
+            <a class="btn_line one btn" href="{{ block.settings.link_1 }}" >{{ block.settings.button_1}}</a>    
+            {% endif %}         
+          </div>  
+          
+          <style>
+          
+          
+          
+          </style>
+          
+        </div>
+      </li>        
+      {% endfor %}
+      {% endif %}
+    </div>   
+  </div>
+</div>
+<style> 
+  {% if section.settings.overlay1 %}
+  .grid-banner-type-22 .ovrly31.overlay_1 .ovrly { background:{{ section.settings.overlay_1 | color_modify: 'alpha', 0.7 }};  }
+  {% endif %}
+
+</style>
+
+{% schema %}
+{
+"name": "Grid Banner Type 1",
+"class": "index-section",
+"settings": [
+{
+"type": "color",
+"id": "gallery_bg_clr",
+"label": "Gallery Bg Color",
+"default": "#000"	
+},
+{
+"type": "text",
+"id": "gallery_icon",
+"label": "Gallery icon",
+"default": "Heading"	
+},
+{
+"type": "text",
+"id": "title",
+"label": "Heading",
+"default": "Heading"	
+},
+{
+"type": "color",
+"id": "title_1_clr",
+"label": "Title Color",
+"default":"#000"	
+},  
+{
+"type": "color",
+"id": "title_bg_clr",
+"label": "Title bg Color",
+"default":"#000"	
+},  
+{
+"type": "text",
+"id": "text",
+"label": "Text",
+"default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia"	
+},
+{
+"type": "color",
+"id": "text_clr",
+"label": "Text Color",
+"default":"#000"	
+}
+
+],
+"blocks": [
+{
+"type": "image",
+"name": "promo image",
+"settings": [ 
+{
+"type": "image_picker",
+"id": "image_1",
+"label": "Image"
+},
+{
+"type": "color",
+"id": "overlay_1",
+"label": "Overlay",
+"default": "#fff"
+},
+{
+"type": "text",
+"id": "title_1",
+"label": "Heading"
+},
+{
+"type": "color",
+"id": "title_clr",
+"label": "Title COlor",
+"default": "#fff"
+},
+{
+"type": "text",
+"id": "title_top_1",
+"label": "Small text"
+},
+{
+"type": "color",
+"id": "title_top_1_clr",
+"label": "Small text color",
+"default": "#000"
+},
+
+
+{
+"type": "text",
+"id": "button_1",
+"label": "Button text"
+},
+{
+"type": "url",
+"id": "link_1",
+"label": "Link URL"
+}
+]
+}
+],
+"presets": [
+{
+"name": "Grid Banner Type 1",
+"category": "Image",
+"blocks": [
+{
+"type": "image"
+},
+{
+"type": "image"
+},
+{
+"type": "image"
+}
+
+]
+}
+]
+}
+{% endschema %}
+
+
+

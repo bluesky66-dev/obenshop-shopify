@@ -1,0 +1,86 @@
+<div class="product-list">
+  <div class="container-bg">
+    <div class="product-list__title-wrap">
+      <div class="product-list__title">
+        {{ section.settings.title }}
+      </div>
+    </div>
+  </div>
+
+  <div class="product-list__wrap">
+    {% for block in section.blocks %}
+      <div class="product-list__item">
+        <div class="product-list__image">
+          {% if block.settings.image %}
+            {% render 'image', image: block.settings.image, sizes: '560px' %}
+          {% endif %}
+        </div>
+
+        <div class="product-list__title">
+          {{ block.settings.title }} 
+        </div>
+
+        <div class="product-list__text">
+          {{ block.settings.text | newline_to_br }} 
+        </div>
+
+        <div class="product-list__btn">
+          <a class="btn" href="{{ block.settings.link }}">{{ block.settings.button }}</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product List Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Featured collection"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Product",
+      "type": "Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "button",
+          "label": "Button text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product List Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+{% if settings.collections_show_new_circle %}
+{% assign date_pub_y = product.published_at | date:'%Y' %}
+{% assign date_pub_d = product.published_at | date:'%j' %}
+{% assign date_now_y = 'now' | date:'%Y' %}
+{% assign date_now_d = 'now' | date:'%j' %}
+{% assign dates_diff_y = date_now_y | minus: date_pub_y | times: 365 %}
+{% assign dates_diff_d = date_now_d | minus: date_pub_d %}
+{% assign dates_diff = dates_diff_y | plus: dates_diff_d %}
+{% assign new_products_period = settings.new_products_period | plus: 0 %}
+{% if dates_diff <= new_products_period %} 
+<span class="badge badge--new">
+          <span class="badge__text">{{ 'products.product.new' | t }}</span>
+</span>
+{% endif %}
+{% endif %}

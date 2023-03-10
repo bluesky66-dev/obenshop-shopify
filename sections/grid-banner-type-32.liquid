@@ -1,0 +1,311 @@
+<div data-section-id="{{ section.id }}" data-section-type="grid-banner-type-32" class="grid-banner-type-32" style="float:left;width:100%;background:{{ section.settings.bg_color }};">  
+  <div class="wrapper">  
+
+    <div class="grid-uniform">        
+      {% if section.settings.alignment == "left" %}  
+      <div class="section-one ">
+        <div class="grid__item wide--one-half post-large--one-half large--one-whole medium--grid__item small-grid__item wow fadeInLeft animated"> 
+          <div class="ovrly09">
+            {% if section.settings.link != blank %}<a href="{{ section.settings.link }}">{% endif%}
+            {% if section.settings.image != blank %}
+            <img src="{{ section.settings.image | img_url: '1920X' }}" alt="{{ section.settings.title }}" />
+            <div class="overlay"></div>
+            {% else %}
+            <img src="//via.placeholder.com/1000x750">
+            {% endif%}           
+            {% if section.settings.link != blank %}  </a>
+            {% endif%}
+          </div>
+        </div>
+        <div class="grid__item wide--one-half post-large--one-half large--one-whole medium--grid__item small-grid__item" {% if section.settings.bg_image != blank  %} style="background-image:url({{ section.settings.bg_image | img_url: '1000X' }});background-repeat:no-repeat;"{% endif %}>    
+          <div class="block-content wow fadeInRight animated">             
+            {% if section.settings.title != blank %} 
+             <div class="border-title"> 
+            <h2 style="color:{{section.settings.title_clr}};background:{{section.settings.title_bg_clr}}">{{ section.settings.title }}</h2> 
+            </div>
+            {% endif %}   
+            {% if section.settings.text != blank %}                        
+            <h4 style="color:{{ section.settings.sub_title_color }};">{{ section.settings.text }}</h4>        
+            {% endif %}  
+
+            {% if section.settings.desc != blank %}                         
+            <p style="color:{{ section.settings.desc_color }};">{{ section.settings.desc }}</p>        
+            {% endif %} 
+
+            {% if section.settings.link != blank %}
+            <a href="{{ section.settings.link }}"  class="btn-line">{{ section.settings.button }}<i class="fa fa-angle-right" aria-hidden="true"></i>
+              <div class="overlay"></div>
+            </a>
+            {% endif%}
+
+            {% if section.settings.img_title != blank %}
+            <h6 style="color:{{ section.settings.title_color }};">{{section.settings.img_title}}</h6>
+            {% endif%}
+
+            {% if section.blocks.size > 0 %}  
+            {% for block in section.blocks %}
+            <div class="icon">
+              {% if block.settings.image != blank %}            
+              <a href="{{block.settings.link}}"> 
+                <img src="{{ block.settings.image | img_url: '100x100' }}" alt="{{ block.settings.title }}" />            
+              </a>
+              {% else %}
+              <img src="//via.placeholder.com/150x150">
+              {% endif%}        
+            </div>
+            {% endfor %}         
+            {% endif %} 
+
+          </div>  
+        </div>
+      </div>
+      {% endif%}
+      {% if section.settings.alignment == "right" %}     
+      <div class="section-one  wow fadeInUp animated">
+        <div class="grid__item wide--one-half post-large--one-half large--one-half medium--grid__item small-grid__item">    
+          <div class="block-content ">           
+            {% if section.settings.title != blank %}                        
+            <h3 style="color:{{section.settings.title_clr}}">{{ section.settings.title }}</h3>        
+            {% endif %}   
+
+            {% if section.settings.text != blank %}                        
+            <h4 style="color:{{ section.settings.sub_title_color }};">{{ section.settings.text }}</h4>        
+            {% endif %}  
+
+            {% if section.settings.desc != blank %}                         
+            <p style="color:{{ section.settings.desc_color }};">{{ section.settings.desc }}</p>        
+            {% endif %}   
+            {% if section.settings.img_title != blank %}
+            <h6 style="color:{{ section.settings.title_color }};">{{section.settings.img_title}}</h6>
+            {% endif%}
+            {% if section.settings.link != blank %}
+            <a href="{{ section.settings.link }}"   class="btn-line">{{ section.settings.button }}<i class="fa fa-angle-right" aria-hidden="true"></i>
+              <div class="overlay"></div>
+            </a>
+            {% endif%}
+
+            {% if section.blocks.size > 0 %}  
+            {% for block in section.blocks %}
+            <div class="icon">
+              {% if block.settings.image != blank %}
+              <a href="{{block.settings.link}}"> 
+                <img src="{{ block.settings.image | img_url: '100x100' }}" alt="{{ block.settings.title }}" />            
+              </a>
+              {% else %}
+              <img src="//via.placeholder.com/150x150">
+              {% endif%}        
+            </div>
+            {% endfor %}         
+            {% endif %}            
+          </div>  
+        </div>
+        <div  class="grid__item wide--one-half post-large--one-half large--one-half medium--grid__item small-grid__item">  
+          <div class="ovrly10">
+            {% if section.settings.link != blank %}<a href="{{ section.settings.link }}">{% endif%}
+            {% if section.settings.image != blank %}
+            <img src="{{ section.settings.image | img_url: '1920X' }}" alt="{{ section.settings.title }}" />
+            <div class="overlay"></div>
+            {% else %}
+            <img src="//via.placeholder.com/1000x750">
+            {% endif%}           
+            {% if section.settings.link != blank %}  </a>
+            {% endif%}
+          </div>
+        </div>
+      </div>
+      {% endif%}
+
+
+      <style>
+        
+        .grid-banner-type-32  
+        
+        
+        .grid-banner-type-32 .section-one {  background: {{ section.settings.content_bg }}; }
+        .grid-banner-type-32 .block-content h6 { }        
+        .grid-banner-type-32 .block-content h4 { }  
+        .grid-banner-type-32 .block-content p {  }
+        {% if section.settings.overlay_1 %} .grid-banner-type-32 .overlay { background:{{ section.settings.overlay_bgcolor_1 | color_modify: 'alpha', 0.7 }}; } {% endif %}
+        
+        .grid-banner-type-32 .btn-line::after {background:{{section.settings.border_clr}};}
+        .grid-banner-type-32 .btn-line {color:{{section.settings.button_color}};}
+        .grid-banner-type-32 .btn-line:hover {color:{{section.settings.button_hover_color}};}
+      </style>
+    </div>
+
+  </div>
+</div>
+{% schema %}
+{
+"name": "One Half Grid",
+"class": "index-section",
+"settings": [
+{
+"type": "color",
+"id": "bg_color",
+"label": "Bg color",
+"default":"#000"	
+}, 		
+{
+"type": "color",
+"id": "border_clr",
+"label": "Border Color",
+"default":"#000"	
+}, 	
+{
+"type": "checkbox",
+"id": "overlay_1",
+"label": "Overlay"
+},
+{
+"type": "color",
+"id": "overlay_bgcolor_1",
+"label": "Overlay Bg",
+"default":"#fff"	
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+
+{
+"type": "select",
+"id": "alignment",
+"label": "Image alignment",
+"default": "left",
+"options": [
+{
+"value": "left",
+"label": "Left"
+},
+{
+"value": "right",
+"label": "Right"
+}        
+]
+},
+{
+"type": "image_picker",
+"id": "bg_image",
+"label": "Bg Image"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Heading",
+"default": "Heading"	
+},
+{
+"type": "color",
+"id": "title_clr",
+"label": "Heading Color",
+"default": "#000"	
+},
+{
+"type": "color",
+"id": "title_bg_clr",
+"label": "Title bg Color",
+"default":"#000"	
+}, 
+{
+"type": "text",
+"id": "text",
+"label": "Sub Heading",
+"default": "Sub Heading"	
+},
+{
+"type": "color",
+"id": "sub_title_color",
+"label": "Sub Heading",
+"default":"#000"	
+}, 	
+{
+"type": "textarea",
+"id": "desc",
+"label": "Description",
+"default": "Sample Description"	
+},
+{
+"type": "color",
+"id": "desc_color",
+"label": "Description",
+"default":"#000"	
+},
+{
+"type": "text",
+"id": "button",
+"label": "Button",
+"default": "View all collection"	
+},    
+
+{
+"type": "url",
+"id": "link",
+"label": "Link"          
+},
+{
+"type": "color",
+"id": "button_color",
+"label": "Bitton Color",
+"default":"#000"	
+},
+{
+"type": "color",
+"id": "button_hover_color",
+"label": "Bitton Hover Color",
+"default":"#000"	
+},
+{
+"type": "text",
+"id": "img_title",
+"label": "img Title",
+"default":"small Title"	
+},
+{
+"type": "color",
+"id": "title_color",
+"label": "Heading color",
+"default":"#000"	
+}
+
+],
+"blocks": [
+{
+"type": "image",
+"name": "Icons",
+"settings": [
+
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "url",
+"id": "link",
+"label": "Link"          
+}  
+]
+}
+],
+"presets": [
+{
+"name": "One Half Grid",
+"category": "Image",
+"blocks": [
+{
+"type": "image"
+},
+{
+"type": "image"
+},
+{
+"type": "image"
+}
+
+]
+}
+]
+}
+{% endschema %}

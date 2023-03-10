@@ -1,0 +1,432 @@
+<div data-section-id="{{ section.id }}" data-section-type="grid-banner-type-15" class="grid-banner-type-15">   
+ <div class="container">    
+   <div class="dt-sc-hr-invisible-large"></div>
+  <div class="grid-uniform">       
+    <div class="grid__item wide--one-quarter post-large--one-half large--one-half medium--one-half small--grid__item img-hover-effect-3 img-hover-effect wow fadeInUp animated">
+      {% if section.settings.link_1 != blank %}<a class="banner_half_img" href="{{ section.settings.link_1 }}">{% endif%}
+      {% if section.settings.image_1 != blank %}
+      <img src="{{ section.settings.image_1 | img_url: '1920X' }}" alt="{{ section.settings.title_1 }}" />
+      {% else %}
+      <img src="//via.placeholder.com/570x650">
+      {% endif%}           
+      {% if section.settings.link_1 != blank %}  </a>
+      {% endif%}
+      <div class="featured-content featured-content-one">  
+
+        {% if section.settings.short_1_txt != blank %}
+        <h2 style="color:{{ section.settings.short_1_txt_color }}">{{ section.settings.short_1_txt }}</h2>
+        {% endif %}
+        {% if section.settings.title_1 != blank %}
+        <h3 style="color:{{ section.settings.title_1_color }}">{{ section.settings.title_1 }}</h3>
+        {% endif %}
+        {% if section.settings.text_1 != blank %}
+        <p style="color:{{ section.settings.text_1_color }}">{{ section.settings.text_1}}</p>    
+        {% endif %}         
+      </div>   
+    </div> 
+    <div class="grid__item wide--one-quarter post-large--one-half large--one-half medium--one-half small--grid__item img-hover-effect img-hover-effect-4 wow fadeInUp animated">
+      {% if section.settings.link_2 != blank %}<a class="banner_half_img" href="{{ section.settings.link_2 }}">{% endif%}
+      {% if section.settings.image_2 != blank %}
+      <img src="{{ section.settings.image_2 | img_url: '1920X' }}" alt="{{ section.settings.title_2 }}" />
+      {% else %}
+
+      <img src="//via.placeholder.com/570x650">
+      {% endif%}           
+      {% if section.settings.link_2 != blank %}  </a>
+
+      {% endif%}
+      {% if section.settings.tag_1_txt != blank %}
+      <span class="grid__sale" style="color:{{ section.settings.tag_1_txt_color }};background:{{ section.settings.tag_1_bg }};">{{ section.settings.tag_1_txt }}</span>
+      {% endif %}
+      <div class="featured-content product-style-with-timer">     
+
+
+
+        <div class="deal-clock  lof-clock-timer-detail-block time-one"></div>
+        {% assign dealTime1 = section.settings.deal_end_date_1 | replace: '_',' ' %} 
+
+        <script>
+          //<![CDATA[
+          jQuery(document).ready(function($){
+            $(".time-one").lofCountDown({      
+              TargetDate:"{{ dealTime1 }}",
+              DisplayFormat:"<ul class='list-inline'><li class='day'>%%D%%<span>D</span></li><li class='hours'>%%H%%<span>H</span></li><li class='mins'>%%M%%<span>M</span></li><li class='seconds'>%%S%%<span>S</span></li></ul>",
+              FinishMessage: "Expired"
+            });
+          });
+          //]]>
+        </script>
+        <div class="product-detail">
+          {% if section.settings.title_2 != blank %}
+          <a class="grid-link__title" href="{{ section.settings.link_2 }}" style="color:{{ section.settings.title_2_color }}">{{ section.settings.title_2 }}</a>
+          {% endif %}
+          <p>
+            {% if section.settings.text_2 != blank %}
+            <span class="reg-price" style="color:{{ section.settings.text_2_color }}">{{ section.settings.text_2}}</span>    
+            {% endif %}          
+            {% if section.settings.button_2 != blank %}
+            <span class="cmp-price"  style="color:{{ section.settings.button_2_txt_color }};">{{ section.settings.button_2}}</span>    
+            {% endif %}         
+          </p>
+        </div>
+      </div>
+    </div>     
+    <div class="grid__item wide--one-quarter post-large--one-half large--one-half medium--one-half small--grid__item img-hover-effect-3 img-hover-effect wow fadeInUp animated">
+      {% if section.settings.link_3 != blank %}<a class="banner_half_img" href="{{ section.settings.link_3 }}">{% endif%}
+      {% if section.settings.image_3 != blank %}
+      <img src="{{ section.settings.image_3 | img_url: '1920X' }}" alt="{{ section.settings.title_3 }}" />
+      {% else %}
+       <img src="//via.placeholder.com/570x650">
+      {% endif%}           
+      {% if section.settings.link_3 != blank %}  </a>
+      {% endif%}
+      <div class="featured-content featured-content-three">             
+
+        {% if section.settings.offer != blank or section.settings.offer_text != blank  %}
+        <div class="offer_text">{{ section.settings.offer }}</div>
+        {% endif %} 
+
+
+        {% if section.settings.title_3 != blank %}
+        <h2 style="color:{{ section.settings.title_3_color }}">{{ section.settings.title_3 }}</h2>
+        {% endif %}
+        {% if section.settings.offer_text != blank %}
+        <p><span>{{ section.settings.offer_text }}</span></p>
+        {% endif %}
+        {% if section.settings.button_3 != blank %}
+        <a class="btn three" href="{{ section.settings.link_3 }}" style="color:{{ section.settings.button_3_txt_color }};border:none;background:{{ section.settings.button_3_bg_color }};">{{ section.settings.button_3}}</a>    
+        {% endif %}         
+      </div>   
+    </div> 
+    <div class="grid__item wide--one-quarter post-large--one-half large--one-half medium--one-half small--grid__item img-hover-effect img-hover-effect-4 wow fadeInUp animated">
+      {% if section.settings.link_4 != blank %}<a class="banner_half_img" href="{{ section.settings.link_4 }}">{% endif%}
+      {% if section.settings.image_4 != blank %}
+      <img src="{{ section.settings.image_4 | img_url: '1920X' }}" alt="{{ section.settings.title_4 }}" />
+      {% else %}
+
+      <img src="//via.placeholder.com/570x650">
+      {% endif%}           
+      {% if section.settings.link_4 != blank %}  </a>
+
+      {% endif%}
+      {% if section.settings.tag_2_txt != blank %}
+      <span class="grid__sale" style="color:{{ section.settings.tag_2_txt_color }};background:{{ section.settings.tag_2_bg }};">{{ section.settings.tag_2_txt }}</span>
+      {% endif %}      <div class="featured-content product-style-with-timer">     
+
+
+
+      <div class="deal-clock  lof-clock-timer-detail-block time-two"></div>
+      {% assign dealTime2 = section.settings.deal_end_date_2 | replace: '_',' ' %} 
+
+      <script>
+        //<![CDATA[
+        jQuery(document).ready(function($){
+          $(".time-two").lofCountDown({      
+            TargetDate:"{{ dealTime2 }}",
+            DisplayFormat:"<ul class='list-inline'><li class='day'>%%D%%<span>D</span></li><li class='hours'>%%H%%<span>H</span></li><li class='mins'>%%M%%<span>M</span></li><li class='seconds'>%%S%%<span>S</span></li></ul>",
+            FinishMessage: "Expired"
+          });
+        });
+        //]]>
+      </script>
+
+      <div class="product-detail">
+        {% if section.settings.title_4 != blank %}
+        <a class="grid-link__title" href="{{ section.settings.link_4 }}" style="color:{{ section.settings.title_4_color }}">{{ section.settings.title_4 }}</a>
+        {% endif %}
+        <p>
+          {% if section.settings.text_4 != blank %}
+          <span class="reg-price" style="color:{{ section.settings.text_4_color }}">{{ section.settings.text_4}}</span>    
+          {% endif %}          
+          {% if section.settings.button_4 != blank %}
+          <span class="cmp-price"  style="color:{{ section.settings.button_4_txt_color }};">{{ section.settings.button_4}}</span>    
+          {% endif %}         
+        </p>
+      </div>
+      </div>
+    </div>     
+  </div> 
+   <div class="dt-sc-hr-invisible-large"></div>
+  </div>  
+</div>
+<style>
+  .grid-banner-type-15 .featured-content .btn.four:hover { background:{{ section.settings.button_4_hover_bg_color }} !important;color:{{ section.settings.button_4_hover_txt_color }} !important;}
+  .grid-banner-type-15 .featured-content .btn.three:hover { background:{{ section.settings.button_3_hover_bg_color }} !important; color:{{ section.settings.button_3_hover_txt_color }} !important;}
+  .grid-banner-type-15 .featured-content .btn.one:hover { background:{{ section.settings.button_1_hover_bg_color }} !important;color:{{ section.settings.button_1_hover_txt_color }} !important; }
+  .grid-banner-type-15 .featured-content .btn.two:hover { background:{{ section.settings.button_2_hover_bg_color }} !important;color:{{ section.settings.button_2_hover_txt_color }} !important; }
+  .grid-banner-type-15 .featured-content .offer_text { color:{{ section.settings.offer_text_clr }}; }
+  .grid-banner-type-15 .featured-content p span:before,.grid-banner-type-15 .featured-content p span:after { background:{{ section.settings.offer_text_clr }}; }
+
+</style>
+
+
+{% schema %}
+{
+"name": "Grid Banner Type 2",
+"class": "index-section",
+"settings": [ 
+{
+"type": "image_picker",
+"id": "image_1",
+"label": "Image"
+},  
+{
+"type": "text",
+"id": "title_1",
+"label": "Heading"
+},
+{
+"type": "color",
+"id": "title_1_color",
+"label": "Color",
+"default":"#000"
+},
+{
+"type": "text",
+"id": "short_1_txt",
+"label": "Short text"
+},
+
+{
+"type": "color",
+"id": "short_1_txt_color",
+"label": "Short text color",
+"default": "#fff"
+},
+{
+"type": "textarea",
+"id": "text_1",
+"label": "Description"
+},
+{
+"type": "color",
+"id": "text_1_color",
+"label": "Color",
+"default":"#000"
+},
+{
+"type": "url",
+"id": "link_1",
+"label": "Link URL"
+},
+{
+"type": "image_picker",
+"id": "image_2",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "deal_end_date_1",
+"label": "Deal end date",
+"info": "format should be MM/DD/YYYY_HH:MM:SS "
+},
+{
+"type": "text",
+"id": "title_2",
+"label": "Heading"
+},
+{
+"type": "color",
+"id": "title_2_color",
+"label": "Color",
+"default":"#000"
+},
+{
+"type": "text",
+"id": "text_2",
+"label": "Price"
+
+},
+{
+"type": "color",
+"id": "text_2_color",
+"label": "Price Color",
+"default":"#000"
+},
+{
+"type": "text",
+"id": "button_2",
+"label": "Compare price"
+},
+{
+"type": "color",
+"id": "button_2_txt_color",
+"label": "Compare price",
+"default": "#fff"
+},
+{
+"type": "text",
+"id": "tag_1_txt",
+"label": "Tag"
+},
+{
+"type": "color",
+"id": "tag_1_bg",
+"label": "Tag bg"
+},
+{
+"type": "color",
+"id": "tag_1_txt_color",
+"label": "Tag text color"
+},
+{
+"type": "url",
+"id": "link_2",
+"label": "Link URL"
+},
+
+{
+"type": "image_picker",
+"id": "image_3",
+"label": "Image"
+},  
+{
+"type": "text",
+"id": "title_3",
+"label": "Heading"
+},
+{
+"type": "color",
+"id": "title_3_color",
+"label": "Color",
+"default":"#000"
+},
+{
+"type": "text",
+"id": "offer",
+"label": "Percentage"
+
+},
+{
+"type": "text",
+"id": "offer_text",
+"label": "Offer"
+
+},
+{
+"type": "color",
+"id": "offer_text_clr",
+"label": "Offer Color",
+"default":"#000"
+
+},
+{
+"type": "color",
+"id": "text_3_color",
+"label": "Color",
+"default":"#000"
+},
+{
+"type": "text",
+"id": "button_3",
+"label": "Button text"
+},
+{
+"type": "color",
+"id": "button_3_bg_color",
+"label": "Button bg color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "button_3_txt_color",
+"label": "Button text color",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "button_3_hover_bg_color",
+"label": "Button hover Bg color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "button_3_hover_txt_color",
+"label": "Button hover text color",
+"default": "#fff"
+},
+
+{
+"type": "url",
+"id": "link_3",
+"label": "Link URL"
+},
+{
+"type": "image_picker",
+"id": "image_4",
+"label": "Image"
+},
+
+{
+"type": "text",
+"id": "title_4",
+"label": "Heading"
+},
+{
+"type": "color",
+"id": "title_4_color",
+"label": "Color",
+"default":"#000"
+},
+{
+"type": "text",
+"id": "text_4",
+"label": "Price"
+
+},
+{
+"type": "color",
+"id": "text_4_color",
+"label": "Price Color",
+"default":"#000"
+},
+{
+"type": "text",
+"id": "button_4",
+"label": "Compare price"
+},
+{
+"type": "color",
+"id": "button_4_txt_color",
+"label": "Compare price",
+"default": "#fff"
+},
+{
+"type": "text",
+"id": "tag_2_txt",
+"label": "Tag"
+},
+{
+"type": "color",
+"id": "tag_2_bg",
+"label": "Tag bg"
+},
+{
+"type": "color",
+"id": "tag_2_txt_color",
+"label": "Tag text color"
+},
+{
+"type": "url",
+"id": "link_4",
+"label": "Link URL"
+},
+{
+"type": "text",
+"id": "deal_end_date_2",
+"label": "Deal end date",
+"info": "format should be MM/DD/YYYY_HH:MM:SS "
+}
+],
+"presets": [
+{
+"name": "Grid Banner Type 2",
+"category": "Image",
+"blocks": []
+}
+]
+}
+{% endschema %}
+
+
+

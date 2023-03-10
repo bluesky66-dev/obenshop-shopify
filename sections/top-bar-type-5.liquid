@@ -1,0 +1,163 @@
+
+
+{% if section.settings.display_top_bar %}    
+
+<div class="top_bar top-bar-type-10">    
+  <div class="container">
+    {% if section.settings.header_phone_value != blank or  section.settings.header_mail_value != blank %}
+    <ul class="top_bar_left">
+      {% if section.settings.header_phone_value != blank %}
+      <li><i class="fa fa-phone"></i> {{ section.settings.header_phone_value }}</li>
+      {% endif %}
+      {% if section.settings.header_mail_value != blank %}
+      <li><i class="fa fa-envelope"></i> <a href="mailto:{{ section.settings.header_mail_value }}"> {{ section.settings.header_mail_value }}</a></li>
+      {% endif %}
+    </ul>
+    {% endif %}
+
+    {% if section.settings.store_location != blank or  section.settings.track_your_order != blank or settings.display_currency %}
+    <ul class="top_bar_right">
+      {% if section.settings.store_location != blank %}
+      <li> <a href="{{ section.settings.store_location_link }}"><i class="fas fa-location-arrow"></i> {{ section.settings.store_location }}</a></li>
+      {% endif %}
+      {% if section.settings.track_your_order != blank %}
+      <li><a href="{{ section.settings.track_your_order_link }}"><i class="fab fa-first-order"></i> {{ section.settings.track_your_order }}</a></li>
+      {% endif %}
+      
+
+
+    </ul>
+    {% endif %}
+  </div>
+</div>  
+{% endif %}
+
+<style>
+    .header-type-5 .top_bar { background: {{ section.settings.top_bar_bg }}; }
+    .header-type-5 .top_bar li { color:{{section.settings.top_bar_text}};}     
+    .header-type-5 .top_bar a,.header-type-5 .top_bar button { color:{{section.settings.top_bar_links }};}    
+    .header-type-5 .top_bar a:hover, .header-type-5 .top_bar a:hover span,.header-type-5 .top_bar button:hover,.header-type-10 li.init.dt-sc-toggle:hover  { color:{{section.settings.top_bar_link_hover }};}    
+
+  
+    .header-type-5 .header-top a.close { background: {{ section.settings.stripe_icon }};color: {{ section.settings.stripe_icon_color }}; }  
+    .header-type-5 .header-top a.close:hover { background: {{ section.settings.stripe_icon_hover }};;color: {{ section.settings.stripe_icon_hover_color }}; }  
+    .header-type-5 .header-top { background: {{ section.settings.stripe_bg }}; }      
+    .header-type-5 .header-top ul li { color: {{ section.settings.stripe_text }}; }    
+
+   .notification_promobtn .btn {background:{{section.settings.top_bar_btn_bg}};color:{{section.settings.top_bar_btn_txt}};border:none;}
+
+
+    .notification_promobtn .btn:hover {background:{{section.settings.top_bar_btn_hoverbg}};color:{{section.settings.top_bar_btn_hovertxt}};}
+ /* Currency block */
+
+    .header-type-5 .header_currency ul select {color:{{section.settings.currency_icon}};}   
+    .header-type-5 .header_currency ul select:hover {color:{{section.settings.currency_icon_hover}};}  
+    .header-type-5 .header_currency ul li.currency:hover:after {border-top-color:{{section.settings.currency_icon_hover}};}
+    .header-type-5 .header_currency ul li.currency:after,.header-type-10 li.init.dt-sc-toggle:after {color:{{section.settings.currency_icon}};}
+    .header-type-5 .header_currency option {background:{{section.settings.currency_bg}};color:{{section.settings.currency_link}};}
+
+
+
+</style>
+
+{% schema %}
+  {
+    "name": "Top Bar",
+    "settings": [
+
+{
+"type":"checkbox",
+"id": "display_top_bar",
+"label": "Display topbar"	
+},
+{
+"type": "header",
+"content": "Notifcation Bar"
+},
+
+{
+"type": "color",
+"id": "top_bar_bg",
+"label": "Top bar background",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "top_bar_text",
+"label": "Top bar text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "top_bar_links",
+"label": "Top bar links",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "top_bar_link_hover",
+"label": "Top bar links hover",
+"default": "#35b8f4"
+},
+{
+"type": "header",
+"content": "Border Block"
+},
+{
+"type": "color",
+"id": "top_border_between_bars",
+"label": "Border lines",
+"default": "#e4e4e4"
+},
+{
+"type": "text",
+"id": "header_phone_value",
+"label": "Phone number",
+"default": "(00) 000 111 222"
+},    
+{
+"type": "text",
+"id": "header_mail_value",
+"label": "Mail address",
+"default": "info@somedomain.com"
+},  
+{
+"type": "text",
+"id": "store_location",
+"label": "Text",
+"default": "Store Location"
+},  
+{
+"type": "url",
+"id": "store_location_link",
+"label": "Link"
+
+},  
+{
+"type": "text",
+"id": "track_your_order",
+"label": "Text",
+"default": "Track Your Order"
+},  
+{
+"type": "url",
+"id": "track_your_order_link",
+"label": "Link"
+
+}
+
+]
+  }
+{% endschema %}
+
+{% javascript %}
+
+if (jQuery.cookie('headerTop') == 'closed') {
+jQuery('.header-top').fadeOut();
+}
+
+jQuery('.header-top a.close').bind('click',function(){
+jQuery('.header-top').fadeOut();
+jQuery.cookie('headerTop', 'closed', {expires:-1, path:'/'});
+});  
+{% endjavascript %}

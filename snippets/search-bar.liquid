@@ -1,0 +1,24 @@
+<div id="SearchDrawer" class="search-bar search-page-form">
+  <div class="search-bar__table">
+    <form action="/search" method="get" class="search-bar__table-cell search-bar__form" role="search">
+      {% if settings.show_search_prt %} 
+      <input type="hidden" name="type" value="product">
+      {% endif %} 
+      
+      <div class="search-bar__table">
+        <div class="search-bar__table-cell search-bar__icon-cell">
+          <button type="submit" class="search-bar__icon-button search-bar__submit">
+            <span class="fas fa-search" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="search-bar__table-cell">
+          <input type="search" id="SearchInput" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}" class="search-bar__input">
+        </div>
+      </div>
+    </form>
+    <div class="search-bar__table-cell text-right">
+      <button type="button" class="search-bar__icon-button">      
+      </button>
+    </div>
+  </div>
+</div>

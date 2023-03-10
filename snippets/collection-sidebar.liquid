@@ -1,0 +1,32 @@
+
+<div class="grid__item {% if settings.collection_sidebar_use == "full_width" %} full_width  {% else %} wide--one-fifth post-large--one-fifth {% endif %} {% if settings.collection_sidebar_use == "left_sidebar" %} left-sidebar{% endif %} {% if settings.collection_sidebar_use == "right_sidebar" %} right-sidebar {% endif %}">
+  <div class="collection_sidebar {% if settings.collection_sidebar_use == "full_width" %} hide {% endif %}">
+    {% unless settings.collection_sidebar_use == "full_width" %}
+    {% section 'sidebar-category' %}
+    {% endunless %}
+    {% if settings.enable_filters %}
+    {% if current_tags == blank %}
+    {% assign has_refined = false %} 
+    {% else %}
+    {% assign has_refined = true %} 
+    {% endif %}
+    <div class="refined-widgets">
+      <a href="javascript:void(0)" class="clear-all" {% if has_refined == false %}style="display:none"{% endif %}>
+        {{ 'collections.general.clear_all'  | t }}
+      </a>
+    </div>
+    <div class="sidebar-block">
+      {% section 'sidebar-colors' %}
+      {% section 'sidebar-tag-filters' %}
+    </div>
+    {% endif %}
+    {% unless section.settings.collection_sidebar_use == "full_width" %}
+    {% section 'sidebar-bestsellers' %}  
+    {% section 'sidebar-banner' %}
+    {% endunless %}
+  </div>  
+</div>
+
+
+
+

@@ -1,0 +1,117 @@
+<div data-section-id="{{ section.id }}"  data-section-type="custom-text-type-1" class="custom-text-type-1">  
+   
+      <div class="grid-uniform">
+       <ul class="support_block" style="background:{{ section.settings.bg_color }}">         
+        {% if section.blocks.size > 0 %}      
+        {% for block in section.blocks %}        
+        <li class="grid__item wow fadeInUp"  data-wow-delay="{{ settings.time_lazy_load }}ms">
+          <div class="custom-text_section">                      
+                   {% if block.settings.class != blank  %} 
+            <div class="support_section">
+                  <div class="support_icon">                      
+                    <a href="{{ block.settings.link }}"  class="" style="background:{{ block.settings.icon_bg_color }};color:{{ block.settings.class_color }};"><i class="{{ block.settings.class }}"></i></a>
+                 </div>
+                  {% endif %}   
+                     <div class="support_text"> 
+                   {% if block.settings.title != blank  %}  
+                  <h5 style="color:{{ block.settings.title_color }};">{{ block.settings.title }}</h5>
+                  {% endif %} 
+                        {% if block.settings.sub_title != blank  %}  
+                  <h6 style="color:{{ block.settings.sub_title_color }};">{{ block.settings.sub_title }}</h6>
+                  {% endif %}
+                       
+                  {% if block.settings.desc != blank  %}  
+                  <span style="color:{{ block.settings.desc_color }};" class="desc">{{ block.settings.desc }}</span>
+                  {% endif %} 
+      			  </div>     
+            </div>
+          </div>    
+      </li>  
+         {% endfor %}
+        {% endif %}
+    </ul>
+      </div>
+
+</div>
+{% schema %}
+{
+  "name": "Custom Text & Icons",
+  "class": "index-section",
+  "max_blocks":5,
+  "settings": [
+{
+          "type": "color",
+          "id": "bg_color",
+          "label": "Bg color",
+          "default": "#fff"   
+        }
+
+],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Content block",
+      "settings": [ 
+ 		 {
+          "type": "text",
+          "id": "class",
+          "label": "Font Awesoem class",
+          "default": "far fa-heart"   
+        },
+		{
+          "type": "color",
+          "id": "class_color",
+          "label": "Icon color",
+		  "default":"#000"
+        },
+{
+          "type": "color",
+          "id": "icon_bg_color",
+          "label": "Bg color",
+		  "default":"#000"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"          
+        },
+		{
+          "type": "color",
+          "id": "title_color",
+          "label": "Color",
+		  "default":"#000"
+        },
+{
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub Title"          
+        },
+		{
+          "type": "color",
+          "id": "sub_title_color",
+          "label": "Color",
+		  "default":"#000"
+        },
+ 		{
+          "type": "textarea",
+          "id": "desc",
+          "label": "Description"
+
+        },
+{
+          "type": "color",
+          "id": "desc_color",
+          "label": "Color",
+		  "default":"#000"
+        },
+		{
+          "type": "text",
+          "id": "link",
+          "label": "Link"          
+        }      
+		
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,806 @@
+
+
+<div data-section-id="{{ section.id }}"  data-section-type="About section" class="aboutus">
+
+
+  <div class="grid-banner-type-18">
+    <div class="container">
+      <div class="grid-uniform collectionItems">  
+
+        <div class="banner-images">
+
+
+          <div class="grid__item wide--one-third post-large--one-third large--one-third medium--one-half small-grid__item wow fadeInUp animated">
+            <div class="bg-effect-{{block.id }}" style="position:relative;  ">
+              <div class="ovrly17">
+                {% if section.settings.link_1_grid != blank %}<a href="{{ section.settings.link_1_grid }}">{% endif%}
+                {% if section.settings.image_1_grid != blank %}
+                <img src="{{ section.settings.image_1_grid | img_url: 'master' }}" alt="{{ section.settings.title_1_grid }}" />
+                {% else %}
+                <img src="//via.placeholder.com/800x800">
+                {% endif%}   
+                {% if section.settings.overlay_1_grid %}  <div class="ovrly" style="background:{{ section.settings.overlay_bgcolor_1_grid | color_modify: 'alpha', 0.7 }};"></div> {% endif %}      
+                <div class="ovrly">   
+                </div>
+                {% if section.settings.link_1_grid != blank %}  </a>        
+                {% endif%}
+              </div>
+              <div class="featured-content">              
+                {% if section.settings.title_1_grid != blank %}   
+                <h2 {% if section.settings.overlay_1_grid %} style="background:{{ section.settings.title_bg_color_1_grid | color_modify: 'alpha', 0.8 }}" {% endif %}>{% if section.settings.link_1_grid != blank %}<a href="{{ section.settings.link_1_grid }}">{% endif%}{{ section.settings.title_1_grid }}{% if section.settings.link_1_grid != blank %}</a>{% endif%}</h2>
+                {% endif %} 
+              </div>   
+            </div>
+          </div> 
+
+
+
+
+
+          <div class="grid__item wide--one-third post-large--one-third large--one-third medium--one-half small-grid__item wow fadeInUp animated">
+            <div class="bg-effect-{{block.id }}" style="position:relative;  ">
+              <div class="ovrly17">
+                {% if section.settings.link_2_grid != blank %}<a href="{{ section.settings.link_2_grid }}">{% endif%}
+                {% if section.settings.image_2_grid != blank %}
+                <img src="{{ section.settings.image_2_grid | img_url: 'master' }}" alt="{{ section.settings.title_2_grid }}" />
+                {% else %}
+                <img src="//via.placeholder.com/800x800">
+                {% endif%}   
+                {% if section.settings.overlay_2_grid %}  <div class="ovrly" style="background:{{ section.settings.overlay_bgcolor_2_grid | color_modify: 'alpha', 0.7 }};"></div> {% endif %}      
+                <div class="ovrly">   
+                </div>
+                {% if section.settings.link_2_grid != blank %}  </a>        
+                {% endif%}
+              </div>
+              <div class="featured-content">              
+                {% if section.settings.title_2_grid != blank %}   
+                <h2 {% if section.settings.overlay_2_grid %} style="background:{{ section.settings.title_bg_color_2_grid | color_modify: 'alpha', 0.8 }}" {% endif %}>{% if section.settings.link_2_grid != blank %}<a href="{{ section.settings.link_2_grid }}">{% endif%}{{ section.settings.title_2_grid }}{% if section.settings.link_2_grid != blank %}</a>{% endif%}</h2>
+                {% endif %} 
+              </div>   
+            </div>
+          </div> 
+
+
+
+
+
+          <div class="grid__item wide--one-third post-large--one-third large--one-third medium--one-half small-grid__item wow fadeInUp animated">
+            <div class="bg-effect-{{block.id }}" style="position:relative;  ">
+              <div class="ovrly17">
+                {% if section.settings.link_3_grid != blank %}<a href="{{ section.settings.link_3_grid }}">{% endif%}
+                {% if section.settings.image_3_grid != blank %}
+                <img src="{{ section.settings.image_3_grid | img_url: 'master' }}" alt="{{ section.settings.title_3_grid }}" />
+                {% else %}
+                <img src="//via.placeholder.com/800x800">
+                {% endif%}   
+                {% if section.settings.overlay_3_grid %}  <div class="ovrly" style="background:{{ section.settings.overlay_bgcolor_3_grid | color_modify: 'alpha', 0.7 }};"></div> {% endif %}      
+                <div class="ovrly">   
+                </div>
+                {% if section.settings.link_3_grid != blank %}  </a>        
+                {% endif%}
+              </div>
+              <div class="featured-content">              
+                {% if section.settings.title_3_grid != blank %}   
+                <h2 {% if section.settings.overlay_3_grid %} style="background:{{ section.settings.title_bg_color_3_grid | color_modify: 'alpha', 0.8 }}" {% endif %}>{% if section.settings.link_3_grid != blank %}<a href="{{ section.settings.link_3_grid }}">{% endif%}{{ section.settings.title_3_grid }}{% if section.settings.link_3_grid != blank %}</a>{% endif%}</h2>
+                {% endif %} 
+              </div>   
+            </div>
+          </div> 
+
+
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+  <div class="dt-sc-hr-invisible-large"></div> 
+  {% if section.settings.show_2_section != blank %}
+  <div class="grid-uniform section-two">
+    <div class="container">
+      {% if section.settings.section_2_mainheading != blank %}
+      <div class="border-title">       
+        <h2>  {{section.settings.section_2_mainheading}}</h2>      
+        {% if section.settings.section_2_subheading != blank %}
+        <h6>  {{section.settings.section_2_subheading}}</h6>
+        {% endif %}
+        {% if  section.settings.section_4_img  != blank %}
+        <img src="{{  section.settings.section_4_img  | img_url: "master" }}" alt="{{ section.settings.section_4_imgheading }}" />
+        {% endif %}
+      </div>
+      {% endif %}      
+      <div class="grid__item">
+        <div class="grid__item wide--one-half post-large--one-half large--one-half medium--grid__item small--grid__item icon-left">
+          <div class="icon-wrapper ">
+            <div class="icon-detail">
+              {% if section.settings.section_2_iconheading_one != blank %}
+              <h4>  {{section.settings.section_2_iconheading_one}}</h4>
+              {% endif %}
+              {% if section.settings.section_2_icondetail_one != blank %}
+              {{section.settings.section_2_icondetail_one}}
+              {% endif %}
+            </div>
+            <div class="icon">
+              {% if section.settings.section_2_iconcls_one != blank %}
+              <span class="{{section.settings.section_2_iconcls_one}}"> </span>
+              {% endif %}
+            </div>
+          </div>
+          <div class="icon-wrapper ">
+            <div class="icon-detail">
+              {% if section.settings.section_2_iconheading_two != blank %}
+              <h4>  {{section.settings.section_2_iconheading_two}}</h4>
+              {% endif %}
+              {% if section.settings.section_2_icondetail_two != blank %}
+              {{section.settings.section_2_icondetail_two}}
+              {% endif %}
+            </div>
+            <div class="icon">
+              {% if section.settings.section_2_iconcls_two != blank %}
+              <span class="{{section.settings.section_2_iconcls_two}}"> </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="grid__item wide--one-half post-large--one-half large--one-half medium--grid__item small--grid__item icon-right">
+          <div class="icon-wrapper ">
+            <div class="icon">
+              {% if section.settings.section_2_iconcls_three != blank %}
+              <span class="{{section.settings.section_2_iconcls_three}}"> </span>
+              {% endif %}
+            </div>
+            <div class="icon-detail">
+              {% if section.settings.section_2_iconheading_three != blank %}
+              <h4>  {{section.settings.section_2_iconheading_three}}</h4>
+              {% endif %}
+              {% if section.settings.section_2_icondetail_three != blank %}
+              {{section.settings.section_2_icondetail_three}}
+              {% endif %}
+            </div>
+          </div>
+          <div class="icon-wrapper ">
+            <div class="icon">
+              {% if section.settings.section_2_iconcls_four != blank %}
+              <span class="{{section.settings.section_2_iconcls_four}}"> </span>
+              {% endif %}
+            </div>
+            <div class="icon-detail">
+              {% if section.settings.section_2_iconheading_four != blank %}
+              <h4>  {{section.settings.section_2_iconheading_four}}</h4>
+              {% endif %}
+
+              {% if section.settings.section_2_icondetail_four != blank %}
+              {{section.settings.section_2_icondetail_four}}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dt-sc-hr-invisible-large"></div> 
+  {% endif %}
+
+
+
+
+  {% if section.settings.show_3_section != blank %}
+  <div class="grid-uniform section-four" style=""; >
+    <div class="container">
+      {% if section.settings.section_4_maintitle != blank %}
+      <div class="main-title">
+        <h2>  {{section.settings.section_4_maintitle }}</h2>
+
+      </div>
+      {% endif %}
+      <div class="grid__item ">
+        <div class="grid__item wide--two-thirds post-large--two-thirds large--two-thirds">
+          {% if section.settings.section_3_desc != blank %}
+          {{section.settings.section_3_desc }}
+          <div class="invisible-medium"></div>
+          {% endif %}
+          <div class="grid__item ">
+            {% if section.settings.section_3_imageone != blank %}
+            <div class="grid__item wide--one-third post-large--one-third large--one-third medium--one-half small--grid__item">
+              <img src="{{ section.settings.section_3_imageone | img_url: '1024x1024' }}" alt="" title="" /> 
+            </div>
+            {% endif %}
+            {% if section.settings.section_3_imagetwo != blank %}
+            <div class="grid__item wide--one-third post-large--one-third large--one-third medium--one-half small--grid__item">
+              <img src="{{ section.settings.section_3_imagetwo | img_url: '1024x1024' }}" alt="" title="" /> 
+            </div>
+            {% endif %}
+            {% if section.settings.section_3_imagethree != blank %}
+            <div class="grid__item wide--one-third post-large--one-third large--one-third medium--one-half small--grid__item">
+              <img src="{{ section.settings.section_3_imagethree | img_url: '1024x1024' }}" alt="" title="" /> 
+            </div>
+            {% endif %}
+          </div>
+        </div>   
+        {% if section.settings.section_3_rightimage != blank %}
+        <div class="grid__item wide--one-third post-large--one-third large--one-third">
+          <img src="{{ section.settings.section_3_rightimage | img_url: '1024x1024' }}" alt="" title="" /> 
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="dt-sc-hr-invisible-large"></div> 
+  {% endif %}
+
+
+  {% if section.settings.section_three %}
+  <div class="grid-uniform section-three " style="background:{{section.settings.team_section_bg}};float:left;width:100%;">
+    <div class="container">
+      {% if  section.settings.section_3_title  != blank %}
+      <div class="border-title">
+        <h2 style="color:{{section.settings.section_3_title_color  }};background:{{section.settings.section_3_titlebg_color}}">{{section.settings.section_3_title}}</h2>
+        {% if  section.settings. section_3_subtitle  != blank %}
+        <h4 style="color:{{section.settings.section_3_subtitle_color}}">{{section.settings.section_3_subtitle}}</h4>
+        {% endif %}
+
+      </div>
+      {% endif %}
+      <div class="grid__item">
+
+        {% case section.blocks.size %}
+        {% when 1 %}
+        {%- assign block_width = 'one-whole text-center' -%}
+        {% when 2 %}
+        {%- assign block_width = 'wide--one-half post-large--one-half large--one-half medium--one-half small-grid__item' -%}
+        {% when 3 %}
+        {%- assign block_width = 'wide--one-third post-large--one-third large--one-third medium--one-half small-grid__item' -%}
+        {% when 4 %}
+        {%- assign block_width = 'wide--one-quarter post-large--one-quarter large--one-quarter medium--one-half small-grid__item' -%}
+        {% endcase %}
+
+        {% if section.blocks.size > 0 %}      
+        {% for block in section.blocks %}
+
+        <div class="grid__item {{ block_width }} ">
+          <div class="team">
+            {% if  block.settings.team_1_img   != blank %}
+            <div class="team-img">
+              <img src="{{ block.settings.team_1_img   | img_url: "master" }}" alt="{{ block.settings.team_1_imgheading }}" />
+            </div>
+            {% endif %}
+            <div class="team-detail">
+              {% if  block.settings.team_1_title  != blank %}
+              <h4>{{ block.settings.team_1_title }}</h4>
+              {% endif %}
+              {% if  block.settings.team_1_designation  != blank %}
+              <h5>{{ block.settings.team_1_designation }}</h5>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+        {% endif %}
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+  {% endif %} 
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+  .grid-banner-type-18  h2 a,.grid-banner-type-5  h2  { color:{{ section.settings.title_color_1_grid }};text-align:center; }
+  .grid-banner-type-18  h2 a:hover  { color:{{ section.settings.title_hover_color_1_grid }}; }
+
+
+
+  .grid-banner-type-18 .collectionItems .ovrly17::after{background:{{section.settings.overlay_bg_color}};}
+
+  .grid-banner-type-18 .grid__item:hover h2 {background:{{section.settings.texthover_bg_color}}!important;color:{{section.settings.texthover_txt_color}}!important;}
+
+  .grid-banner-type-18 .grid__item:hover h2 a{color:{{section.settings.texthover_txt_color}}!important;}
+
+
+  .aboutus .section-two{background:{{section.settings.section_2_bgcolor}};}
+
+  .aboutus .section-two .border-title h2 ,  .aboutus .section-two .border-title h6{color:{{section.settings.section_2_txtcolor}};}
+
+  .aboutus .icon-wrapper  h4 , .aboutus .icon-wrapper  p{color:{{section.settings.section_2_txtcolor}};}
+
+  .aboutus .icon{background:{{section.settings.section_2_txtcolor}};}
+
+  .aboutus .icon-wrapper  h4 , .vedabout-seven .icon-wrapper  p{color:{{section.settings.section_2_txtcolor}};}
+
+  .aboutus .icon-wrapper span {color:{{section.settings.section_2_iconcolor}};}
+
+  .aboutus .icon-wrapper:hover .icon{background:{{section.settings.section_2_iconcolor}};}
+
+  .aboutus .icon-wrapper:hover .icon span{color:{{section.settings.section_2_txtcolor}};}
+
+
+
+  .aboutus .section-four p{color:{{section.settings.section_1_desccolor}};}
+  .aboutus .team-img { box-shadow: 0 0 0 10px {{section.settings.team_4_bordercolor}}; }
+
+  .aboutus .team-detail h4 { color:{{section.settings.team_4_authorcolor}};}
+
+  .aboutus .team-detail h5{color:{{section.settings.team_4_designationcolor}};}
+
+  .aboutus .team:hover .team-img {box-shadow: 0 0 0 10px {{section.settings.team_4_authorcolor}};}
+
+  .aboutus .block-three img{border: 10px solid {{section.settings.img_bordercolor}};}
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% schema %}
+{
+"name": "About Page",
+"settings": [
+
+
+{
+"type": "color",
+"id": "overlay_bg_color",
+"label": "Overlay Bg Color",
+"default":"#000"	
+},
+{
+"type": "color",
+"id": "texthover_bg_color",
+"label": "Text Hover Bg Color",
+"default":"#000"	
+},
+{
+"type": "color",
+"id": "texthover_txt_color",
+"label": "Text Hover Text Color",
+"default":"#000"	
+},
+{
+"type": "image_picker",
+"id": "image_1_grid",
+"label": "Image",
+"info": "Size: 800x800"
+},
+{
+"type": "text",
+"id": "title_1_grid",
+"label": "Heading",
+"default": "Collection Name"	
+},
+{
+"type": "color",
+"id": "title_bg_color_1_grid",
+"label": "Heading Bg color",
+"default":"#000"	
+}, 
+
+{
+"type": "color",
+"id": "title_color_1_grid",
+"label": "Heading color",
+"default":"#000"	
+}, 	
+
+{
+"type": "text",
+"id": "link_1_grid",
+"label": "Link"          
+},
+
+{
+"type": "checkbox",
+"id": "overlay_1_grid",
+"label": "Overlay"
+
+},
+
+
+
+
+{
+"type": "image_picker",
+"id": "image_2_grid",
+"label": "Image",
+"info": "Size: 800x800"
+},
+{
+"type": "text",
+"id": "title_2_grid",
+"label": "Heading",
+"default": "Collection Name"	
+},
+{
+"type": "color",
+"id": "title_bg_color_2_grid",
+"label": "Heading Bg color",
+"default":"#000"	
+}, 
+
+{
+"type": "color",
+"id": "title_color_2_grid",
+"label": "Heading color",
+"default":"#000"	
+}, 	
+
+{
+"type": "text",
+"id": "link_2_grid",
+"label": "Link"          
+},
+
+{
+"type": "checkbox",
+"id": "overlay_2_grid",
+"label": "Overlay"
+
+},
+
+
+
+
+
+
+{
+"type": "image_picker",
+"id": "image_3_grid",
+"label": "Image",
+"info": "Size: 800x800"
+},
+{
+"type": "text",
+"id": "title_3_grid",
+"label": "Heading",
+"default": "Collection Name"	
+},
+{
+"type": "color",
+"id": "title_bg_color_3_grid",
+"label": "Heading Bg color",
+"default":"#000"	
+}, 
+
+{
+"type": "color",
+"id": "title_color_3_grid",
+"label": "Heading color",
+"default":"#000"	
+}, 	
+
+{
+"type": "text",
+"id": "link_3_grid",
+"label": "Link"          
+},
+
+{
+"type": "checkbox",
+"id": "overlay_3_grid",
+"label": "Overlay"
+
+},
+{
+"type": "header",
+"content": "Block 2"
+},
+{
+"type": "checkbox",
+"id": "show_2_section",
+"label": "Display  This Section"
+},
+{
+"type": "color",
+"id": "section_2_bgcolor",
+"label": "Bg color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "section_2_txtcolor",
+"label": "Text color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "section_2_iconcolor",
+"label": "Icon color",
+"default": "#000"
+},
+{
+"type": "text",
+"id": "section_2_mainheading",
+"label": "Main Heading",
+"default": "Title...."
+},
+{
+"type": "text",
+"id": "section_2_subheading",
+"label": "Sub Heading",
+"default": "Sub Title..."
+},
+{
+"type": "text",
+"id": "section_2_iconheading_one",
+"label": "Sub Heading",
+"default": "Sub Title..."
+},
+{
+"type": "image_picker",
+"id": "section_4_img",
+"label": "Heading Image Use?",
+"info": "Size: 150x150"
+},
+{
+"type": "text",
+"id": "section_4_imgheading",
+"label": "Heading Image"
+},
+{
+"type": "richtext",
+"id": "section_2_icondetail_one",
+"label": "Detail",
+"default": "<p>Some description...</p>"
+},
+{
+"type": "text",
+"id": "section_2_iconcls_one",
+"label": "Icon cls",
+"default": "icon class"
+},
+{
+"type": "text",
+"id": "section_2_iconheading_two",
+"label": "Sub Heading",
+"default": "Sub Title..."
+},
+{
+"type": "richtext",
+"id": "section_2_icondetail_two",
+"label": "Detail",
+"default": "<p>Some description...</p>"
+},
+{
+"type": "text",
+"id": "section_2_iconcls_two",
+"label": "Icon cls",
+"default": "icon class"
+},
+{
+"type": "text",
+"id": "section_2_iconheading_three",
+"label": "Sub Heading",
+"default": "Sub Title..."
+},
+{
+"type": "richtext",
+"id": "section_2_icondetail_three",
+"label": "Detail",
+"default": "<p>Some description...</p>"
+},
+{
+"type": "text",
+"id": "section_2_iconcls_three",
+"label": "Icon cls",
+"default": "icon class"
+},
+
+{
+"type": "text",
+"id": "section_2_iconheading_four",
+"label": "Sub Heading",
+"default": "Sub Title..."
+},
+{
+"type": "richtext",
+"id": "section_2_icondetail_four",
+"label": "Detail",
+"default": "<p>Some description...</p>"
+},
+{
+"type": "text",
+"id": "section_2_iconcls_four",
+"label": "Icon cls",
+"default": "icon class"
+},
+{
+"type": "header",
+"content": "Section three"
+},
+{
+"type": "checkbox",
+"id": "show_3_section",
+"label": "Display  This Section"
+},
+
+{
+"type": "text",
+"id": "section_4_maintitle",
+"label": "Heading",
+"default": "Title..."
+},
+{
+"type": "richtext",
+"id": "section_3_desc",
+"label": "Desc",
+"default": "<p>some desc...</p>"
+},
+{
+"type": "image_picker",
+"id": "section_3_imageone",
+"label": "Image",
+"info": "Size: 500x500"
+},
+{
+"type": "image_picker",
+"id": "section_3_imagetwo",
+"label": "Image",
+"info": "Size: 500x500"
+},
+{
+"type": "image_picker",
+"id": "section_3_imagethree",
+"label": "Image",
+"info": "Size: 500x500"
+},
+{
+"type": "image_picker",
+"id": "section_3_rightimage",
+"label": "Image",
+"info": "Size: 600x786"
+},
+
+{
+"type": "color",
+"id": "section_1_maintitlecolor",
+"label": "Heading Color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "section_1_desccolor",
+"label": "Desc Color",
+"default": "#000"
+},
+{
+"type": "header",
+"content": "Block 5"
+},
+{
+"type": "checkbox",
+"id": "section_three",
+"label": "Display  This Section"
+},
+{
+"type": "text",
+"id": "section_3_title",
+"label": "Heading"
+},
+{
+"type": "color",
+"id": "section_3_title_color",
+"default": "#000",
+"label": "Heading Color"
+},
+{
+"type": "color",
+"id": "section_3_titlebg_color",
+"default": "#000",
+"label": "Heading Bg Color"
+},
+{
+"type": "color",
+"id": "team_4_bordercolor",
+"default": "#000",
+"label": "Border Color"
+},
+{
+"type": "color",
+"id": "team_4_authorcolor",
+"default": "#000",
+"label": "Author Color"
+},
+{
+"type": "color",
+"id": "team_4_designationcolor",
+"default": "#000",
+"label": "Designation Color"
+},
+{
+"type": "color",
+"id": "team_section_bg",
+"default": "#000",
+"label": "Bg Color"
+}
+
+
+
+],
+"blocks": [
+{
+"type": "Image",
+"name":"client img",
+"settings": [
+
+{
+"type": "image_picker",
+"id": "team_1_img",
+"label": "Image",
+"info": "Size: 420x420"
+},
+{
+"type": "text",
+"id": "team_1_imgheading",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "team_1_title",
+"label": "Author Name"
+},
+{
+"type": "text",
+"id": "team_1_designation",
+"label": "Designation"
+}
+]
+}
+]
+
+
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

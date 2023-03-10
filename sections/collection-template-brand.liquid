@@ -1,0 +1,150 @@
+{% if section.settings.collection_results_per_page != blank %}
+  {% assign product_per_page = section.settings.collection_results_per_page %}
+{% else %}
+  {% assign product_per_page = 12 %}
+{% endif %}
+
+    <div class="grid__item sidebar-hidden">        
+      <div class="collection-list">
+        <div class="grid-uniform grid-link__container col-main">            
+          {% paginate collection.products by product_per_page %}   
+          
+          <div class="collection__wrap">
+            <div class="collection__image">
+              <img src="{{ collection.image.src | collection_img_url: '800x' }}" alt="{{ collection.image.alt }}">
+            </div>
+
+            <div class="collection__text">
+              <h1 class="collection__title">{{ collection.title }}</h1>
+
+              {{ collection.description }}
+            </div>
+          </div>
+
+          <div class="products-grid-view">
+          {% if collection.products.size > 0 %}      
+          <ul>
+            {% case section.settings.collection_grid %}
+            {% when '2' %}
+            {%- assign grid_item_width = 'wide--one-half post-large--one-half large--one-half medium--one-half small-grid__item' -%}            
+            {% when '3' %}
+            {%- assign grid_item_width = 'wide--one-third post-large--one-third large--one-half medium--one-half small-grid__item' -%}            
+            {% when '4' %}
+            {%- assign grid_item_width = 'wide--one-quarter post-large--one-third large--one-half medium--one-half small-grid__item' -%}            
+            {% when '5' %}
+            {%- assign grid_item_width = 'wide--one-fifth post-large--one-quarter large--one-half medium--one-half small-grid__item' -%}            
+            {% endcase %}
+            {% for product in collection.products %}
+            {% include 'product-grid-item',grid_item_width: grid_item_width %}
+            {% endfor %}
+          </ul>
+          {% else %}
+          <div class="grid__item">
+            <p><em>{{ 'home_page.onboarding.no_products_html' | t }}</em></p>
+          </div>
+          {% endif %}
+          </div>
+          {% if paginate.pages > 1 %}
+          <div class="text-center padding">
+            {% include 'pagination-custom' %}
+          </div>
+          {% endif %}
+          {% endpaginate %}  
+        </div>
+      </div>
+    </div>
+    {% schema %}
+{
+"name": "Collection Page",
+"settings": [
+{
+        "type": "checkbox",
+        "id": "show_collection_image",
+        "label": "Show collection image",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "collections_sort_enable",
+        "label": "Enable collection sorting",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "collections_view_enable",
+        "label": "Enable collection view",
+        "default": true
+      },
+      
+      {
+        "type": "select",
+        "id": "collection_grid",
+        "label": "Products per row (grid only)",
+        "default": "4",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ]
+      },
+{
+        "type": "select",
+        "id": "collection_results_per_page",
+        "label": "Products per page",
+        "default": "12",
+        "options": [
+          {
+            "value": "8",
+            "label": "8"
+          },
+          {
+            "value": "12",
+            "label": "12"
+          },
+          {
+            "value": "24",
+            "label": "24"
+          },
+          {
+            "value": "36",
+            "label": "36"
+          },
+          {
+            "value": "100",
+            "label": "100"
+          }
+        ]
+      },
+      
+      {
+        "type": "checkbox",
+        "id": "collection_infinite_scrolling",
+        "label": "Enable Infinite Scrolling (Show More Button)",
+        "default": true
+      }
+      
+      
+],
+
+
+"presets": [
+{
+"name": "Collection Page",
+"category": "collection"
+}
+]
+}
+{% endschema %}

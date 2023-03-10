@@ -1,0 +1,237 @@
+
+<div data-section-id="{{ section.id }}" data-section-type="full-banner-blocks" class="full-banner-blocks block5">      
+  <div class="parallax section section-{{ section.id }}-block " id="section{{section.id }}" style="{% if section.settings.show_image_1 != blank %} background-image:url('{{ section.settings.image | img_url: '1920X' }}');background-repeat:no-repeat;background-size:cover {% else %}background-color:{{section.settings.background_color}};{% endif%}">  
+    <div class="container">      
+      <div class="grid__item"  >
+        <div class="full-banner-block"> 
+          <div class="full-banner-content content-center {{ section.settings.alignment }}"> 
+
+            {% if section.settings.title != blank %}
+            <div class="grid__item wow fadeIn animated">    
+              <div class="border-title">
+                <h2 style="color:{{ section.settings.title_color }}">{{ section.settings.title }}</h2>
+                {% if section.settings.sub_title != blank %}
+                <div class="small-desc">
+                  <p style="color:{{ section.settings.sub_title_color }}">{{ section.settings.sub_title }}</p>
+                </div>
+                {% endif %}
+              </div>          
+            </div>
+            {% endif %}
+
+
+
+            <div class="grid__item ">
+              {% if section.blocks.size > 0 %}  
+              {% for block in section.blocks %}
+              {% case section.blocks.size %}
+              {% when 1 %}
+              {%- assign block_width = 'one-whole text-center' -%}
+              {% when 2 %}
+              {%- assign block_width = 'wide--one-half post-large--one-half large--one-half medium--one-half small-grid__item' -%}
+              {% when 3 %}
+              {%- assign block_width = 'wide--one-third post-large--one-third large--one-third medium--one-half small-grid__item' -%}
+              {% when 4 %}
+              {%- assign block_width = 'wide--one-quarter post-large--one-quarter large--one-quarter medium--one-half small-grid__item' -%}
+              {% else %}
+              {%- assign block_width = 'wide--one-quarter post-large--one-quarter large--one-quarter medium--one-half small-grid__item' -%}
+              {% endcase %}
+              {% if block.settings.client_img != blank or block.settings.client_heading != blank %}
+              <div class=" grid__item {{block_width}}">
+                <div class="icon-section wow fadeInUp animated">
+                  <a href="{{ block.settings.client_link }}">
+                    {% if block.settings.client_img != blank %}
+                    <div class="icon">
+                      <img src="{{ block.settings.client_img | img_url: "140x140"  }}" alt="{{ block.settings.client_heading }}"  style ="border: 5px solid  {{block.settings.img_border_color}};"/>
+                    </div>
+                    {% else %}
+                    <img src="//via.placeholder.com/140x140">
+                    {% endif %}
+                    {% if block.settings.client_heading != blank %}
+                    <span style="color:{{ block.settings.client_heading_color}}">{{ block.settings.client_heading }} </span>
+                    {% endif %}
+                  </a>
+                </div>
+              </div>              
+              {% endif %}   
+              {% endfor %}
+              {% endif %} 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="dt-sc-hr-invisible-large"></div> 
+
+</div>
+
+
+<style>
+  
+  
+
+
+
+</style>
+
+<style>
+
+
+  .block5 .icon-section .icon::before {background:{{section.settings.img_overlaybg_color}};}
+
+
+
+  /*  @media only screen and (min-width:320px) and (max-width:1199px) {
+
+  .full-banner-blocks.block5 .full-banner-content{background:{{ section.settings.mobile_bg_color | color_modify: 'alpha', 0.8 }}}
+
+  } */
+
+
+
+  {% if section.settings.show_overlay_bg %}
+  .full-banner-blocks.block5 .parallax::before {background:{{section.settings.overlay_bg_color}};}
+  {% endif %} 
+
+
+</style>
+
+
+
+
+
+
+{% schema %}
+{
+"name": "Thumb Grid",
+"class": "index-section",
+"max_blocks": 8,
+"settings": [
+{
+"type": "checkbox",
+"id": "show_image_1",
+"label": "Show Image"
+},
+  {
+  "type": "image_picker",
+  "id": "image",
+  "label": "Image",
+  "info": "Size: 1920x1280"
+  },
+  {
+"type": "color",
+"id": "background_color",
+"label":"Bckground color",
+"default": "#000"
+},
+{
+"type": "checkbox",
+"id": "show_overlay_bg",
+"label": "Show Overlay"
+},
+{
+"type": "color",
+"id": "overlay_bg_color",
+"label": "Overlay Bg Color",
+"default":"#000"
+},
+
+{
+"type": "text",
+"id": "title",
+"label": "Heading",
+"default": "Main Heading"
+},
+{
+"type": "color",
+"id": "title_color",
+"label":"Heading color",
+"default": "#000"
+},
+{
+"type": "text",
+"id": "sub_title",
+"label": "Sub Heading",
+"default": "sub Heading"
+},
+{
+"type": "color",
+"id": "sub_title_color",
+"label":"Sub Heading color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "img_overlaybg_color",
+"label": "Img Overlay Bg Color",
+"default":"#000"
+}
+],
+"blocks": [
+{
+"type": "Image",
+"name":"Icon Block",
+"settings": [
+{
+"type": "image_picker",
+"id": "client_img",
+"label": "Image",
+"info": "Size: 64x64"
+},
+{
+"type": "text",
+"id": "client_heading",
+"label": "Heading",
+"default": "Heading"
+},
+{
+"type": "color",
+"id": "img_border_color",
+"label": "img border color",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "client_heading_color",
+"label": "Heading Color",
+"default": "#fff"
+},
+{
+"type": "url",
+"id": "client_link",
+"label": "Link URL"
+}
+]
+}
+],
+"presets": [
+{
+"name": "Thumb Grid",
+"category": "Image",
+"blocks": [
+{
+"type": "Image"
+},
+{
+"type": "Image"
+},
+{
+"type": "Image"
+},
+{
+"type": "Image"
+},
+{
+"type": "Image"
+},
+{
+"type": "Image"
+}
+
+]
+}
+]
+}
+{% endschema %}
+

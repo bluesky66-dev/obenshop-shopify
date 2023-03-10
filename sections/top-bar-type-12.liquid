@@ -1,0 +1,328 @@
+{% if section.settings.display_top_bar %}
+<div class="top_bar top-bar-type-12">    
+  <div class="container">
+    {% if section.settings.header_phone_value != blank or  section.settings.header_mail_value != blank %}
+    <ul class="top_bar_left">
+      {% if section.settings.header_phone_value != blank %}
+      <li><i class="fa fa-phone"></i> {{ section.settings.header_phone_value }}</li>
+      {% endif %}
+      {% if section.settings.header_mail_value != blank %}
+      <li><i class="fa fa-envelope"></i> <a href="mailto:{{ section.settings.header_mail_value }}"> {{ section.settings.header_mail_value }}</a></li>
+      {% endif %}
+    </ul>
+    {% endif %}
+
+
+    <ul class="top_bar_right">
+      {% if shop.customer_accounts_enabled %} 
+      <div class="customer_account">  
+        <div class="list-unstyled">
+
+          <li class="init dt-sc-toggle">{{ 'layout.customer.account' | t }}</li>
+          <div class="header-account_links list-unstyled dt-sc-toggle-content">
+            <ul class="inline-list"> 
+              {% if customer %}
+              <li>
+                <a href="/account" data-value="value 1"><i class="icon-user-following"></i>{{ 'layout.customer.account' | t }}</a>
+              </li>
+              <li class="logout-link">
+                <i class="icon-user-unfollow"></i> {{ 'layout.customer.log_out' | t | customer_logout_link }}
+              </li>
+              {% else %}
+              <li>
+                <a href="/account/login" data-value="value 1"><i class="icon-login"></i>{{ 'layout.customer.log_in' | t }}</a>
+              </li>
+              <li>
+                <a href="/account/register" data-value="value 2"><i class="icon-user"></i>{{ 'layout.customer.create_account' | t }}</a>
+              </li>          
+              {% endif %}  
+
+            </ul>          
+          </div>
+
+        </div>
+      </div>  
+      {% endif %} 
+      {% if settings.display_currency %}   
+      <li class="header_currency">
+        <ul class="tbl-list">                    
+          <li class="currency dropdown-parent uppercase currency-block">
+            {% include 'currencies-switcher' %}
+          </li>
+        </ul>
+      </li>        
+      {% endif %}
+
+      {% if section.settings.display_wishlist %}   
+      <li class="wishlist">            
+        <a  href="/pages/wishlist" title="{{ 'products.wishlist.wishlist_name' | t }}"><i class="far fa-heart"></i></a>            
+      </li>
+      {% endif %} 
+      <li class="menu_bar_right">
+
+
+        {% if section.settings.display_minicart %}   
+        <div class="header-bar__module cart header_cart">
+          {% include 'mini-cart' %} 
+        </div> 
+        {% endif %} 
+
+      </li>
+
+
+
+
+
+    </ul>
+  </div>
+</div> 
+{% endif %} 
+<style> 
+
+  .header-type-12 .header-top a.close { background: {{ section.settings.stripe_icon }}; }  
+  .header-type-12 .header-top a.close:hover { background: {{ section.settings.stripe_icon_hover }}; }  
+  .header-type-12 .header-top { background: {{ section.settings.stripe_bg }}; }      
+  .header-type-12 .header-top ul li { color: {{ section.settings.stripe_text }}; }    
+
+  /* Top block */
+  .header-type-12 .top_bar { background: {{ section.settings.top_bar_bg }}; }
+  .header-type-12 .top_bar li { color:{{section.settings.top_bar_text}};}     
+  .header-type-12 .top_bar a,.header-type-12 .top_bar button { color:{{section.settings.top_bar_links }};}    
+  .header-type-12 .top_bar a:hover, .header-type-12 .top_bar a:hover span,.header-type-12 .top_bar button:hover,.header-type-12 li.init.dt-sc-toggle:hover  { color:{{section.settings.top_bar_link_hover }};}    
+
+  /* Cart Summary block */
+  .header-type-12 .header_cart  {color: {{ section.settings.minicart_icon }};background:{{ section.settings.count_bg }};}
+
+  .header-type-12 #slidedown-cart .actions, .header-type-12  #slidedown-cart  {background: {{ section.settings.minicart_bg }};}
+  .header-type-12 .header-bar__module p {color: {{ section.settings.minicart_text }};}
+  .header-type-12 .header-bar__module a {color:{{section.settings.minicart_link }};}  
+  .header-type-12 .header-bar__module a:hover {color:{{section.settings.minicart_link_hover}};} 
+  .header-type-12 .header-bar__module .btn {color:{{section.settings.minicart_btn_text}};background: {{ section.settings.minicart_btn_bg }};} 
+  .header-type-12 .header-bar__module .btn:hover {color:{{section.settings.minicart_btn_hover_text}};background: {{ section.settings.minicart_btn_hover_bg }};} 
+  .header-type-12  #slidedown-cart .total .price, .header-type-12 #minicart_total,.header-type-12 #slidedown-cart ul li .cart-collateral {color:{{section.settings.minicart_total }};} 
+  .header-type-12 #slidedown-cart li { border-bottom:1px solid {{ section.settings.border_between_bars}}; }
+
+
+  /* Currency block */
+
+  .header-type-12 .header_currency ul select {color:{{section.settings.currency_icon}};}   
+  .header-type-12 .header_currency ul select:hover {color:{{section.settings.currency_icon_hover}};}  
+  .header-type-12 .header_currency ul li.currency:hover:after {border-top-color:{{section.settings.currency_icon_hover}};}
+  .header-type-12 .header_currency ul li.currency:after,.header-type-12 li.init.dt-sc-toggle:after {color:{{section.settings.currency_icon}};}
+  .header-type-12 .header_currency option {background:{{section.settings.currency_bg}};color:{{section.settings.currency_link}};}
+
+  .header-account_links ul li { z-index: 2; }
+  .header-account_links ul li:not(.init) { float: left;  }
+  .header-account_links ul li:not(.init):hover, .header-account_links ul li.selected:not(.init) {}
+  .header-account_links li.init { cursor: pointer; }
+
+
+
+  .header-type-12 .top_bar .header_cart a.icon-cart-arrow { color: {{ section.settings.minicart_icon }}; }
+  .header-type-12 .top_bar .header_cart:hover a.icon-cart-arrow,.header-type-12 .top_bar .header_cart:hover a.icon-cart-arrow span {color:{{ section.settings.minicart_icon_hover }}; } 
+
+
+</style>
+{% schema %}
+{
+"name": "Top Bar",
+"settings": [
+{
+"type":"checkbox",
+"id": "display_top_bar",
+"label": "Display topbar"	
+},
+{
+"type": "checkbox",
+"id": "display_minicart",
+"label": "Display minicart"
+},
+
+
+{
+"type": "text",
+"id": "header_phone_value",
+"label": "Phone number",
+"default": "(00) 000 111 222"
+},    
+{
+"type": "text",
+"id": "header_mail_value",
+"label": "Mail address",
+"default": "info@somedomain.com"
+},  
+
+
+{
+"type": "header",
+"content": "Top Bar"
+},
+{
+"type": "color",
+"id": "top_bar_bg",
+"label": "Top bar background",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "top_bar_text",
+"label": "Top bar text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "top_bar_links",
+"label": "Top bar links",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "top_bar_link_hover",
+"label": "Top bar links hover",
+"default": "#35b8f4"
+},
+{
+"type": "header",
+"content": "Border Block"
+},
+{
+"type": "color",
+"id": "top_border_between_bars",
+"label": "Border lines",
+"default": "#e4e4e4"
+},
+{
+"type": "header",
+"content": "Border Block"
+},
+{
+"type": "color",
+"id": "border_between_bars",
+"label": "Border lines",
+"default": "#e4e4e4"
+},
+{
+"type": "header",
+"content": "Currency Block"
+},
+
+{
+"type": "color",
+"id": "currency_icon",
+"label": "Current Text Color",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "currency_icon_hover",
+"label": "Text hover",
+"default": "#35b8f4"
+},
+{
+"type": "color",
+"id": "currency_bg",
+"label": "Current Background",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "currency_link",
+"label": "Currency Links",
+"default": "#000"
+},
+{
+"type": "header",
+"content": "Cart Block"
+},
+{
+"type": "color",
+"id": "count_bg",
+"label": "Count Bg",
+"default": "#fad400"
+},
+{
+"type": "color",
+"id": "minicart_icon",
+"label": "Count Text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "count_hover_bg",
+"label": "Count Hover Bg",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_icon_hover",
+"label": "Count Text hover",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "minicart_bg",
+"label": "Background",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "minicart_text",
+"label": "Text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_link",
+"label": "Link",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_link_hover",
+"label": "Link hover",
+"default": "#35b8f4"
+},
+{
+"type": "color",
+"id": "minicart_btn_bg",
+"label": "Button background",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_btn_hover_bg",
+"label": "Hover background",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_btn_text",
+"label": "Button text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_btn_hover_text",
+"label": "Hover text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "minicart_total",
+"label": "Cart Total",
+"default": "#000"
+},
+{
+"type": "checkbox",
+"id": "display_wishlist",
+"label": "Display wishlist"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

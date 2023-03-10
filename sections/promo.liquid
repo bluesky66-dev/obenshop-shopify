@@ -1,0 +1,33 @@
+<div class="promo-section">
+  <div class="promo-section__wrap" style="border-color: {{ section.settings.brackets_color }};">
+    <div class="promo-section__text">
+      {{ section.settings.text | newline_to_br }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Promo Section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "brackets_color",
+      "label": "Brackets color",
+      "default": "#383838"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo Section"
+    }
+  ]
+}
+{% endschema %}
+
+

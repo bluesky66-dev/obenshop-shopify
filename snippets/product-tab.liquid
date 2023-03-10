@@ -1,0 +1,28 @@
+<div class="dt-sc-tabs-container">
+    <ul class="dt-sc-tabs">
+      {% if section.settings.product_tab1 %}<li><a class="" href="#"> {{ section.settings.product_tab1_heading }} </a></li>{% endif %} 
+      {% if section.settings.product_tab2 %}<li><a class="" href="#"> {{ section.settings.product_tab2_heading }}  </a></li>{% endif %}
+      {% if section.settings.product_tab3 %}<li><a class="" href="#"> {{ section.settings.product_tab3_heading }}  </a></li>{% endif %}
+    </ul>
+    {% if section.settings.product_tab1 %}
+    <div class="dt-sc-tabs-content" id="desc_pro">
+      <p>{{ product.description }}</p>
+    </div>
+    {% endif %}
+    {% if section.settings.product_tab2 %}
+    <div class="dt-sc-tabs-content">
+      <div class="commentlist">
+        <div class="comment-text">
+          <div class="rating-review">
+            <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if section.settings.product_tab3 %}
+    <div class="dt-sc-tabs-content">
+      <p>{{ pages[section.settings.product_tab3_page].content }}</p>
+    </div>
+    {% endif %}               
+  </div>

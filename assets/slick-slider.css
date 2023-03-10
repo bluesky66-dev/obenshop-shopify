@@ -1,0 +1,57 @@
+/* slideshow-homepage-------------------------------------------------------------------- */
+.home-slideshow{position: relative;}
+
+.home-slideshow .slick-active .slider-content {
+    z-index: 9999;
+    visibility: visible;
+    opacity: 1;
+}
+.home-slideshow .slick-slide img:hover{opacity: 1;}
+.home-slideshow .slick-slider .slick-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 50;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    outline: none;
+}
+.home-slideshow .slick-dots{display:none!important}
+
+.slick-arrow {height:60px;line-height:60px;}
+
+
+.home-slideshow .slick-arrow {
+    font-size: 0px;
+    background: none;
+    border: none;
+}
+.home-slideshow .slick-next:before {
+    content:"\f054";font-weight:bold; font-family: 'Font Awesome 5 Free'; 
+}
+.home-slideshow .slick-arrow:before {
+    font-weight:bold; font-family: 'Font Awesome 5 Free'; 
+    color: #fff;
+}
+.home-slideshow .slick-prev:before {
+    content:"\f053";font-weight:bold; font-family: 'Font Awesome 5 Free'; 
+}
+
+
+ .slick-slide img{ display:block;   margin: auto;height:auto;width:auto;}
+.home-slideshow .slick-arrow, .home-slideshow .slick-arrow{opacity: 0;}
+.home-slideshow:hover .slick-arrow, .home-slideshow:hover .slick-arrow {opacity: 1;}
+
+
+
+.variable-width {
+    overflow: hidden;
+}
+
+.variable-width {
+    visibility: hidden;
+}
+
+.slick-initialized { 
+    visibility: visible;
+}

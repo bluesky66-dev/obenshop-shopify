@@ -1,0 +1,711 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+  {% if settings.favicon_enable %}
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url}}" type="image/png" />
+
+  {% endif %}
+
+  <!-- Title and description ================================================== -->
+  <title>
+    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+  <!-- Social meta ================================================== -->
+  {% include 'social-meta-tags' %}
+  <!-- Helpers ================================================== -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+
+{%- style -%}
+  @font-face {
+    font-family: 'Amoret Script';
+    src: local('The Amoret Collection Script'), local('The-Amoret-Collection-Script'),
+      url({{ 'AmoretScript.woff2' | asset_url }}) format('woff2'),
+      url({{ 'AmoretScript.woff' | asset_url }}) format('woff'),
+      url({{ 'AmoretScript.ttf' | asset_url }}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Avenir Book';
+    src: local('Avenir Book'), local('Avenir-Book'),
+      url({{ 'Avenir-Book.woff2' | asset_url }}) format('woff2'),
+      url({{ 'Avenir-Book.woff' | asset_url }}) format('woff'),
+      url({{ 'Avenir-Book.ttf' | asset_url }}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* @font-face {
+    font-family: 'Artico Expanded Thin';
+    src: local('Artico Expanded Thin'), local('Artico-Expanded-Thin'),
+      url({{ 'Artico-Expanded-Thin.woff2' | asset_url }}) format('woff2'),
+      url({{ 'Artico-Expanded-Thin.woff' | asset_url }}) format('woff'),
+      url({{ 'Artico-Expanded-Thin.otf' | asset_url }}) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  } */
+
+  @font-face {
+    font-family: 'Engravers Gothic';
+    src: url('EngraversGothic-Bold.eot');
+    src: local('Engravers Gothic Bold'), local('EngraversGothic-Bold'),
+      url({{ 'EngraversGothic-Bold.eot?#iefix' | asset_url }}) format('embedded-opentype'),
+      url({{ 'EngraversGothic-Bold.woff2' | asset_url }}) format('woff2'),
+      url({{ 'EngraversGothic-Bold.woff' | asset_url }}) format('woff'),
+      url({{ 'EngraversGothic-Bold.ttf' | asset_url }}) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Engravers Gothic';
+    src: url('EngraversGothic.eot');
+    src: local('Engravers Gothic'), local('EngraversGothic'),
+      url({{ 'EngraversGothic.eot?#iefix' | asset_url }}) format('embedded-opentype'),
+      url({{ 'EngraversGothic.woff2' | asset_url }}) format('woff2'),
+      url({{ 'EngraversGothic.woff' | asset_url }}) format('woff'),
+      url({{ 'EngraversGothic.ttf' | asset_url }}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+{%- endstyle -%}
+
+  <!-- CSS ================================================== -->
+  {{ 'frame.scss.css' | asset_url | stylesheet_tag }}  
+  {{ 'style.css' | asset_url | stylesheet_tag }}  
+  {{ 'slick-theme.css' | asset_url | stylesheet_tag }}
+  {{ 'slick.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'slick-slider.css' | asset_url | stylesheet_tag }}
+  {{ 'animate.css' | asset_url | stylesheet_tag }}
+  
+  {{ 'font-all.min.css' | asset_url | stylesheet_tag }}
+
+  {% if settings.base_font contains 'Google' %}
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family={{ settings.base_font | remove: 'Google+' }}:300,300italic,400,600,400italic,600italic,700,700italic,800,800italic">
+  {% endif %}
+  {% if settings.header_font contains 'Google' %}
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family={{ settings.header_font | remove: 'Google+' }}:300,300italic,400,600,400italic,600italic,700,700italic,800,800italic">
+  {% endif %}
+  {% if settings.other_font contains 'Google' %}
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family={{ settings.other_font | remove: 'Google+' }}:300,300italic,400,600,400italic,600italic,700,700italic,800,800italic">
+  {% endif %}
+
+
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+  {% include 'oldIE-js' %}  
+  {{ 'header.js' | asset_url | script_tag }} 
+
+  {% if template contains 'customers' %}
+  {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  {% if template contains 'product' or template contains 'article' %}
+  <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "4a467312-eb52-4e56-a80a-d5930e0afac4", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+  {% endif %}
+  {% if settings.preloader_enable %}
+  <script>
+    // Wait for window load
+    $(window).load(function() {		
+      var loader = $( '.se-pre-con' );
+      if ( loader.length ) {
+        $( window ).on( 'beforeunload', function() {
+          loader.fadeIn( 500, function() {
+            loader.children().fadeIn( 100 )
+          });
+        });
+        loader.fadeOut(1500 );
+        loader.children().fadeOut();
+      }
+
+    });
+  </script> 
+  {% endif %}  
+
+  <script>
+    window.use_sticky = {{ settings.use_sticky_header }};
+    window.ajax_cart = {{ settings.use_ajax_cart }};
+    window.money_format = "{{ shop.money_with_currency_format }}";
+    window.shop_currency = "{{ shop.currency }}";
+    window.show_multiple_currencies = {{ settings.display_currency }};
+    window.enable_sidebar_multiple_choice = {{ settings.enable_sidebar_multiple_choice }};
+    window.loading_url = "{{ 'loading.gif' | asset_url}}";     
+    window.dropdowncart_type = "hover";
+    window.file_url = "{{''|file_url}}";
+    window.asset_url = "{{''|asset_url}}";
+    window.items="{{ 'cart.general.items' | t }}";
+    window.many_in_stock="{{ 'products.product.many_in_stock' | t  }}";
+    window.out_of_stock="{{ 'products.product.out_of_stock' | t  }}";
+    window.in_stock="{{ 'products.product.in_stock' | t  }}";
+    window.unavailable="{{ 'products.product.unavailable' | t  }}";
+    window.product_name="{{ 'products.compare.product_name' | t  }}";
+    window.product_image="{{ 'products.compare.product_image' | t  }}";
+    window.product_desc="{{ 'products.compare.product_desc' | t  }}";
+    window.available_stock="{{ 'products.compare.available_stock' | t  }}";
+    window.unavailable_stock="{{ 'products.compare.unavailable_stock' | t  }}";
+    window.compare_note="{{ 'products.compare.compare_note' | t  }}";
+    window.added_to_cmp="{{ 'products.compare.added_to_cmp' | t  }}";
+    window.add_to_cmp="{{ 'products.compare.add_to_cmp' | t  }}";
+    window.select_options="{{ 'products.product.select_options' | t  }}";
+    window.add_to_cart="{{ 'products.product.add_to_cart' | t  }}";
+    window.confirm_box="{{ 'products.compare.confirm_box' | t  }}";
+    window.cancelButtonText="{{ 'products.compare.cancelButtonText' | t  }}";
+    window.remove="{{ 'cart.label.remove' | t  }}";
+    window.use_color_swatch = {{ settings.enable_color_swatch }};
+
+    var  compare_list = []; 
+  </script>  
+ {{ 'customized-styles.css' | asset_url | stylesheet_tag }}  
+ {{ 'custom.css' | asset_url | stylesheet_tag }}  
+ {{ 'megu-menu.css' | asset_url | stylesheet_tag }}  
+ {% capture boostersnippet %}{% include "booster-apps-common" %}{% endcapture %}{% unless boostersnippet contains "Liquid error" %}{{ boostersnippet }}{% endunless %}
+</head>
+
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {{ settings.header_style_3 }}" >
+  {% if settings.preloader_enable %}<div class="se-pre-con"></div> {% endif %}
+  <div id="PageContainer"></div>   
+  <div class="quick-view"></div>   
+  <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left {% if settings.header_style_1 == 'style_13' %} header-type-13 {% endif %}" id="cbp-spmenu-s1">
+    <div class="gf-menu-device-wrapper">
+      <div class="close-menu">x</div>
+      <div class="gf-menu-device-container"></div>
+    </div>             
+  </nav>
+
+
+  {% case settings.header_style_1 %}
+  {% when 'style_1' %}  
+  <div class="wrapper-container">	
+    <div class="header-type-1">  
+
+      {% section 'top-bar-type-1' %}  
+
+
+      <header class="site-header"> 
+        <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate">
+            <div class="wrapper">
+              <div class="grid--full site-header__menubar"> 
+
+                {% include 'logo' %} 
+                <div class="grid__item menubar-section">
+                  <div class="desktop-megamenu grid__item wide--four-sixths post-large--four-sixths large--four-sixths medium--one-half small-grid__item" >     
+                    {% section 'navigation' %}         
+                  </div>
+                  {% section 'header-model-1' %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  {% when 'style_2' %}
+  <div class="wrapper-container">	
+    <div class="header-type-2">     
+      {% section 'top-bar-type-2' %} 
+
+      {% include 'search-bar-type-2' %}
+
+      <header class="site-header">
+        <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate"> 
+            <div class="container">
+              <div class="grid--full site-header__menubar">
+                <div class="btn menu-btn menu-btn__destop"></div>
+
+                {% include 'logo' %}
+                {%- comment -%}
+                    <div class="menubar-section order-header">
+                        
+                            
+                        
+                    <div class="desktop-megamenu">     
+                        {% section 'navigation' %}         
+                    </div>
+                    </div>
+                {%- endcomment -%}
+
+                {% section 'header-model-2' %}
+              </div>
+            </div>
+          </div>
+
+          {%- section 'mega-menu' -%}
+        </div>
+      </header>  
+
+    </div>
+  </div>
+
+  {% include 'mobile-navigation' %}
+
+  {% when 'style_3' %}
+  <div class="wrapper-container">	
+    <div class="header-type-3">  
+
+
+      {% section 'top-bar-type-3' %}  
+{% include 'search-bar-type-3' %}
+
+      <header class="site-header">
+        <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate">
+            <div class="container">
+              <div class="grid--full site-header__menubar"> 
+                {% include 'logo' %}
+                <div class="menubar-section order-header">
+
+                  <div class="desktop-megamenu">     
+                    {% section 'navigation' %}         
+                  </div>  
+
+                </div> 
+                {% section 'header-model-3' %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+  </div>
+
+
+  {% when 'style_4' %}
+  <div class="wrapper-container">	
+    <div class="header-type-4">  
+      {% section 'top-bar-type-4' %}
+      <header class="site-header">
+        <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate">
+            {% section 'header-model-4' %}
+            <div class="desktop-megamenu">     
+              {% section 'navigation' %}         
+            </div>  
+
+
+          </div>
+
+        </div>
+      </header>
+    </div>
+  </div>
+
+  {% when 'style_5' %}
+  <div class="wrapper-container">	
+    <div class="header-type-5">      
+      <header class="site-header">
+        {% section 'top-bar-type-5' %}
+        <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate">
+            {% section 'header-model-5' %}
+            <div class="desktop-megamenu">     
+              {% section 'navigation' %}         
+            </div>     
+          </div>
+        </div>
+      </header>
+    </div>
+
+  </div>
+  {% when 'style_6' %}
+  <div class="wrapper-container">	
+    <div class="header-type-6"> 
+      {% section 'top-bar-type-6' %} 
+      <header class="site-header">
+
+
+
+        <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate">
+            <div class="grid--full site-header__menubar"> 
+              <div class="container">
+                {% section 'header-model-6' %}
+              </div>
+            </div>
+            <div class="grid__item desktop-megamenu menubar-section">     
+              <div class="container">
+                {% section 'navigation' %}   
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+    </div>
+  </div>
+
+  {% when 'style_7' %}
+  <div class="wrapper-container">	
+    <div class="header-type-7">
+      {% include 'search-bar-type-3' %}
+      <header class="site-header">
+
+        <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate">
+            {% section 'header-model-7' %}
+            <div class="desktop-megamenu">     
+              {% section 'navigation' %}         
+            </div>
+          </div>
+        </div>
+
+      </header>      
+    </div>
+  </div>
+
+
+  {% when 'style_8' %}
+  <div class="wrapper-container">	
+    <div class="header-type-8"> 
+{% include 'search-bar-type-3' %}
+      <header class="site-header">
+        <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate">
+            <div class="wrapper">
+              <div class="grid--full site-header__menubar"> 
+                {% include 'logo' %}
+                <div class="menubar-section order-header">
+
+                  <div class="desktop-megamenu">     
+                    {% section 'navigation' %}         
+                  </div>            
+                </div> 
+                {% section 'header-model-8' %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div> 
+  </div>
+  {% when 'style_9' %}
+  <div class="wrapper-container">	
+    <div class="header-type-9">
+      <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate">
+      {% section 'header-model-9' %}
+      <div class="desktop-megamenu"> 
+        {% section 'navigation' %}
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% when 'style_10' %}
+  <div class="wrapper-container">	
+    <div class="header-type-10">     
+      <header class="site-header">
+        {% section 'top-bar-type-10' %}
+        <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate">
+            {% section 'header-model-10' %}
+            <div class="desktop-megamenu">     
+              {% section 'navigation' %}         
+            </div>
+          </div>
+        </div>
+      </header>      
+    </div>
+  </div>
+  {% when 'style_11' %}
+  <div class="wrapper-container">	
+    <div class="header-type-11">     
+      <header class="site-header">
+        {% section 'top-bar-type-11' %}
+        <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate">
+            {% section 'header-model-11' %}
+            <div class="desktop-megamenu">     
+              {% section 'navigation' %}         
+            </div>
+          </div>
+        </div>
+
+      </header>      
+    </div>
+  </div>
+  {% when 'style_12' %}
+  <div class="wrapper-container">	
+    <div class="header-type-12">  
+      <header class="site-header">
+        {% section 'top-bar-type-12' %}
+        <div class="header-sticky">
+          <div id="header-landing" class="sticky-animate">
+            {% section 'header-model-12' %}
+            <div class="desktop-megamenu">     
+              {% section 'navigation' %}         
+            </div> 
+          </div>
+        </div>             
+      </header>
+    </div>
+  </div>  
+  {% endcase %}
+ 
+  <main class="main-content">  
+    
+    {%- comment -%}
+        {% unless template contains 'index' %}
+            {% include 'breadcrumb' %}  
+        {% endunless %}
+    {%- endcomment -%}
+
+    {% unless template contains "contact" or template contains "index" %}    
+    <div class="wrapper">
+      {% endunless %}
+      {% if template contains 'index' %}
+
+      <div class="grid-uniform">
+        {% if settings.homepage_sidebar %}
+        <div class="grid__item wide--one-quarter post-large--one-quarter large--one-quarter">
+          <div class="homepage_sidebar">
+            {% section 'home-sidebar-category' %}
+            {% section 'home-sidebar-bestsellers' %} 
+            {% section 'home-sidebar-deals' %} 
+            {% section 'home-sidebar-promoimage' %}
+            {% section 'home-sidebar-tags' %}            
+            {% section 'home-sidebar-featured-post' %}
+            {% section 'home-sidebar-instagram' %}
+            {% section 'home-sidebar-newsletter' %}
+            {% section 'home-sidebar-testimonials' %}
+            {% section 'home-sidebar-icon-text' %}
+          </div>
+        </div>
+
+        <div class="{% if settings.homepage_sidebar %} grid__item wide--three-quarters post-large--three-quarters large--three-quarters" {% elsif settings.homepage_sidebar %} "grid__item" {% endif %} >                   
+          {{ content_for_layout }}		          
+        </div>
+
+
+        {% else %}       
+        <div class="grid__item">  
+
+          {{ content_for_layout }}		          
+        </div>  
+        {% endif %}
+      </div>
+      {% endif %}
+      {% unless template contains 'index' %}
+      <div class="grid-uniform">
+        <div class="grid__item">  
+          <div class="container-bg"> 
+            {{ content_for_layout }}		          
+          </div>  
+        </div>
+      </div>
+      {% endunless %}
+      {% unless template contains "contact" or template contains "index" or template contains "about" %}
+    </div>
+    {% endunless %}
+    {% unless  template contains "index"  %}
+    <div class="dt-sc-hr-invisible-large"></div>
+    {% endunless %}
+  </main>
+
+
+  {% section 'instagram-feed' %}
+
+  {% case settings.footer_style_1 %}
+  {% when 'style_1' %}
+  {% section 'footer-model-1' %}
+  {% when 'style_2' %}
+  {% section 'footer-model-2' %}
+  {% when 'style_3' %}
+  {% section 'footer-model-4' %}
+  {% when 'style_4' %}
+  {% section 'footer-model-5' %}
+  {% when 'style_5' %}
+  {% section 'footer-model-6' %}
+  {% when 'style_6' %}
+  {% section 'footer-model-7' %}
+  {% when 'style_7' %}
+  {% section 'footer-model-9' %}
+  {% when 'style_8' %}
+  {% section 'footer-model-10' %}
+  {% when 'style_9' %}
+  {% section 'footer-model-15' %}
+  {% when 'style_10' %}
+  {% section 'footer-model-21' %}
+  {% when 'style_11' %}
+  {% section 'footer-model-22' %}
+  {% when 'style_12' %}
+  {% section 'footer-model-25' %}
+  {% endcase %}
+
+
+
+  {{ 'timber.js' | asset_url | script_tag }}  
+  {{ 'footer.js' | asset_url | script_tag }}  
+  {{ 'theme.js' | asset_url | script_tag }}
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}    
+  {{ 'shop.js' | asset_url | script_tag }}    
+
+  {% if template contains 'article' or template contains 'product' %}
+  {% if settings.social_sharing_blog or settings.social_sharing_products %}
+  {{ 'social-buttons.js' | asset_url | script_tag }}
+  {% endif %}
+  {% endif %}
+
+
+
+  {% include 'qmodal' %}
+  {% include 'modal-compare' %} 
+  {% include 'modal-box' %}
+  {% include 'currencies' %}
+  {% include 'newsletter' %}  
+  {% if template contains 'index' %}
+  {{ 'wow.js' | asset_url | script_tag }}  
+  {% endif %}
+  <script src="{{ 'classie.js' | asset_url }}"></script>
+ 
+  <script>
+    $('.qtyplus').click(function(e){
+      e.preventDefault();
+      var currentVal = parseInt($('input[name="quantity"]').val());
+      if (!isNaN(currentVal)) {
+        $('input[name="quantity"]').val(currentVal + 1);
+      } else {
+        $('input[name="quantity"]').val(1);
+      }
+
+    });
+
+    $(".qtyminus").click(function(e) {
+
+      e.preventDefault();
+      var currentVal = parseInt($('input[name="quantity"]').val());
+      if (!isNaN(currentVal) && currentVal > 0) {
+        $('input[name="quantity"]').val(currentVal - 1);
+      } else {
+        $('input[name="quantity"]').val(1);
+      }
+
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    $('.quick-view .close-window').click(function() {  			
+      $('.quick-view').switchClass("open-in","open-out");
+    });
+  </script>
+  <script src="{{ 'uisearch.js' | asset_url }}"></script>
+
+   {% if template contains 'product' %}
+  <script>
+   if ( $( '.recently-viewed-products' ).length > 0 ) {
+   Shopify.Products.recordRecentlyViewed();
+   }
+ </script>
+  {% endif %}
+
+  {{ 'magnific-popup.js' | asset_url | script_tag }}
+  <script type="text/javascript">
+    if ( $( '.p-video' ).length > 0 ) {
+      $( '.jas-popup-url' ).magnificPopup({
+        disableOn: 0,
+        tLoading: '<div class="loader"><div class="loader-inner"></div></div>',
+        type: 'iframe'
+      });
+    }
+  </script>
+
+  {% if settings.product_style_1 == 'style_11' %}    
+  <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('.product_gallery').slick({ 
+        slidesToShow: 1,
+        dots: false,
+        arrows: true
+      });
+    });
+  </script>
+
+  {% endif %}
+  {% include 'suggest-products' %}  
+
+  <script>
+
+    {% if settings.header_style_1 == 'style_13' %}  
+    $( '.nav-menu-icon' ).on('click', function() {
+
+      $('.menu-item-depth-0').each(function(i){
+        var menuitem = $(this);
+        setTimeout(function() {
+          menuitem.toggleClass('menu-item-show');
+        }, 100*i);
+      });
+      $(this).find('span').each(function(i){
+        var iconitem = $(this);
+        setTimeout(function() {
+          iconitem.toggleClass('animate-icon');
+        }, 100*i);	
+      });
+      $('.nav-bar-mobile').toggleClass('nav-show');
+    });
+
+    {% endif %}
+
+
+    $(document).ready(function() {
+      var body = $('body');
+      var doc = $(document);
+
+      var showLeftPush = $('#showLeftPush');
+      var nav = $('#cbp-spmenu-s1');
+
+      showLeftPush.on('click', function(e) {
+        e.stopPropagation();
+
+        body.toggleClass('cbp-spmenu-push-toright');
+        nav.toggleClass('cbp-spmenu-open');
+        showLeftPush.toggleClass('active');
+      });
+
+      $('.gf-menu-device-wrapper .close-menu').on('click', function() {
+        showLeftPush.trigger('click');
+      });
+
+      doc.on('click', function(e) {
+        if (!$(e.target).closest('#cbp-spmenu-s1').length && showLeftPush.hasClass('active')) {
+          showLeftPush.trigger('click');
+        }        
+      });
+    });
+
+
+
+
+  </script>
+  {{ 'app.js' | asset_url | script_tag }}
+</body>
+</html>
+
+

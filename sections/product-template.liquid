@@ -1,0 +1,277 @@
+
+{% if settings.product_page_sidebar == "left_sidebar" or  settings.product_page_sidebar == "right_sidebar" %}
+{% assign mid_width = "grid__item wide--four-fifths post-large--three-quarters large--three-quarters" %}
+{% else %}
+{% assign mid_width = "grid__item" %}
+{% endif %}
+
+{% case settings.single_product_layout_type %}
+{% when 'layout_style_1' %}  
+{% include 'single-product-layout-type-1' %}
+{% when 'layout_style_2' %}
+{% include 'single-product-layout-type-2' %}
+{% when 'layout_style_3' %}
+{% include 'single-product-layout-type-3' %}
+{% when 'layout_style_4' %}
+{% include 'single-product-layout-type-4' %}
+{% when 'layout_style_5' %}
+{% include 'single-product-layout-type-5' %}
+{% when 'layout_style_6' %}
+{% include 'single-product-layout-type-6' %}
+{% when 'layout_style_7' %}
+{% include 'single-product-layout-type-7' %}
+{% when 'layout_style_8' %}
+{% include 'single-product-layout-type-8' %}
+{% when 'layout_style_9' %}
+{% include 'single-product-layout-type-9' %}
+{% when 'layout_style_10' %}
+{% include 'single-product-layout-type-10' %}
+{% endcase %}
+
+
+ {% schema %}
+{
+"name": "Product Page",
+"settings": [
+
+{
+        "type": "checkbox",
+        "id": "display_product_thumb_img",
+        "label": "Display thumb image?",
+        "default": true
+      },
+
+{
+        "type": "checkbox",
+        "id": "display_product_sku",
+        "label": "Display Product sku?",
+        "default": true
+      },
+
+      {
+        "type": "checkbox",
+        "id": "display_product_type",
+        "label": "Display Product Type?",
+        "default": true
+      },
+      
+      {
+        "type": "checkbox",
+        "id": "display_vendor_type",
+        "label": "Display Vendor Type"
+      },
+      
+      {
+        "type": "checkbox",
+        "id": "color_tooltip",
+        "label": "Enable color Tooltip?",
+        "default": true
+      },
+      
+      {
+        "type": "checkbox",
+        "id": "product_quantity_enable",
+        "label": "Show quantity selector"
+      },
+{
+        "type": "checkbox",
+        "id": "enable_wishlist",
+        "label": "Enable wishlist",
+        "default": true
+      },
+{
+        "type": "checkbox",
+        "id": "enable_cart",
+        "label": "Enable add to cart",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "payment_button",
+        "label": "Enable Buy Now",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "short_desc",
+        "label": "Enable Short description",
+        "default": true
+      },
+{
+        "type": "checkbox",
+        "id": "social_sharing_products",
+        "label": "Enable product sharing",
+        "default": true
+      },
+{
+        "type": "checkbox",
+        "id": "products_nav_arrow",
+        "label": "Products Nav Arrow",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "product_tab1",
+        "label": "Enable Product Description",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "product_tab1_heading",
+        "label": "Tab 1 heading",
+        "default": "Product Description"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_tab2",
+        "label": "Enable Product Review",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "product_tab2_heading",
+        "label": "Tab 2 heading",
+        "default": "Reviews"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_tab3",
+        "label": "Enable Shipping details",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "product_tab3_heading",
+        "label": "Tab 3 heading",
+        "default": "Shipping Details"
+      },
+      {
+        "type": "page",
+        "id": "product_tab3_page",
+        "label": "Select shipping info page"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_related_enable",
+        "label": "Enable related products"
+      },
+      {
+        "type": "text",
+        "id": "related_prds_heading",
+        "label": "Small Heading"
+      },
+      {
+        "type": "checkbox",
+        "id": "heading_image_need",
+        "label": "Show Heading Image ?"
+      },
+      {
+        "type": "image_picker",
+        "id": "heading_image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "related_prds_title",
+        "label": "Main Heading"
+      },
+      {
+        "type": "header",
+        "content": "Recently Viewed Products"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_recently_viewed_products",
+        "label": "Display Recently Viewed Products?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "recently_viewed_products_title",
+        "label": "Title of recently viewed products",
+        "default": "Recently Viewed Products"
+      },
+      {
+        "type": "text",
+        "id": "number_of_recently_viewed_products",
+        "label": "Number of recently viewed products",
+        "default": "8"
+      },
+{
+        "type": "checkbox",
+        "id": "custom_text_block",
+        "label": "Custom Text Block ?"
+      }
+
+],
+
+
+"blocks": [
+    {
+      "type": "text",
+      "name": "Content block",
+      "settings": [ 
+ 		 {
+          "type": "text",
+          "id": "class",
+          "label": "Font Awesoem class",
+          "default": "far fa-heart",
+"info": "Works only on product type 3"
+        },
+		{
+          "type": "color",
+          "id": "class_color",
+          "label": "Icon color",
+		  "default":"#000"
+        },
+{
+          "type": "color",
+          "id": "icon_bg_color",
+          "label": "Bg color",
+		  "default":"#000"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"          
+        },
+		{
+          "type": "color",
+          "id": "title_color",
+          "label": "Color",
+		  "default":"#000"
+        },
+{
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub Title"          
+        },
+		{
+          "type": "color",
+          "id": "sub_title_color",
+          "label": "Color",
+		  "default":"#000"
+        },
+ 		{
+          "type": "textarea",
+          "id": "desc",
+          "label": "Description"
+
+        },
+{
+          "type": "color",
+          "id": "desc_color",
+          "label": "Color",
+		  "default":"#000"
+        },
+		{
+          "type": "text",
+          "id": "link",
+          "label": "Link"          
+        }      
+		
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,235 @@
+
+<div data-section-id="{{ section.id }}"  data-section-type="category-listing-type-1" class="category-listing-type-1" style="{% if section.settings.image_1 != blank %} position:relative; background-image:url('{{ section.settings.image_1 | img_url:'master' }}');background-repeat:no-repeat;background-position:top center;{% else %}background-color:{{ section.settings.bg_bolor }};{% endif %}">  
+{% if section.settings.overlay %}  <div class="category_listing_overlay" style="position:absolute;top:0;width:100%;height:100%;left:0;right:0;background:{{ section.settings.bg_bolor | color_modify:'alpha',0.7 }};"></div> {% endif %}
+  
+  
+  <div class="grid-uniform">
+
+    <div class="container">           
+      <ul class="category-listing_block">         
+        {% if section.blocks.size > 0 %}      
+        {% for block in section.blocks %}
+        {% case section.blocks.size %}
+        {% when 1 %}
+        {%- assign block_width = 'one-whole text-center' -%}
+        {% when 2 %}
+        {%- assign block_width = 'wide--one-half post-large--one-half large--one-half medium--one-half small-grid__item' -%}
+        {% when 3 %}
+        {%- assign block_width = 'wide--one-third post-large--one-third large--one-third medium--one-half small-grid__item' -%}
+        {% when 4 %}
+        {%- assign block_width = 'wide--one-quarter post-large--one-quarter large--one-half medium--one-half small-grid__item' -%}
+        {% endcase %}
+        <li class="grid__item {{ block_width }} wow fadeInUp"  data-wow-delay="{{ settings.time_lazy_load }}ms">
+          <div class="category-listing_section" style="background:{{block.settings.categorybg_bolor}};">                      
+            <div class="category-listing_inner">    
+              {% if block.settings.image != blank  %}  
+              <div class="category_image">                      
+                <img src="{{ block.settings.image | img_url: "270x270" }}" alt="{{ block.settings.title }}" />                
+              </div>
+              {% else %}
+              <div class="category_image">                      
+                <img src="//via.placeholder.com/270x270">
+              </div>              
+              {% endif %}   
+              <div class="category_text"> 
+                {% if block.settings.title != blank  %}                      
+                <h4 style="color:{{ block.settings.title_color }};background:{{block.settings.title_bg_clr}}">{{ block.settings.title }}</h4>
+                {% endif %}                  
+
+                {% if block.settings.text != blank  %}  
+                <p style="color:{{ block.settings.text_clr }};">{{ block.settings.text }}</p>
+                {% endif %}   
+
+                {% if block.settings.button_txt != blank  %} 
+                <a href="{{block.settings.button_link}}"  class="small-btn"  style="color:{{block.settings.btn_clr}}">{{block.settings.button_txt}}<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                {% endif %} 
+
+              </div>     
+            </div>
+          </div>       
+        </li>  
+        {% endfor %}
+        {% endif %}
+      </ul>
+
+
+      {% if section.settings.title_1 or section.settings.text_1  %}
+
+      <div class="grid__item">
+
+
+        <div class="border-title wow flash">          
+          {% if section.settings.title_1 != blank %}
+          <h3 style="color:{{ section.settings.title_1_color }}">{{ section.settings.title_1 }}</h3>
+          {% endif %}
+        </div>
+      </div>
+
+      {% endif %}
+
+
+
+    </div>
+  </div>  
+</div>
+<style>
+  .category-listing-type-1 .category_image img { background:{{ section.settings.bg_bolor }};}
+  .category-listing-type-1 ul {margin-top:-{{section.settings.margin_top_value}}%;}
+  .category-listing-type-1 .small-btn:hover {color:{{section.settings.btn_hover_clr}}!important}
+  
+  .category-listing-type-1 .category_image {background:{{section.settings.border_color}};}
+  .category-listing_section:hover .category_image::before {box-shadow: 0 0 10px 5px {{ section.settings.shadow_color | color_modify: 'alpha', 0.05 }}; }
+  
+</style>
+
+{% schema %}
+{
+"name": "Category Listing",
+"class": "index-section",
+"max_blocks":4,
+"settings": [
+{
+"type": "text",
+"id": "margin_top_value",
+"label": "Margin Top Value",
+"default":"10" 
+},
+{
+"type": "checkbox",
+"id": "overlay",
+"label": "Use Overlay?"
+},
+{
+"type": "color",
+"id": "bg_bolor",
+"label": "Bg color",
+"default": "#fff"   
+},
+{
+"type": "image_picker",
+"id": "image_1",
+"label": "Bg Image",
+"info": "Size: 1920x1082"
+
+},
+
+{
+"type": "text",
+"id": "title_1",
+"label": "Heading"
+},
+{
+"type": "color",
+"id": "title_1_color",
+"label":"Heading color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "btn_hover_clr",
+"label":"Button Hover Color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "border_color",
+"label":"Border Color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "shadow_color",
+"label":"Shadow Color",
+"default": "#000"
+} 
+
+
+
+
+],
+"blocks": [
+{
+"type": "link_list",
+"name": "Category",
+"settings": [ 
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+
+{
+"type": "color",
+"id": "categorybg_bolor",
+"label": "Category Bg color",
+"default": "#fff"   
+},
+{
+"type": "text",
+"id": "title",
+"label": "Heading",
+"default": "Collection"
+},
+{
+"type": "color",
+"id": "title_color",
+"label": "Heading",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "title_bg_clr",
+"label": "Title bg Color",
+"default":"#000"	
+}, 
+{
+"type": "textarea",
+"id": "text",
+"label": "Text"
+},
+{
+"type": "color",
+"id": "text_clr",
+"label": "Text color",
+"default": "#ccc"
+},
+{
+"type": "text",
+"id": "button_txt",
+"label": "Button Text",
+"default": "Read More"
+},
+{
+"type": "url",
+"id": "button_link",
+"label": "Button Link"
+},
+{
+"type": "color",
+"id": "btn_clr",
+"label": "Button color",
+"default": "#ccc"
+}
+]
+}
+],
+"presets": [
+{
+"name": "Category Listing",
+"category": "link_list",
+"blocks": [
+{
+"type": "link_list"
+},
+{
+"type": "link_list"
+},
+{
+"type": "link_list"
+}
+
+]
+}
+]
+}
+{% endschema %}

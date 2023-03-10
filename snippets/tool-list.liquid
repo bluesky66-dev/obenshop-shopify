@@ -1,0 +1,52 @@
+<header class="section-header section-header--large">
+
+  <div class="toolbar">
+    {% if section.settings.collections_view_enable %}
+    <div class="view-mode grid__item wide--one-third post-large--one-third large--one-third">    
+      <a class="grid btn" href="grid" title="{{ 'collections.general.grid_view' | t }}"><span class="fas fa-th-large" aria-hidden="true"></span></a>  
+      <a class="list btn active" href="list" title="{{ 'collections.general.list_view' | t }}" ><span class="fas fa-th-list" aria-hidden="true"></span></a>  
+    </div>    
+    {% endif %}
+    <div class="grid__item wide--two-thirds post-large--two-thirds large--two-thirds">
+      {% if section.settings.collections_sort_enable %}
+      <div class="filter-sortby grid__item {% unless section.settings.collection_infinite_scrolling %} wide--six-tenths post-large--six-tenths large--six-tenths  {% endunless %}">
+        <label for="sort-by">{{ 'collections.sorting.title' | t }}</label> 
+        <input type="text" id="sort-by">
+        <div class="sorting-section">
+          <button class="btn dropdown-toggle" data-toggle="dropdown">
+            <i class="fas fa-exchange-alt"></i>
+            <span>{{ 'collections.sorting.featured' | t }}</span>
+          </button>
+
+          <ul class="dropdown-menu" role="menu">
+            <li class="active"><a href="manual">{{ 'collections.sorting.featured' | t }}</a></li>
+            <li><a href="price-ascending">{{ 'collections.sorting.price_ascending' | t }}</a></li>
+            <li><a href="price-descending">{{ 'collections.sorting.price_descending' | t }}</a></li>
+            <li><a href="title-ascending">{{ 'collections.sorting.az' | t }}</a></li>
+            <li><a href="title-descending">{{ 'collections.sorting.za' | t }}</a></li>
+            <li><a href="created-ascending">{{ 'collections.sorting.date_ascending' | t }}</a></li>
+            <li><a href="created-descending">{{ 'collections.sorting.date_descending' | t }}</a></li>
+            <li><a href="best-selling">{{ 'collections.sorting.best_selling' | t }}</a></li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+      
+    </div>
+
+  </div>
+</header>
+
+{% if section.settings.show_collection_image %}
+{% if collection.handle and collection.handle != 'all' and collection.image %}
+<div class="grid__item">
+  <img src="{{ collection.image.src | collection_img_url: '1920x' }}" alt="{{ collection.image.alt }}"  class="collection-featured-image"/>
+</div>
+{% endif %}
+{% endif %}
+{% if collection.description != blank %}
+<div class="rte rte--header">
+  {{ collection.description }}
+</div>
+<hr class="hr--clear hr--small">
+{% endif %}

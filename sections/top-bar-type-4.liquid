@@ -1,0 +1,263 @@
+
+ {% if section.settings.display_top_bar %} 
+<div class="top-bar-type-4">  
+  <div class="top-text-container header-top">
+    <a href="javascript:void(0)" class="close"><i class="zmdi zmdi-close"></i></a>
+    <div class="container">           
+      {% if section.settings.header_text_1 != blank or section.settings.header_text_2 != blank  or section.settings.header_text_3 != blank %}
+      <ul class="top_bar_left">
+        {% if section.settings.header_text_1 != blank %}
+        <li><span>{{ section.settings.header_text_1 }}</span></li>
+        {% endif %}
+        {% if section.settings.header_text_2 != blank %}
+        <li><span>{{ section.settings.header_text_2 }}</span></li>
+        {% endif %}
+        {% if section.settings.header_text_3 != blank %}
+        <li><span>{{ section.settings.header_text_3 }}</span></li>
+        {% endif %}
+      </ul>
+      {% endif %}
+
+      {% if section.settings.header_phone_value != blank or  section.settings.header_mail_value != blank %}
+      <ul class="top_bar_right">
+        {% if section.settings.header_phone_value != blank %}
+        <li><span>{{ section.settings.header_phone_label }} : {{ section.settings.header_phone_value }}</span></li>
+        {% endif %}
+        {% if section.settings.header_mail_value != blank %}
+        <li><span>{{ section.settings.header_mail_label }} :</span> <a href="mailto:{{ section.settings.header_mail_value }}">{{ section.settings.header_mail_value }}</a></li>
+        {% endif %}
+      </ul>
+      {% endif %}         
+    </div>
+  </div>
+  <div class="top_bar">      
+    <div class="container">       
+      <div class="top_bar_menu">
+        {%- assign top_bar_menu = section.settings.top_bar_menu %}
+        {% if linklists[top_bar_menu].links.size > 0 %}
+        <ul>
+          {% for link in linklists[top_bar_menu].links %}
+          <li>
+            <a href="{{ link.url }}" class="{% if link.active %}current{% endif %}">
+              {{ link.title }}         
+            </a> 	    
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %} 
+          {% if shop.customer_accounts_enabled or section.settings.display_wishlist %}
+        <div class="customer_account">                          
+          <ul>
+            {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+          <li>
+           <a href="/account" title="{{ 'layout.customer.account' | t }}"><i class="fas fa-user"></i></a>
+          </li>
+          <li class="logout-link">
+              <a title="{{ 'layout.customer.log_out' }}" href="/account/logout" ><i class="fas fa-user-sign-out-alt"></i></a>
+            </li>
+          {% else %}
+          <li>
+            <a title="{{ 'layout.customer.log_in' | t }}" href="/account/login"><i class="fas fa-sign-in-alt"></i></a>
+          </li>
+          <li>
+            <a title="{{ 'layout.customer.create_account' | t }}" href="/account/register"><i class="fas fa-user"></i></a>
+          </li>          
+          {% endif %}  
+          {% endif %} 
+            {% if section.settings.display_wishlist %}   
+            <li>
+              {% if settings.header_style_1 == 'heder-model-3' %}
+              {% include 'wishlist-icon' %}
+              {% else %}
+              {% include 'wishlist-icon' %} 
+              {% endif %}
+            </li>
+            {% endif %} 
+          </ul>
+        </div>  
+         {% endif %} 
+      </div>
+    </div>
+  </div>  
+</div>
+{% endif %}
+<style>
+
+/* Top block */
+  
+  .header-type-4 .header-top a.close { color: {{ section.settings.stripe_icon }}; }  
+    .header-type-4 .header-top a.close:hover { color: {{ section.settings.stripe_icon_hover }}; }  
+    .header-type-4 .header-top { background: {{ section.settings.stripe_bg }}; }  
+    .header-type-4 .header-top ul li:last-child { border-right:none; }  
+    .header-type-4 .header-top ul li a { color: {{ section.settings.stripe_link }}; }
+    .header-type-4 .header-top ul li a:hover { color: {{ section.settings.stripe_link_hover }}; }
+    .header-type-4 .header-top ul li { color: {{ section.settings.stripe_text }};border-right:1px solid {{ section.settings.stripe_border_between_bars }}; } 
+    .header-type-4 .header-bar__module.cart .baskettop a.icon-cart-arrow #cartCount { background: {{ section.settings.minicart_count_bg }};color:{{section.settings.minicart_count }};}
+    .header-type-4 .header-bar__module.cart .baskettop a.icon-cart-arrow:hover #cartCount { background: {{ section.settings.minicart_count_hover_bg }};color:{{section.settings.minicart_count_hover_text }};}
+    .header-type-4  .top_bar_menu ul li { line-height:normal;border-right:1px solid {{ section.settings.top_border_between_bars }}; }
+    .header-type-4  .top_bar_menu ul li:last-child,.header-type-4 .customer_account ul li:last-child { border-right:none; }
+
+       
+  
+  
+  
+    .header-type-4 .top_bar { background: {{ section.settings.top_bar_bg }}; }
+    .header-type-4 .top_bar li, .header-type-4 .top_bar span { color:{{section.settings.top_bar_text}};}     
+    .header-type-4 .top_bar a,.header-type-4 .top_bar button { color:{{section.settings.top_bar_links }};}    
+    .header-type-4 .top_bar a:hover, .header-type-4 .top_bar a:hover span,.header-type-4 .top_bar button:hover { color:{{section.settings.top_bar_link_hover }};} 
+  
+</style>
+
+{% schema %}
+{
+"name": "Top bar",
+"settings": [
+{
+"type":"checkbox",
+"id": "display_top_bar",
+"label": "Display topbar"	
+},
+{
+"type": "text",
+"id": "header_text_1",
+"label": "Top bar text 1",
+"default": "FREE SHIPPING & RETURN"
+},
+{
+"type": "text",
+"id": "header_text_2",
+"label": "Top bar text 2",
+"default": "MONEY BACK GUARANTEE"
+},  
+{
+"type": "text",
+"id": "header_text_3",
+"label": "Top bar text 3",
+"default": " ONLINE SUPPORT 24/7"
+},
+{
+"type": "text",
+"id": "header_phone_label",
+"label": "Phone lable text",
+"default": "Call Us"
+},
+{
+"type": "text",
+"id": "header_phone_value",
+"label": "Phone number",
+"default": "(00) 000 111 222"
+},  
+{
+"type": "text",
+"id": "header_mail_label",
+"label": "Mail lable text",
+"default": "Mail"
+},
+{
+"type": "text",
+"id": "header_mail_value",
+"label": "Mail address",
+"default": "info@somedomain.com"
+},  
+{
+"type": "link_list",
+"id": "top_bar_menu",
+"label": "Pick linkedlist"
+},
+{
+"type": "header",
+"content": "Stripe Block"
+},
+{
+"type": "color",
+"id": "stripe_icon",
+"label": "Close icon",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "stripe_icon_hover",
+"label": "Close icon hover",
+"default": "#35b8f4"
+},
+{
+"type": "color",
+"id": "stripe_bg",
+"label": "Background",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "stripe_text",
+"label": "Text",
+"default": "#000"
+}, 
+{
+"type": "color",
+"id": "stripe_link",
+"label": "Link",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "stripe_link_hover",
+"label": "Link Hover",
+"default": "#000"
+},
+{
+"type": "header",
+"content": "Border Block"
+},
+{
+"type": "color",
+"id": "stripe_border_between_bars",
+"label": "Border lines",
+"default": "#e4e4e4"
+},
+{
+"type": "header",
+"content": "Top Bar"
+},
+{
+"type": "color",
+"id": "top_bar_bg",
+"label": "Top bar background",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "top_bar_text",
+"label": "Top bar text",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "top_bar_links",
+"label": "Top bar links",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "top_bar_link_hover",
+"label": "Top bar links hover",
+"default": "#35b8f4"
+},
+{
+"type": "header",
+"content": "Border Block"
+},
+{
+"type": "color",
+"id": "top_border_between_bars",
+"label": "Border lines",
+"default": "#e4e4e4"
+},
+{
+"type": "checkbox",
+"id": "display_wishlist",
+"label": "Display wishlist"
+}
+]
+}
+{% endschema %}

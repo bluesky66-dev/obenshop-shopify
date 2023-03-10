@@ -1,0 +1,27 @@
+<div class="position-change">
+
+{% if settings.product_page_sidebar == "left_sidebar" or  settings.product_page_sidebar == "right_sidebar" %}
+{% assign mid_width = "grid__item wide--four-fifths post-large--three-quarters large--grid__item" %}
+{% else %}
+{% assign mid_width = "grid__item" %}
+{% endif %}
+
+{% if settings.product_page_sidebar == "left_sidebar" %}
+<div class="grid__item wide--one-fifth post-large--one-quarter">
+     {% include 'product-sidebar' %}
+</div>
+{% endif %}
+<div class="second">
+     <div class="back-to-item">
+          <a class="back-to-item__link" href="/collections/all?shop_by=item">Back to items</a>
+     </div>
+{% section 'product-template' %}
+  </div>
+{% if settings.product_page_sidebar == "right_sidebar" %}
+<div class="grid__item wide--one-fifth post-large--one-quarter">
+     {% include 'product-sidebar' %}
+</div>
+{% endif %}
+  
+</div>
+

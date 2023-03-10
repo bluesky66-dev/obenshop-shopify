@@ -1,0 +1,167 @@
+{% if section.settings.show_best_products %}
+<div data-section-id="{{ section.id }}"  data-section-type="product-sidebar-deals" class="product-sidebar-deals">  
+    <div class="widget widget_top_rated_products">
+      {% if collections[section.settings.dealitems].products.size > 0 %} 
+      {% if section.settings.title != blank %}
+      <h4><span>{{ section.settings.title }}</span></h4>  
+      {% endif %}
+      {% endif %}
+      <div class="widget_top_rated_products-section">
+      <ul class="no-bullets sidebar-deal-products owl-carousel owl-theme">
+       {% for product in collections[section.settings.dealitems].products limit: section.settings.limit %}
+        <li> 
+          
+          {% if product.images.size > 0 %}  
+          <a class="thumb grid__item" href="{{ product.url | within: collection }}">                                          
+            <img alt="featured product" src="{{ product.featured_image | product_img_url: 'master' }}">                                              
+          
+          {% if settings.count_down_enable and settings.count_down_collections %}
+            {% assign dealTime = settings.home_productdeal_time | split: ' ' | join: ' ' | split: ' ' %}
+            {% include 'deal-snippet-sidebar' %}
+            {% endif %}
+            </a>
+          {% endif %} 
+          <div class="products">
+          <div class="top-products-detail product-detail grid__item"> 
+                  <div class="product_left">
+            <a class="grid-link__title" href="{{ product.url | within: collection }}"> {{ product.title }} </a>
+            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+                    {% include 'item-swatch' %}
+            </div>
+            <div class="top-product-prices grid-link__meta">
+              
+              <div class="product_price">
+                <div class="grid-link__org_price">
+                {{ product.price_min | money }}
+                  </div>
+              {% if product.compare_at_price_max > product.price %}
+              <del>{{ product.compare_at_price_max | money }}</del>
+              {% endif %}
+                 </div>
+            </div>
+            {% if product.compare_at_price > product.price %}
+            <span class="sale">{{ 'products.product.sale' | t }}</span>    
+            {% endif %}
+            </div>
+          </div>
+        </li>
+        
+        {% else %}
+         {% for i in (1..section.settings.limit) %}
+        <li>
+          <div class="products   wow fadeIn   animated" style="visibility: visible;">
+            <div class="product-container">
+              <a href="#" class="grid-link"> 
+                {% if forloop.index == 3 %}
+                <span class="badge badge--sale"> <span class="gift-tag badge__text">Sale</span> </span>
+                {% endif %}
+
+                <div class="reveal"> 
+                  {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                  {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }} 
+                </div>
+              </a>
+              <div class="ImageWrapper">
+                <div class="product-button">
+                  <a href="#" id="party-wear-heel" class="quick-view-text"> 
+                  <i class="fa fa-expand" aria-hidden="true"></i> 
+                  </a>
+                  <form action="#" method="post" class="variants clearfix" id="cart-form-6529189125">
+                <input type="hidden" name="id" value="21661289093">
+                <a href="#" class="add-cart-btn"><i class="fa fa-shopping-cart"></i> </a>
+              </form>
+                  <a href="/account/login" class="wishlist"><i class="fa fa-heart"></i></a> </div>
+              </div>
+            </div>
+            <a href="#" class="grid-link__title">Sample title {{ i }}</a>
+            <div class="product-detail"> 
+              <span class="spr-badge" id="spr_badge_6529189125" data-rating="0.0"> 
+                <span class="spr-starrating spr-badge-starrating"><i class="spr-icon spr-icon-star-empty" style="color: #f05315;"></i><i class="spr-icon spr-icon-star-empty" style="color: #f05315;"></i><i class="spr-icon spr-icon-star-empty" style="color: #f05315;"></i><i class="spr-icon spr-icon-star-empty" style="color: #f05315;"></i><i class="spr-icon spr-icon-star-empty" style="color: #f05315;"></i></span> <span class="spr-badge-caption"> </span> </span>
+              <div class="grid-link__meta">
+                <div class="product_price"> <span class="money" data-currency-usd="$320.00">$0.00</span> </div>
+                <del class="grid-link__sale_price"><span class="money" data-currency-usd="$756.00">$0.00</span></del> </div>
+              
+            </div>
+          </div>
+        </li>
+        {% endfor %} 
+         {% endfor %}
+      </ul> 
+     <div class="product-sidebar-deals-nav">   </div>
+      </div>
+    </div>
+  <style>
+    .sidebar-deal-products .lof-clock-timer-detail-single li {background:{{ section.settings.dealbtn }};color:{{ section.settings.dealbtn_text }};}
+
+  </style>
+</div>
+ {% endif %} 
+
+ {% schema %}
+  {
+    "name": "Product Sidebar Deals",    
+    "settings": [	
+      {
+        "type": "checkbox",
+        "id": "show_best_products",
+        "label": "Enable best deals"
+      },
+	 {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "collection",
+        "id": "dealitems",
+        "label": "Collection"
+      },
+
+{
+        "type": "color",
+        "id": "dealbtn",
+        "label": "Deal Button Bg",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "dealbtn_text",
+        "label": "Deal Button Text",
+        "default": "#000"
+      },
+
+      {
+        "type": "text",
+        "id": "limit",
+        "label": "Product Limit",
+        "default": "4"
+      }
+	
+]
+  }
+{% endschema %}
+
+ <script type="text/javascript">
+    $(document).ready(function(){
+      var productSidedeals = $(".sidebar-deal-products");
+      productSidedeals.owlCarousel({
+        loop:false,
+        margin:10,
+        nav:true,
+        navContainer: ".product-sidebar-deals-nav",
+        navText: [' <a class="prev btn active"><i class="fa fa-angle-left"></i></a>',' <a class="next btn active"><i class="fa fa-angle-right"></i></a>'],
+        dots: false,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            1000:{
+                items:1
+            }
+        }
+      });      
+});
+  </script>

@@ -1,0 +1,35 @@
+<div class="faq-block">
+  <div class="faq-block__wrap">
+
+    <div class="faq-block__item">
+      <div class="faq-block__title">
+        Details
+      </div>
+      <div class="faq-block__text" style="display: none;">
+        {{ product.description }}
+      </div>
+    </div>
+
+    {%- if product.metafields.custom.about.value %}
+      <div class="faq-block__item">
+        <div class="faq-block__title">
+          Materials and finishing
+        </div>
+        <div class="faq-block__text" style="display: none;">
+          <p>{{ product.metafields.custom.about.value }}</p>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if product.metafields.custom.materials_and_finishing.value %}
+      <div class="faq-block__item">
+        <div class="faq-block__title">
+          About
+        </div>
+        <div class="faq-block__text" style="display: none;">
+          <p>{{ product.metafields.custom.materials_and_finishing.value }}</p>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>

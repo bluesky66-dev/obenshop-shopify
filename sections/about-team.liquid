@@ -1,0 +1,260 @@
+
+
+
+
+<div data-section-id="{{ section.id }}" data-section-type="about-us" class="about-us"> 
+
+
+ <div class="dt-sc-hr-invisible-large"></div>
+
+
+
+  <div class="grid-uniform section-five">
+    <div class="container">
+      {% if section.settings.team_maintitle != blank %}
+      <div class="border-title">
+        <h2 style="color:{{section.settings.team_maintitlecolor}};background:{{section.settings.title_bg_clr}}">  {{section.settings.team_maintitle }}
+          <span style="color:{{section.settings.team_semaintitlecolor}}">{{ section.settings.halfteam_maintitle }}</span>
+        </h2>
+      
+      </div>
+      {% endif %}
+      <div class="grid__item">
+        {% if section.blocks.size > 0 %}  
+        {% for block in section.blocks %}         
+        <div class="grid__item wide--one-third post-large--one-third large--one-third medium--one-half small-grid__item">
+          <div class="team-wrapper">
+            
+            
+            <div class="team-img">
+              {% if block.settings.team_6_image != blank %}
+              <img src="{{ block.settings.team_6_image | img_url: '1024x1024' }}" alt="" title="" /> 
+              {% else %}
+                <img src="//via.placeholder.com/768x495">
+              {% endif %}
+              <ul class="social-icon">
+                {% if block.settings.social_1_icon != blank %}
+                <li><a href="{{block.settings.social_1_link }}"><i class="{{block.settings.social_1_icon }}" aria-hidden="true"></i></a></li>
+                {% endif %}
+                {% if block.settings.social_2_icon != blank %}
+                <li><a href="{{block.settings.social_2_link }}"><i class="{{block.settings.social_2_icon }}" aria-hidden="true"></i></a></li>
+                {% endif %}
+                {% if block.settings.social_3_icon != blank %}
+                <li><a href="{{block.settings.social_3_link }}"><i class="{{block.settings.social_3_icon }}" aria-hidden="true"></i></a></li>
+                {% endif %}
+                {% if block.settings.social_4_icon != blank %}
+                <li><a href="{{block.settings.social_4_link }}"><i class="{{block.settings.social_4_icon }}" aria-hidden="true"></i></a></li>
+                {% endif %}
+              </ul> 
+            </div>
+            
+            <div class="team-detail">
+              {% if block.settings.team_title != blank %}
+              <h5 style="color:{{block.settings.team_titlecolor }}">{{block.settings.team_title }}</h5>
+              {% endif %}
+              {% if block.settings.team_subtitle != blank %}
+              <h6 style="color:{{block.settings.team_subtitlecolor}}">{{block.settings.team_subtitle }}</h6>
+              {% endif %}
+            </div>
+          </div>
+        </div>        
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+ 
+
+
+
+
+
+
+
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+
+
+ .about-us .team-img::after,.about-us .team-img::before{background:{{section.settings.team_overlaybgcolor}};}
+
+  .about-us .social-icon a{background:{{section.settings.team_socialiconbgcolor}};color:{{section.settings.team_socialiconcolor}};}
+
+  .about-us .social-icon a:hover{background:{{section.settings.socialiconhovebgrcolor}};color:{{section.settings.socialiconhovercolor}};}
+
+
+
+
+
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+{% schema %}
+{
+"name": "About Team",
+"settings": [
+
+{
+"type": "header",
+"content": "General Colors"
+},
+{
+"type": "text",
+"id": "team_maintitle",
+"label": "Heading",
+"default": "Heading"
+},
+{
+"type": "color",
+"id": "team_maintitlecolor",
+"label": "Title COlor",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "title_bg_clr",
+"label": "Title bg Color",
+"default":"#000"	
+}, 
+{
+"type": "color",
+"id": "team_socialiconcolor",
+"label": "Icon color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "team_socialiconbgcolor",
+"label": "Icon Bg",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "socialiconhovercolor",
+"label": "Icon Hover COlor",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "socialiconhovebgrcolor",
+"label": "Icon Hover BG",
+"default": "#000"
+}
+
+],
+"blocks": [
+{
+"type": "text",
+"name":"Team Section",
+"settings": [
+{
+"type": "image_picker",
+"id": "team_6_image",
+"label": "Image",
+"info": "Size: 381x331"
+},
+{
+"type": "text",
+"id": "team_title",
+"label": "Heading",
+"default": "Heading"
+},
+{
+"type": "color",
+"id": "team_titlecolor",
+"label": "Title color",
+"default": "#000"
+},
+{
+"type": "text",
+"id": "team_subtitle",
+"label": "Sub Heading",
+"default": "Heading"
+},
+{
+"type": "color",
+"id": "team_subtitlecolor",
+"label": "Sub Title color",
+"default": "#000"
+},
+{
+"type": "text",
+"id": "social_1_icon",
+"label": "Social Icon",
+"default": "class name"
+},
+{
+"type": "text",
+"id": "social_1_link",
+"label": "Social Icon Link"
+},
+{
+"type": "text",
+"id": "social_2_icon",
+"label": "Social Icon",
+"default": "class name"
+},
+{
+"type": "text",
+"id": "social_2_link",
+"label": "Social Icon Link"
+},
+{
+"type": "text",
+"id": "social_3_icon",
+"label": "Social Icon",
+"default": "class name"
+},
+{
+"type": "text",
+"id": "social_3_link",
+"label": "Social Icon Link"
+},
+{
+"type": "text",
+"id": "social_4_icon",
+"label": "Social Icon",
+"default": "class name"
+},
+{
+"type": "text",
+"id": "social_4_link",
+"label": "Social Icon Link"
+}
+]
+}
+]
+}
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

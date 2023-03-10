@@ -1,0 +1,78 @@
+<div class="mobile-navigation">
+    <div class="mobile-navigation__close nav-close">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="#000" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M11.4556 10.0135L19.6753 1.83874C20.0694 1.44864 20.0694 0.817141 19.6753 0.428039C19.2822 0.0379428 18.6438 0.0379428 18.2507 0.428039L10.038 8.59585L1.74938 0.3063C1.3563 -0.0877771 0.717831 -0.0877771 0.324749 0.3063C-0.0683333 0.701373 -0.0683333 1.34084 0.324749 1.73491L8.60734 10.0185L0.294812 18.2851C-0.0982705 18.6752 -0.0982705 19.3067 0.294812 19.6958C0.687894 20.0859 1.32636 20.0859 1.71944 19.6958L10.0249 11.4362L18.2806 19.6928C18.6736 20.0869 19.3121 20.0869 19.7052 19.6928C20.0983 19.2977 20.0983 18.6583 19.7052 18.2642L11.4556 10.0135Z">
+            </path>
+        </svg>
+    </div>
+
+    <div class="mobile-navigation__wrap">
+        <div class="mobile-navigation__header">
+        </div>
+
+        <div class="mobile-navigation__nav navigation navigation_mobile">
+            <div class="menu-main-container">
+                <ul class="filter-navigation">
+                    {% for link in settings.mobile_menu.links %}
+                        {% assign link_class = 'filter-navigation__item' %}
+
+                        {% if link.levels == 1 %}
+                            {% assign link_class = 'filter-navigation__item_sub-list' %}
+                        {% elsif link.current %}
+                            {% assign link_class = 'active' %}
+                        {% endif %}
+
+                        <li class="filter-navigation__item {{ link_class }}">
+                            <a class="filter-navigation__link" href="{{ link.url }}">
+                                {{ link.title }}
+                            </a>
+
+                            {% if link.links != blank %}
+                                <div class="filter-navigation__sub-list">
+                                    <ul class="filter-navigation filter-navigation_sub">
+                                        {% for sublink in link.links %}
+                                            <li class="filter-navigation__item"></li>
+                                                <a class="filter-navigation__link" href="{{ sublink.url }}">
+                                                    {{ sublink.title }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="mobile-navigation__footer">
+            <ul class="socials">
+                {% if settings.social_instagram_link %}
+                  <li class="socials__item">
+                    <a href="{{ settings.social_instagram_link }}" target="_blank">
+                      <img src="{{ 'instagram.png' | asset_url }}">
+                    </a>
+                  </li>
+                {% endif %}
+
+                {% if settings.social_facebook_link %}
+                  <li class="socials__item">
+                    <a href="{{ settings.social_facebook_link }}" target="_blank">
+                      <img src="{{ 'facebook.png' | asset_url }}">
+                    </a>
+                  </li>
+                {% endif %}
+
+                {% if settings.social_pinterest_link %}
+                  <li class="socials__item">
+                    <a href="{{ settings.social_pinterest_link }}" target="_blank">
+                      <img src="{{ 'pinterest.png' | asset_url }}">
+                    </a>
+                  </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>

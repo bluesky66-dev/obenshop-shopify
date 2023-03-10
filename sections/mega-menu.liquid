@@ -1,0 +1,374 @@
+<div class="megu-menu">
+  <div class="container">
+    <ul class="megu-menu__list">
+      {% for block in section.blocks %}
+        {% if block.type == 'link' %}
+          <li class="megu-menu__item">
+            <a class="megu-menu__link" href="{{ block.settings.link }}">
+              {{ block.settings.link_text }}
+            </a>
+          </li>
+        {% endif %}
+
+        {% if block.type == 'dropdown' %}
+          <li class="megu-menu__item megu-menu__sub">
+            <a class="megu-menu__link" href="{{ block.settings.link }}">
+              {{ block.settings.link_text }}
+            </a>
+
+            <div class="sub-menu">
+              <div class="container">
+                <div class="sub-menu__wrap">
+                  <div class="sub-menu__left">
+                    <div class="brands">
+                      <div class="brands__item">
+                        <ul>
+                          {% for link in block.settings.sub_menu.links %}
+                            <li>
+                              <a href="{{ link.url }}">
+                                {{ link.title }}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sub-menu__right">
+                    <div class="gallary-nav">
+                      <div class="gallary-nav__wrap">
+                        {% for i in (1..4) %}
+                          {%- liquid
+                            assign link = 'link_' | append: i 
+                            assign image = 'image_' | append: i 
+                            assign heading = 'heading_' | append: i 
+                          -%}
+                          <div class="gallary-nav__item">
+                            <a class="gallary-nav__link" href="{{ block.settings[link] }}">
+                              <div class="gallary-nav__title">
+                                {{ block.settings[heading] }}
+                              </div>
+
+                              <div class="gallary-nav__image">
+                                {% render 'image', image: block.settings[image], sizes: '660px' %}
+                              </div>
+                            </a>
+                          </div>
+                        {% endfor %}
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        {% endif %}
+
+        {% if block.type == 'brands' %}
+          <li class="megu-menu__item megu-menu__sub">
+            <a class="megu-menu__link" href="{{ block.settings.link }}">
+              {{ block.settings.link_text }}
+            </a>
+
+            <div class="sub-menu">
+              <div class="container">
+                  <div class="brands">
+                    {% assign letters = "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z" | split: ", " %}
+
+                    {% for i in (0..25) %}
+
+                      {% assign counter = i | plus: 1 %}
+                      {% assign brand = 'brand_' | append: counter %}
+                      {% if block.settings[brand] != blank  %}
+                        <div class="brands__item">
+                          <div class="brands__title">{{ letters[i] }}</div>
+
+                          <ul>
+                            {% for link in block.settings[brand].links %}
+                              <li>
+                                <a href="{{ link.url }}">
+                                  {{ link.title }}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                    
+                  </div>
+              </div>
+            </div>
+          </li> 
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Mega menu",
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "name": "Single link",
+      "type": "link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link text",
+          "default": "link text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "name": "Dropdown",
+      "type": "dropdown",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link text",
+          "default": "link text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Main Link"
+        },
+        {
+          "type": "link_list",
+          "id": "sub_menu",
+          "label": "Sub menu"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image #1"
+        },
+        {
+          "type": "text",
+          "id": "heading_1",
+          "label": "Heading 1",
+          "default": "Category #1"
+        }, 
+        {
+          "type": "url",
+          "id": "link_1",
+          "label": "Link #1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image #2"
+        },
+        {
+          "type": "text",
+          "id": "heading_2",
+          "label": "Heading #2",
+          "default": "Category #2"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "Link #2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image #3"
+        },
+        {
+          "type": "text",
+          "id": "heading_3",
+          "label": "Heading #3",
+          "default": "Category #3"
+        },
+        {
+          "type": "url",
+          "id": "link_3",
+          "label": "Link #3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image #4"
+        },
+        {
+          "type": "text",
+          "id": "heading_4",
+          "label": "Heading #4",
+          "default": "Category #4"
+        },
+        {
+          "type": "url",
+          "id": "link_4",
+          "label": "Link #4"
+        }
+      ]
+    },
+    {
+      "name": "Brands",
+      "type": "brands",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link text",
+          "default": "link text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Main Link"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_1",
+          "label": "A - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_2",
+          "label": "B - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_3",
+          "label": "C - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_4",
+          "label": "D - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_5",
+          "label": "E - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_6",
+          "label": "F - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_7",
+          "label": "G - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_8",
+          "label": "H - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_9",
+          "label": "I - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_10",
+          "label": "J - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_11",
+          "label": "K - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_12",
+          "label": "L - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_13",
+          "label": "M - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_14",
+          "label": "N - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_15",
+          "label": "O - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_16",
+          "label": "P - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_17",
+          "label": "Q - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_18",
+          "label": "R - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_19",
+          "label": "S - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_20",
+          "label": "T - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_21",
+          "label": "U - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_22",
+          "label": "V - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_23",
+          "label": "W - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_24",
+          "label": "X - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_25",
+          "label": "Y - brands list"
+        },
+        {
+          "type": "link_list",
+          "id": "brand_26",
+          "label": "Z - brands list"
+        }
+      ]
+    } 
+  ],
+  "presets": [
+    {
+      "name": "Mega menu"
+    }
+  ]
+}
+{% endschema %}
